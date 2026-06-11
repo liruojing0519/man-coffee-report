@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大理道25号 · IP定位方案</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#1a1a1a;--paper:#faf8f5;--cream:#f5f0e8;
+    --warm:#d4845a;--deep:#c94040;--gold:#c9a84c;
+    --green:#2d6a4f;--sage:#52796f;--blue:#457b9d;
+    --card-bg:#fff;--shadow:0 4px 24px rgba(0,0,0,0.08);
+    --radius:16px;
+  }
+  body{font-family:'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif;background:var(--paper);color:var(--ink);line-height:1.8}
+  html{scroll-behavior:smooth}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#0f3460 100%);color:#fff;padding:60px 24px}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,0.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(212,132,90,0.15) 0%,transparent 60%)}
+  .hero-badge{display:inline-block;padding:6px 20px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;font-size:13px;letter-spacing:2px;margin-bottom:24px;backdrop-filter:blur(4px);background:rgba(255,255,255,0.08)}
+  .hero h1{font-size:clamp(42px,8vw,72px);font-weight:800;letter-spacing:4px;margin-bottom:12px;position:relative}
+  .hero h1 span{background:linear-gradient(90deg,var(--gold),var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-sub{font-size:clamp(16px,2.5vw,22px);opacity:0.7;max-width:600px;margin:0 auto 40px;line-height:1.6}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .hero-tag{padding:8px 18px;border:1px solid rgba(255,255,255,0.25);border-radius:20px;font-size:13px;backdrop-filter:blur(4px);background:rgba(255,255,255,0.06);transition:all .3s}
+  .hero-tag:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px)}
+  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;opacity:0.5;font-size:24px}
+  @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);padding:0 24px;overflow-x:auto;white-space:nowrap}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;padding:10px 0}
+  .nav a{display:inline-block;padding:6px 14px;border-radius:20px;font-size:13px;color:var(--ink);text-decoration:none;transition:all .2s;opacity:0.6}
+  .nav a:hover,.nav a.active{background:var(--warm);color:#fff;opacity:1}
+
+  /* SECTIONS */
+  .section{padding:80px 24px;max-width:1100px;margin:0 auto}
+  .section-header{text-align:center;margin-bottom:56px}
+  .section-header .num{display:inline-block;font-size:48px;font-weight:900;opacity:0.08;margin-bottom:-20px}
+  .section-header h2{font-size:clamp(24px,4vw,32px);font-weight:700;margin-bottom:12px}
+  .section-header p{color:#666;max-width:560px;margin:0 auto;font-size:15px}
+
+  /* CARDS */
+  .cards{display:grid;gap:20px}
+  .card{background:var(--card-bg);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);transition:all .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+  .card h3{font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h3 .icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+
+  /* Section 1: 名称 */
+  .name-section{background:linear-gradient(135deg,var(--cream) 0%,var(--paper) 100%)}
+  .name-showcase{text-align:center;padding:60px 24px}
+  .name-showcase .big-name{font-size:clamp(56px,10vw,100px);font-weight:900;letter-spacing:8px;background:linear-gradient(135deg,var(--ink) 30%,var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+  .name-showcase .sub{font-size:18px;color:#888;margin-top:16px;letter-spacing:4px}
+
+  /* Section 2: 核心定位 */
+  .position-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .position-card{background:var(--card-bg);border-radius:var(--radius);padding:36px 28px;box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
+  .position-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+  .position-card:nth-child(1)::before{background:linear-gradient(90deg,var(--gold),var(--warm))}
+  .position-card:nth-child(2)::before{background:linear-gradient(90deg,var(--green),#52b788)}
+  .position-card:nth-child(3)::before{background:linear-gradient(90deg,var(--blue),#48cae4)}
+  .position-card .icon-big{font-size:48px;margin-bottom:16px}
+  .position-card h3{font-size:20px;font-weight:700;margin-bottom:8px}
+  .position-card p{color:#666;font-size:14px;line-height:1.6}
+
+  /* Section 3: 矛盾对比 */
+  .conflict-section{background:var(--cream)}
+  .conflict-grid{display:grid;grid-template-columns:1fr 80px 1fr;gap:24px;align-items:start}
+  .conflict-card{padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)}
+  .conflict-card.left{background:linear-gradient(135deg,#f0f4f0,#e8f0e8);border:1px solid rgba(45,106,79,0.15)}
+  .conflict-card.right{background:linear-gradient(135deg,#fdf6f0,#fef0e4);border:1px solid rgba(212,132,90,0.15)}
+  .conflict-card .avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:16px}
+  .conflict-card.left .avatar{background:linear-gradient(135deg,var(--green),#52b788);color:#fff}
+  .conflict-card.right .avatar{background:linear-gradient(135deg,var(--warm),var(--deep));color:#fff}
+  .conflict-card h3{font-size:22px;font-weight:700;margin-bottom:4px}
+  .conflict-card .label{font-size:13px;opacity:0.6;margin-bottom:16px}
+  .conflict-card .traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .conflict-card .trait{padding:4px 12px;border-radius:12px;font-size:12px}
+  .conflict-card.left .trait{background:rgba(45,106,79,0.1);color:var(--green)}
+  .conflict-card.right .trait{background:rgba(212,132,90,0.1);color:var(--warm)}
+  .conflict-center{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding-top:80px}
+  .conflict-center .vs{width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+  .conflict-center .vs-line{width:2px;flex:1;background:linear-gradient(to bottom,var(--ink),transparent);margin:12px 0;opacity:0.2}
+
+  /* Section 4: 底层价值 */
+  .value-showcase{display:flex;flex-direction:column;align-items:center;gap:24px;max-width:700px;margin:0 auto}
+  .value-item{width:100%;padding:28px 36px;border-radius:var(--radius);background:var(--card-bg);box-shadow:var(--shadow);font-size:20px;font-weight:700;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
+  .value-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+  .value-item:nth-child(1)::before{background:var(--gold)}
+  .value-item:nth-child(2)::before{background:var(--warm)}
+  .value-item:nth-child(3){background:linear-gradient(135deg,var(--ink),#2d2d4e);color:#fff;border:none}
+
+  /* Section 5: 一句话 */
+  .slogan-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .slogan-card{padding:24px 28px;border-radius:var(--radius);background:var(--card-bg);box-shadow:var(--shadow);border-left:4px solid var(--gold);font-size:15px;line-height:1.8;position:relative}
+  .slogan-card .version{position:absolute;top:12px;right:16px;font-size:11px;padding:2px 10px;border-radius:10px;background:rgba(201,168,76,0.12);color:var(--gold);font-weight:600}
+
+  /* Section 6: 世界观 */
+  .worldview-section{background:var(--cream)}
+  .worldview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .worldview-item{background:var(--card-bg);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow);transition:all .3s;border:1px solid rgba(0,0,0,0.04)}
+  .worldview-item:hover{transform:scale(1.03)}
+  .worldview-item .w-icon{font-size:36px;margin-bottom:8px}
+  .worldview-item .w-label{font-size:14px;color:#666}
+
+  /* Section 7: 角色矩阵 */
+  .char-section{background:var(--paper)}
+  .char-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .char-card{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+  .char-card .char-header{padding:24px 28px;color:#fff}
+  .char-card:nth-child(1) .char-header{background:linear-gradient(135deg,#2d6a4f,#52796f)}
+  .char-card:nth-child(2) .char-header{background:linear-gradient(135deg,var(--warm),var(--deep))}
+  .char-card:nth-child(3) .char-header{background:linear-gradient(135deg,var(--blue),#48cae4)}
+  .char-card:nth-child(4) .char-header{background:linear-gradient(135deg,#6a4c93,#b5838d)}
+  .char-card:nth-child(5) .char-header{background:linear-gradient(135deg,#e07a5f,#f2cc8f)}
+  .char-card:nth-child(6) .char-header{background:linear-gradient(135deg,#81b29a,#3d405b)}
+  .char-card .char-name{font-size:22px;font-weight:700;margin-bottom:4px}
+  .char-card .char-role{font-size:13px;opacity:0.8}
+  .char-card .char-body{padding:20px 28px}
+  .char-card .char-keywords{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .char-card .char-kw{padding:3px 10px;border-radius:10px;font-size:12px;background:var(--cream)}
+
+  /* Section 8: 内容母题 */
+  .theme-cards{display:grid;gap:24px}
+  .theme-card{background:var(--card-bg);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+  .theme-card .theme-num{font-size:64px;font-weight:900;opacity:0.1;line-height:1}
+  .theme-card .theme-title{font-size:20px;font-weight:700;margin-bottom:4px}
+  .theme-card .theme-sub{color:#888;font-size:14px;margin-bottom:16px}
+  .theme-card .theme-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .theme-tag{padding:4px 14px;border-radius:12px;font-size:12px;background:var(--cream)}
+
+  /* Section 9: 账号矩阵 */
+  .matrix-table{width:100%;border-collapse:collapse;background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .matrix-table th{background:var(--ink);color:#fff;padding:14px 20px;text-align:left;font-size:14px;font-weight:600}
+  .matrix-table td{padding:12px 20px;border-bottom:1px solid #f0f0f0;font-size:14px}
+  .matrix-table tr:last-child td{border-bottom:none}
+  .matrix-table tr:hover td{background:var(--cream)}
+
+  /* Section 10: 视觉调性 */
+  .tone-section{background:var(--cream)}
+  .tone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .tone-card{background:var(--card-bg);border-radius:var(--radius);padding:28px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .tone-card .tone-icon{font-size:40px;margin-bottom:12px}
+  .tone-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+  .tone-card p{font-size:13px;color:#888;line-height:1.6}
+
+  /* Section 11: 转化路径 */
+  .funnel-section{background:var(--paper)}
+  .funnel{display:flex;flex-direction:column;align-items:center;gap:0;max-width:600px;margin:0 auto}
+  .funnel-step{width:100%;padding:24px 32px;border-radius:var(--radius);color:#fff;text-align:center;position:relative;transition:all .3s}
+  .funnel-step:hover{transform:scale(1.02)}
+  .funnel-step h4{font-size:18px;font-weight:700;margin-bottom:4px}
+  .funnel-step p{font-size:13px;opacity:0.8}
+  .funnel-step .funnel-num{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:28px;font-weight:900;opacity:0.2}
+  .funnel-step:nth-child(1){background:linear-gradient(135deg,var(--gold),#e9c46a);width:100%}
+  .funnel-step:nth-child(2){background:linear-gradient(135deg,var(--warm),#e07a5f);width:85%}
+  .funnel-step:nth-child(3){background:linear-gradient(135deg,var(--blue),#48cae4);width:70%}
+  .funnel-step:nth-child(4){background:linear-gradient(135deg,var(--green),#52b788);width:55%}
+  .funnel-arrow{font-size:20px;color:#ccc;margin:4px 0}
+
+  /* Section 12: 战略表达 */
+  .strategy-section{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:80px 24px;text-align:center}
+  .strategy-section h2{font-size:clamp(24px,4vw,32px);margin-bottom:16px}
+  .strategy-quote{font-size:clamp(20px,3vw,28px);font-weight:700;max-width:700px;margin:0 auto 32px;line-height:1.6;background:linear-gradient(90deg,var(--gold),var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .strategy-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto}
+  .strategy-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:20px;text-align:left}
+  .strategy-card .sc-icon{font-size:28px;margin-bottom:8px}
+  .strategy-card .sc-text{font-size:14px;line-height:1.6;opacity:0.8}
+
+  /* FOOTER */
+  footer{text-align:center;padding:32px;color:#aaa;font-size:13px;border-top:1px solid #f0f0f0}
+
+  /* ANIMATE */
+  .reveal{opacity:0;transform:translateY(32px);transition:all .6s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:768px){
+    .conflict-grid{grid-template-columns:1fr;gap:16px}
+    .conflict-center{display:none}
+    .theme-card{grid-template-columns:1fr}
+    .funnel-step .funnel-num{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-badge">IP 定位方案</div>
+  <h1><span>大理道25号</span></h1>
+  <p class="hero-sub">艺术家的游乐园 · 城市里的桃花源<br>理想主义者与生活家的共同院子</p>
+  <div class="hero-tags">
+    <span class="hero-tag">☕ 咖啡</span>
+    <span class="hero-tag">🍷 酒</span>
+    <span class="hero-tag">🎨 艺术</span>
+    <span class="hero-tag">👥 朋友</span>
+    <span class="hero-tag">📖 故事</span>
+    <span class="hero-tag">🔥 烟火气</span>
+  </div>
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#name">名称</a>
+    <a href="#position">定位</a>
+    <a href="#conflict">矛盾</a>
+    <a href="#value">价值</a>
+    <a href="#slogan">Slogan</a>
+    <a href="#worldview">世界观</a>
+    <a href="#characters">角色</a>
+    <a href="#themes">内容</a>
+    <a href="#matrix">矩阵</a>
+    <a href="#tone">调性</a>
+    <a href="#funnel">转化</a>
+    <a href="#strategy">战略</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: 主IP名称 -->
+<section class="name-section" id="name">
+  <div class="name-showcase reveal">
+    <div class="big-name">大理道25号</div>
+    <div class="sub">不是一家店，是一座城市的理想后花园</div>
+  </div>
+</section>
+
+<!-- SECTION 2: 核心定位 -->
+<section class="section" id="position">
+  <div class="section-header reveal">
+    <div class="num">02</div>
+    <h2>核心定位</h2>
+    <p>三种气质，同一个院子</p>
+  </div>
+  <div class="position-cards reveal">
+    <div class="position-card">
+      <div class="icon-big">🎨</div>
+      <h3>艺术家的游乐园</h3>
+      <p>让创作者有地方驻扎，让艺术从展馆走进日常</p>
+    </div>
+    <div class="position-card">
+      <div class="icon-big">🌿</div>
+      <h3>城市里的桃花源</h3>
+      <p>在喧嚣城市中，留一块柔软的地方</p>
+    </div>
+    <div class="position-card">
+      <div class="icon-big">🏡</div>
+      <h3>理想主义者与生活家的共同院子</h3>
+      <p>两种人，同一张桌子，同一杯酒</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: IP核心矛盾 -->
+<section class="conflict-section" id="conflict">
+  <div class="section" style="padding-top:80px;padding-bottom:80px">
+    <div class="section-header reveal">
+      <div class="num">03</div>
+      <h2>IP 核心矛盾</h2>
+      <p>两种气质的碰撞，是这个故事最精彩的地方</p>
+    </div>
+    <div class="conflict-grid reveal">
+      <!-- 罗老师 -->
+      <div class="conflict-card left">
+        <div class="avatar">🎭</div>
+        <h3>罗老师</h3>
+        <div class="label">阳春白雪</div>
+        <p style="font-size:14px;color:#555;line-height:1.8">
+          不接地气。艺术家。谈理想、谈审美、谈精神世界。有点清高，有点浪漫，有点"不挣钱也要美"。
+        </p>
+        <div style="margin-top:16px;font-size:13px;color:var(--green);font-weight:600">代表关键词</div>
+        <div class="traits">
+          <span class="trait">艺术</span>
+          <span class="trait">理想</span>
+          <span class="trait">审美</span>
+          <span class="trait">精神</span>
+          <span class="trait">不妥协的浪漫</span>
+        </div>
+      </div>
+
+      <!-- VS -->
+      <div class="conflict-center">
+        <div class="vs">VS</div>
+        <div class="vs-line"></div>
+      </div>
+
+      <!-- 韩姐 -->
+      <div class="conflict-card right">
+        <div class="avatar">💪</div>
+        <h3>韩姐</h3>
+        <div class="label">下里巴人</div>
+        <p style="font-size:14px;color:#555;line-height:1.8">
+          接地气。会生活。能干、强梁、会社交、会做生意。懂人情世故，也懂柴米油盐。
+        </p>
+        <div style="margin-top:16px;font-size:13px;color:var(--warm);font-weight:600">代表关键词</div>
+        <div class="traits">
+          <span class="trait">生活</span>
+          <span class="trait">烟火</span>
+          <span class="trait">生意</span>
+          <span class="trait">人情</span>
+          <span class="trait">把日子过明白</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: IP底层价值 -->
+<section class="section" id="value">
+  <div class="section-header reveal">
+    <div class="num">04</div>
+    <h2>IP 底层价值</h2>
+    <p>理想不能离开生活，生活也不能没有理想</p>
+  </div>
+  <div class="value-showcase reveal">
+    <div class="value-item">理想不能离开生活。</div>
+    <div style="font-size:28px;opacity:0.3">↓</div>
+    <div class="value-item">生活也不能没有理想。</div>
+    <div style="font-size:28px;opacity:0.3">↓</div>
+    <div class="value-item" style="color:#fff">理想与现实的和解</div>
+  </div>
+  <div style="max-width:700px;margin:32px auto 0;text-align:center;color:#666;font-size:14px;line-height:1.8" class="reveal">
+    <p>罗老师让这个地方有灵魂。韩姐让这个地方活下去。</p>
+    <p>一个负责把日子过得有诗意。一个负责让诗意真的能落地。</p>
+  </div>
+</section>
+
+<!-- SECTION 5: 主IP一句话 -->
+<section class="section" id="slogan" style="background:var(--cream)">
+  <div class="section-header reveal">
+    <div class="num">05</div>
+    <h2>主 IP 一句话</h2>
+    <p>五种表达，同一种灵魂</p>
+  </div>
+  <div class="slogan-cards reveal">
+    <div class="slogan-card"><span class="version">版本一</span>大理道25号，一个把理想和日子放在同一个院子里的地方。</div>
+    <div class="slogan-card"><span class="version">版本二</span>这里有不接地气的艺术家，也有最接地气的生活家。</div>
+    <div class="slogan-card"><span class="version">版本三</span>城市太硬了，所以我们在25号，留了一块柔软的地方。</div>
+    <div class="slogan-card"><span class="version">版本四</span>白天谈理想，晚上聊生活。</div>
+    <div class="slogan-card"><span class="version">版本五</span>一半阳春白雪，一半人间烟火。</div>
+  </div>
+</section>
+
+<!-- SECTION 6: IP世界观 -->
+<section class="section" id="worldview">
+  <div class="section-header reveal">
+    <div class="num">06</div>
+    <h2>IP 世界观</h2>
+    <p>大理道25号，是一个城市关系剧场</p>
+  </div>
+  <div class="reveal" style="text-align:center;margin-bottom:40px;color:#666;font-size:15px">
+    <p>每个人来到这里，都不是单纯喝一杯咖啡，而是在找——</p>
+  </div>
+  <div class="worldview-grid reveal">
+    <div class="worldview-item"><div class="w-icon">👫</div><div class="w-label">找朋友</div></div>
+    <div class="worldview-item"><div class="w-icon">🪞</div><div class="w-label">找自己</div></div>
+    <div class="worldview-item"><div class="w-icon">💡</div><div class="w-label">找灵感</div></div>
+    <div class="worldview-item"><div class="w-icon">🧘</div><div class="w-label">找松弛</div></div>
+    <div class="worldview-item"><div class="w-icon">💬</div><div class="w-label">找一段关系</div></div>
+    <div class="worldview-item"><div class="w-icon">🌱</div><div class="w-label">找一点生活的意义</div></div>
+  </div>
+</section>
+
+<!-- SECTION 7: IP角色矩阵 -->
+<section class="section" id="characters" style="background:var(--cream)">
+  <div class="section-header reveal">
+    <div class="num">07</div>
+    <h2>IP 角色矩阵</h2>
+    <p>六个角色，撑起一座城市关系剧场</p>
+  </div>
+  <div class="char-grid reveal">
+    <!-- 罗老师 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">🎭 罗老师</div>
+        <div class="char-role">不接地气的艺术家</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">罗老师谈艺术</span>
+          <span class="char-kw">罗老师谈理想</span>
+          <span class="char-kw">罗老师谈咖啡</span>
+          <span class="char-kw">罗老师不懂生意</span>
+          <span class="char-kw">罗老师又想搞艺术了</span>
+        </div>
+      </div>
+    </div>
+    <!-- 韩姐 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">💪 韩姐</div>
+        <div class="char-role">接地气的生活家</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">韩姐的一天</span>
+          <span class="char-kw">韩姐教你做人情</span>
+          <span class="char-kw">韩姐算账</span>
+          <span class="char-kw">韩姐和罗老师斗嘴</span>
+          <span class="char-kw">韩姐把艺术家拉回现实</span>
+        </div>
+      </div>
+    </div>
+    <!-- 店长 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">🎯 店长</div>
+        <div class="char-role">25号的秩序维护者</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">25号营业日记</span>
+          <span class="char-kw">今天来了谁</span>
+          <span class="char-kw">顾客故事</span>
+          <span class="char-kw">店长推荐</span>
+          <span class="char-kw">如何伺候艺术家和生活家</span>
+        </div>
+      </div>
+    </div>
+    <!-- 徒弟 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">🌱 徒弟</div>
+        <div class="char-role">艺术家的徒弟们</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">跟罗老师学艺术</span>
+          <span class="char-kw">跟韩姐学做人</span>
+          <span class="char-kw">今天又被罗老师整不会了</span>
+          <span class="char-kw">师徒日常</span>
+        </div>
+      </div>
+    </div>
+    <!-- 朋友 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">👥 朋友</div>
+        <div class="char-role">25号的常客朋友们</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">常客故事</span>
+          <span class="char-kw">老友局</span>
+          <span class="char-kw">咖啡桌上的人生</span>
+          <span class="char-kw">深夜聊天</span>
+          <span class="char-kw">五大道朋友圈</span>
+        </div>
+      </div>
+    </div>
+    <!-- 宠物 -->
+    <div class="char-card">
+      <div class="char-header">
+        <div class="char-name">🐾 宠物</div>
+        <div class="char-role">25号的毛孩子</div>
+      </div>
+      <div class="char-body">
+        <div style="font-size:13px;color:#888;margin-bottom:8px">内容方向</div>
+        <div class="char-keywords">
+          <span class="char-kw">宠物来串门</span>
+          <span class="char-kw">狗狗社交日</span>
+          <span class="char-kw">毛孩子下午茶</span>
+          <span class="char-kw">宠物友好院子</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: 新媒体运营方向 -->
+<section class="section" id="themes">
+  <div class="section-header reveal">
+    <div class="num">08</div>
+    <h2>新媒体总运营方向</h2>
+    <p>不是单账号运营，而是主IP + 人物IP + 场景IP + 产品IP + 关系IP</p>
+  </div>
+  <div class="theme-cards reveal">
+    <div class="theme-card">
+      <div class="theme-num">1</div>
+      <div>
+        <div class="theme-title">理想与现实</div>
+        <div class="theme-sub">最强戏剧冲突 · 罗老师 × 韩姐</div>
+        <div class="theme-tags">
+          <span class="theme-tag">艺术家想搞理想</span>
+          <span class="theme-tag">韩姐负责算账</span>
+          <span class="theme-tag">罗老师讲审美</span>
+          <span class="theme-tag">韩姐讲生意</span>
+        </div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-num">2</div>
+      <div>
+        <div class="theme-title">城市桃花源</div>
+        <div class="theme-sub">场景感 · 院子 · 灯光 · 咖啡与酒</div>
+        <div class="theme-tags">
+          <span class="theme-tag">城市太吵了</span>
+          <span class="theme-tag">五大道的院子</span>
+          <span class="theme-tag">夜晚的灯</span>
+          <span class="theme-tag">白天咖啡晚上酒</span>
+        </div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-num">3</div>
+      <div>
+        <div class="theme-title">关系剧场</div>
+        <div class="theme-sub">一部发生在院子里的连续剧</div>
+        <div class="theme-tags">
+          <span class="theme-tag">朋友情</span>
+          <span class="theme-tag">爱情</span>
+          <span class="theme-tag">亲情</span>
+          <span class="theme-tag">师徒情</span>
+          <span class="theme-tag">姐妹情</span>
+          <span class="theme-tag">兄弟情</span>
+        </div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-num">4</div>
+      <div>
+        <div class="theme-title">艺术家的游乐园</div>
+        <div class="theme-sub">活动 · 展览 · 沙龙</div>
+        <div class="theme-tags">
+          <span class="theme-tag">小型展览</span>
+          <span class="theme-tag">音乐夜</span>
+          <span class="theme-tag">读书会</span>
+          <span class="theme-tag">戏剧片段</span>
+          <span class="theme-tag">市集</span>
+        </div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-num">5</div>
+      <div>
+        <div class="theme-title">会生活的人间烟火</div>
+        <div class="theme-sub">韩姐的生活智慧</div>
+        <div class="theme-tags">
+          <span class="theme-tag">韩姐待客</span>
+          <span class="theme-tag">韩姐做生意</span>
+          <span class="theme-tag">韩姐的生活智慧</span>
+          <span class="theme-tag">韩姐的家长里短</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: 账号矩阵 -->
+<section class="section" id="matrix" style="background:var(--cream)">
+  <div class="section-header reveal">
+    <div class="num">09</div>
+    <h2>账号矩阵建议</h2>
+    <p>多账号协同，覆盖不同平台和受众</p>
+  </div>
+  <div class="reveal" style="overflow-x:auto">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>账号定位</th>
+          <th>平台建议</th>
+          <th>内容方向</th>
+          <th>人设</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>主账号</strong></td>
+          <td>小红书 + 微信视频号</td>
+          <td>院子日常、顾客故事、活动预告</td>
+          <td>25号本身就是主角</td>
+        </tr>
+        <tr>
+          <td><strong>罗老师</strong></td>
+          <td>小红书 + 抖音</td>
+          <td>艺术谈资、审美观点、理想主义</td>
+          <td>不接地气的艺术家</td>
+        </tr>
+        <tr>
+          <td><strong>韩姐</strong></td>
+          <td>抖音 + 快手</td>
+          <td>生活智慧、人情世故、做生意</td>
+          <td>接地气的生活家</td>
+        </tr>
+        <tr>
+          <td><strong>店长日记</strong></td>
+          <td>小红书 + 微博</td>
+          <td>每日营业、顾客故事、院子变化</td>
+          <td>秩序维护者</td>
+        </tr>
+        <tr>
+          <td><strong>徒弟视角</strong></td>
+          <td>B站 + 抖音</td>
+          <td>学艺日常、师徒互动、年轻人理想</td>
+          <td>艺术家的徒弟</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 10: 主视觉调性 -->
+<section class="section" id="tone">
+  <div class="section-header reveal">
+    <div class="num">10</div>
+    <h2>主视觉调性</h2>
+    <p>文艺但不能装，高级但要有人味</p>
+  </div>
+  <div class="tone-grid reveal">
+    <div class="tone-card">
+      <div class="tone-icon">🎨</div>
+      <h4>文艺，但不能装</h4>
+      <p>有审美，但不端着。让人觉得美，也让人觉得可以接近。</p>
+    </div>
+    <div class="tone-card">
+      <div class="tone-icon">✨</div>
+      <h4>高级，但要有人味</h4>
+      <p>质感在线，但不冷冰冰。有温度的高级感。</p>
+    </div>
+    <div class="tone-card">
+      <div class="tone-icon">🌿</div>
+      <h4>理想，但要能挣钱</h4>
+      <p>浪漫不死，但也要活下去。理想主义的商业可行化。</p>
+    </div>
+    <div class="tone-card">
+      <div class="tone-icon">🧘</div>
+      <h4>松弛，但不能散</h4>
+      <p>随意但不随便，松弛但有章法。</p>
+    </div>
+  </div>
+  <div style="max-width:700px;margin:32px auto 0" class="reveal">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">五大道</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">老洋房</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">院子</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">灯光</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">咖啡</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">酒</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">朋友</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">艺术</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">烟火气</span>
+      <span style="padding:6px 16px;background:var(--cream);border-radius:20px;font-size:13px">桃花源</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: 商业转化路径 -->
+<section class="section funnel-section" id="funnel">
+  <div class="section-header reveal">
+    <div class="num">11</div>
+    <h2>商业转化路径</h2>
+    <p>从内容到到店到留存到复购，完整闭环</p>
+  </div>
+  <div class="funnel reveal">
+    <div class="funnel-step">
+      <div class="funnel-num">①</div>
+      <h4>内容吸引人</h4>
+      <p>通过罗老师、韩姐、院子故事、关系故事吸引关注</p>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-num">②</div>
+      <h4>场景让人来</h4>
+      <p>咖啡、夜酒、球赛、活动、展览、读书会 —— 形成到店理由</p>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-num">③</div>
+      <h4>私域让人留下</h4>
+      <p>朋友群、艺术群、熟客群、宠物群、夜咖群 —— 沉淀关系</p>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-num">④</div>
+      <h4>IP让人复购</h4>
+      <p>活动、会员、文创、联名、院子局 —— 形成持续消费</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: 最终战略表达 -->
+<section class="strategy-section" id="strategy">
+  <h2 class="reveal">最终战略表达</h2>
+  <div class="strategy-quote reveal">大理道25号不是一家店。<br>它是一座城市的理想后花园。</div>
+  <div class="strategy-cards reveal">
+    <div class="strategy-card">
+      <div class="sc-icon">🎨</div>
+      <div class="sc-text">罗老师负责让这里有精神</div>
+    </div>
+    <div class="strategy-card">
+      <div class="sc-icon">🔥</div>
+      <div class="sc-text">韩姐负责让这里有人气</div>
+    </div>
+    <div class="strategy-card">
+      <div class="sc-icon">📖</div>
+      <div class="sc-text">朋友们负责让这里有故事</div>
+    </div>
+    <div class="strategy-card">
+      <div class="sc-icon">📱</div>
+      <div class="sc-text">新媒体负责把这些故事讲出去</div>
+    </div>
+  </div>
+</section>
+
+<footer>大理道25号 · IP定位方案 ｜ 由飞书文档可视化生成</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav active state
+const navLinks = document.querySelectorAll('.nav a');
+const sections = document.querySelectorAll('[id]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 100;
+    if (window.scrollY >= top) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
