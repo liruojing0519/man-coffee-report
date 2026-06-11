@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>漫咖啡项目对接报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #1a1a2e; color: #e0e0e0; scroll-behavior: smooth; overflow-x: hidden;
+}
+.slide {
+  min-height: 100vh; min-height: 100dvh;
+  padding: 24px 20px 60px;
+  display: flex; flex-direction: column;
+  scroll-snap-align: start; position: relative;
+}
+.cover {
+  background: linear-gradient(135deg, #0f0c29, #1a1a2e 40%, #2d1f3d);
+  justify-content: center; align-items: center; text-align: center;
+}
+.cover h1 {
+  font-size: clamp(26px, 6vw, 48px); font-weight: 800;
+  background: linear-gradient(135deg, #c8a45c, #f0d78c, #c8a45c);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 12px; letter-spacing: 2px; line-height: 1.2;
+}
+.cover .sub { font-size: clamp(13px, 2.5vw, 17px); color: #999; letter-spacing: 3px; margin-bottom: 8px; }
+.cover .date { margin-top: 28px; font-size: 13px; color: #666; }
+.content-slide { background: #16213e; padding-top: 56px; }
+.slide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.slide-num {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: linear-gradient(135deg, #c8a45c, #8b6914);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px; color: #fff; flex-shrink: 0;
+}
+.slide-title { font-size: clamp(18px, 3.5vw, 26px); font-weight: 700; color: #f0d78c; }
+h3 { color: #c8a45c; font-size: 15px; margin: 18px 0 8px; padding-left: 10px; border-left: 3px solid #c8a45c; }
+h3:first-of-type { margin-top: 0; }
+.info-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 18px; margin-bottom: 14px;
+}
+.info-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+.info-item { flex:1; min-width: 110px; background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px 12px; }
+.info-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.info-value { font-size: 14px; font-weight: 600; color: #f0d78c; }
+.info-note { font-size: 11px; color: #aaa; margin-top: 3px; line-height: 1.5; }
+.highlight {
+  background: linear-gradient(135deg, rgba(200,164,92,0.15), rgba(139,105,20,0.1));
+  border: 1px solid rgba(200,164,92,0.3); border-radius: 12px; padding: 14px; margin: 14px 0;
+}
+.highlight strong { color: #f0d78c; }
+.chip { display: inline-block; background: rgba(200,164,92,0.18); color: #c8a45c; padding: 3px 10px; border-radius: 16px; font-size: 11px; margin: 3px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+ul, ol { padding-left: 18px; line-height: 1.7; }
+li { margin-bottom: 5px; color: #ccc; font-size: 13.5px; }
+p { line-height: 1.65; color: #ccc; font-size: 13.5px; margin-bottom: 8px; }
+strong { color: #f0d78c; }
+[contenteditable="true"]:focus { outline: 2px dashed rgba(200,164,92,0.4); outline-offset: 2px; border-radius: 4px; }
+.nav-bottom { position: fixed; bottom: 18px; right: 18px; z-index: 100; display: flex; gap: 8px; }
+.nav-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(200,164,92,0.8); border: none; color: #fff;
+  font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(10px); transition: all 0.3s;
+}
+.nav-btn:hover { background: rgba(200,164,92,1); transform: scale(1.08); }
+.toc-link {
+  display: block; padding: 12px 18px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; color: #ccc; text-decoration: none;
+  margin-bottom: 8px; transition: all 0.3s; font-size: 14px;
+}
+.toc-link:hover { background: rgba(200,164,92,0.12); color: #f0d78c; border-color: rgba(200,164,92,0.25); }
+.toc-num { color: #c8a45c; font-weight: 700; margin-right: 8px; font-size: 13px; }
+
+.finance-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+.finance-table th { background: rgba(200,164,92,0.18); color: #f0d78c; padding: 9px 10px; text-align: left; font-weight: 600; font-size: 12px; }
+.finance-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccc; }
+.finance-table tr:hover td { background: rgba(255,255,255,0.025); }
+.finance-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.badge { display: inline-block; padding: 2px 7px; border-radius: 9px; font-size: 10.5px; font-weight: 600; }
+.badge-g { background: rgba(76,175,80,0.18); color: #66bb6a; }
+.badge-y { background: rgba(200,164,92,0.18); color: #c8a45c; }
+.badge-r { background: rgba(255,112,67,0.18); color: #ff8a65; }
+.badge-b { background: rgba(66,165,245,0.18); color: #64b5f6; }
+
+.profit-bar-bg { background: rgba(255,255,255,0.06); border-radius: 5px; height: 8px; overflow: hidden; margin-top: 3px; }
+.profit-bar { height: 100%; border-radius: 5px; }
+.pbar-h { background: linear-gradient(90deg, #4caf50, #81c784); }
+.pbar-m { background: linear-gradient(90deg, #c8a45c, #f0d78c); }
+.pbar-l { background: linear-gradient(90deg, #ff7043, #ffab91); }
+
+.phase-card {
+  background: rgba(255,255,255,0.04); border-left: 3px solid;
+  border-radius: 0 12px 12px 0; padding: 14px 16px; margin-bottom: 10px;
+}
+.phase-1 { border-color: #ff7043; }
+.phase-2 { border-color: #c8a45c; }
+.phase-3 { border-color: #4caf50; }
+.phase-card h4 { font-size: 14px; margin-bottom: 6px; }
+.phase-1 h4 { color: #ff8a65; }
+.phase-2 h4 { color: #f0d78c; }
+.phase-3 h4 { color: #66bb6a; }
+
+.play-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 8px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.play-icon { font-size: 22px; flex-shrink: 0; width: 36px; text-align: center; }
+.play-body h4 { color: #f0d78c; font-size: 13px; margin-bottom: 3px; }
+.play-body p { font-size: 12px; color: #999; margin: 0; line-height: 1.5; }
+
+.img-ph {
+  background: rgba(255,255,255,0.03); border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 28px; text-align: center; color: #555;
+  font-size: 12.5px; cursor: pointer; transition: all 0.2s; margin-bottom: 10px;
+}
+.img-ph:hover { border-color: rgba(200,164,92,0.35); color: #c8a45c; }
+.img-ph img { max-width: 100%; border-radius: 8px; display: none; margin: 0 auto; }
+.img-ph.has-img img { display: block; }
+.img-ph.has-img span { display: none; }
+
+.break-card {
+  background: rgba(255,255,255,0.04); border-radius: 12px; padding: 14px; margin-bottom: 8px;
+}
+.break-card h4 { color: #f0d78c; font-size: 13.5px; margin-bottom: 6px; }
+.break-card .val { font-size: 22px; font-weight: 800; color: #f0d78c; }
+.break-card .sub { font-size: 11px; color: #888; margin-top: 2px; }
+
+@media (max-width: 480px) {
+  .slide { padding: 16px 13px 50px; }
+  .content-slide { padding-top: 48px; }
+  .info-card { padding: 13px; }
+  .info-item { min-width: 100%; }
+  .info-row { gap: 7px; }
+  .finance-table { font-size: 11.5px; }
+  .finance-table th, .finance-table td { padding: 7px 8px; }
+}
+</style>
+</head>
+<body>
+
+<div style="position:fixed;top:14px;left:50%;transform:translateX(-50%);background:rgba(200,164,92,0.88);color:#1a1a2e;padding:7px 18px;border-radius:18px;font-size:11.5px;font-weight:600;z-index:200;pointer-events:none;animation:fadeH 4s forwards;">点击文字可编辑 · 上下键翻页</div>
+<style>@keyframes fadeH{0%,65%{opacity:1}100%{opacity:0;display:none}}</style>
+
+<!-- P1: 封面 -->
+<div class="slide cover" id="s1">
+  <h1 contenteditable="true">漫咖啡项目<br>对接报告</h1>
+  <p class="sub" contenteditable="true">MAAN COFFEE · 天津和平区大理道25号</p>
+  <p class="date" contenteditable="true">2026年6月11日 · 含飞书数据清单补充版</p>
+</div>
+
+<!-- P2: 目录 -->
+<div class="slide content-slide" id="s2">
+  <div class="slide-header"><div class="slide-num">目</div><div class="slide-title">目录</div></div>
+  <div style="max-width:520px;margin:0 auto;">
+    <a href="#s3" class="toc-link"><span class="toc-num">01</span>项目概况</a>
+    <a href="#s4" class="toc-link"><span class="toc-num">02</span>场地与房租分析</a>
+    <a href="#s5" class="toc-link"><span class="toc-num">03</span>固定成本与电费模型</a>
+    <a href="#s6" class="toc-link"><span class="toc-num">04</span>产品结构与利润分析</a>
+    <a href="#s7" class="toc-link"><span class="toc-num">05</span>大众点评套餐诊断</a>
+    <a href="#s8" class="toc-link"><span class="toc-num">06</span>盈亏平衡测算</a>
+    <a href="#s9" class="toc-link"><span class="toc-num">07</span>私域运营方案</a>
+    <a href="#s10" class="toc-link"><span class="toc-num">08</span>经营策略三阶段</a>
+    <a href="#s11" class="toc-link"><span class="toc-num">09</span>总体判断：空间重新定义</a>
+    <a href="#s12" class="toc-link"><span class="toc-num">10</span>下一步计划</a>
+  </div>
+</div>
+
+<!-- P3: 项目概况 -->
+<div class="slide content-slide" id="s3">
+  <div class="slide-header"><div class="slide-num">01</div><div class="slide-title" contenteditable="true">项目概况</div></div>
+
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-item"><div class="info-label">项目名称</div><div class="info-value" contenteditable="true">漫咖啡 · 大理道25号院</div></div>
+      <div class="info-item"><div class="info-label">地址</div><div class="info-value" contenteditable="true">天津市和平区大理道25号院</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-item"><div class="info-label">院落面积</div><div class="info-value" contenteditable="true">2100–2700 ㎡</div></div>
+      <div class="info-item"><div class="info-label">单层面积</div><div class="info-value" contenteditable="true">约 200 ㎡</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-item"><div class="info-label">合作方</div><div class="info-value" contenteditable="true">二轻集团</div></div>
+      <div class="info-item"><div class="info-label">合作期限</div><div class="info-value" contenteditable="true">10 年</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-item"><div class="info-label">业态规划</div><div class="info-value" contenteditable="true">漫咖啡 + 民宿 + 酒吧/小酒馆</div></div>
+      <div class="info-item"><div class="info-label">当前状态</div><div class="info-value" contenteditable="true">筹备/试营业中</div></div>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">核心数据摘要</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>数据项</th><th>数值</th><th>说明</th></tr>
+    <tr><td>第一年房租</td><td class="num">26 万元/年</td><td>约 2.17 万元/月，租金压力低</td></tr>
+    <tr><td>第十年房租</td><td class="num">35 万元/年</td><td>约 2.92 万元/月，递增可控</td></tr>
+    <tr><td>员工人数</td><td class="num">4 人（当前）</td><td>对 2700㎡ 严重不足，需逐步扩充</td></tr>
+    <tr><td>月人工成本</td><td class="num">1.5 万元</td><td>当前运营强度低，后续需增加</td></tr>
+    <tr><td>月电费（当前阶段）</td><td class="num">0.8–1.2 万元</td><td>低负荷，仅开放局部区域</td></tr>
+    <tr><td>月电费（全负荷）</td><td class="num">2.0–3.5 万元</td><td>夏季全空间+夜场同开时，需分区管控</td></tr>
+  </table>
+
+  <div class="tag-row" contenteditable="true">
+    <span class="chip">漫咖啡</span><span class="chip">大理道25号</span><span class="chip">和平区</span>
+    <span class="chip">二轻集团</span><span class="chip">10年租期</span><span class="chip">2700㎡院落</span>
+    <span class="chip">民宿</span><span class="chip">酒吧/小酒馆</span>
+  </div>
+</div>
+
+<!-- P4: 场地与房租分析 -->
+<div class="slide content-slide" id="s4">
+  <div class="slide-header"><div class="slide-num">02</div><div class="slide-title" contenteditable="true">场地与房租分析</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>核心判断：</strong>租金本身非常低（约11元/㎡/天），不是核心压力。<br>
+    <strong>真正压力在：</strong>2700㎡ 空间带来的空调、电费、保洁、人员、维护成本和人气稀释。<br>
+    <strong style="color:#ff8a65;">房租不是核心压力，空间运营效率才是核心压力。</strong>
+  </div>
+
+  <h3 contenteditable="true">房租结构（10年递增）</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>年度</th><th>年租金</th><th>月均</th><th>日单价估算</th><th>评估</th></tr>
+    <tr><td>第1年</td><td class="num">26 万</td><td class="num">2.17 万</td><td class="num">约 2.6 元</td><td><span class="badge badge-g">低</span></td></tr>
+    <tr><td>第2年</td><td class="num">27 万</td><td class="num">2.25 万</td><td class="num">约 2.7 元</td><td><span class="badge badge-g">低</span></td></tr>
+    <tr><td>第10年</td><td class="num">35 万</td><td class="num">2.92 万</td><td class="num">约 3.5 元</td><td><span class="badge badge-g">仍低于核心商圈</span></td></tr>
+  </table>
+
+  <h3 contenteditable="true">空间挑战分析</h3>
+  <div class="info-card" contenteditable="true">
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">⚠️ 面积过大</div>
+        <div class="info-value">2100–2700㎡</div>
+        <div class="info-note">咖啡单一业态无法消化，必须复合经营</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">⚠️ 单层仅 200㎡</div>
+        <div class="info-value">需明确分区</div>
+        <div class="info-note">咖啡区/酒吧区/活动区需独立规划</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">⚠️ 电费压力（全负荷）</div>
+        <div class="info-value">2.0–3.5 万/月</div>
+        <div class="info-note">全场开空调会吞噬利润，必须分区管控</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">⚠️ 人手不足</div>
+        <div class="info-value">4 人（当前）</div>
+        <div class="info-note">2700㎡ 空间，需逐步扩充至 6–8 人</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">结论与建议</h3>
+  <ul contenteditable="true">
+    <li><strong>租金不是问题</strong>，真正要管的是空间利用率和电费</li>
+    <li><strong>必须分区运营</strong>：白天只开核心咖啡区，下午茶开放主厅，晚上开放酒吧/院落区，非高峰区域关闭空调和灯光</li>
+    <li><strong>轻改造、轻运营</strong>：避免高投入方案，优先用运营手段提升坪效</li>
+    <li><strong>单层搭建费约 10 万</strong>不算高，但装修+设备才是主要投入，需分阶段执行</li>
+  </ul>
+</div>
+
+<!-- P5: 固定成本与电费模型 -->
+<div class="slide content-slide" id="s5">
+  <div class="slide-header"><div class="slide-num">03</div><div class="slide-title" contenteditable="true">固定成本与电费模型</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>数据来源：</strong>飞书文档第五章《电费预估模型》——按不同运营强度的月电费区间测算。<br>
+    <strong>核心原则：</strong>目前阶段（低负荷）电费约 0.8–1.2 万元/月；若全场开空调，利润会被电费完全吞掉，必须分区运营。
+  </div>
+
+  <h3 contenteditable="true">月电费区间（飞书数据）</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>运营场景</th><th>月电费</th><th>说明</th></tr>
+    <tr>
+      <td>低负荷（当前阶段）</td><td class="num" style="color:#66bb6a;">8,000–12,000 元</td>
+      <td>仅开放局部区域，白天只开核心咖啡区</td></tr>
+    <tr>
+      <td>正常营业</td><td class="num" style="color:#c8a45c;">12,000–18,000 元</td>
+      <td>部分空调开放，下午茶开放主厅</td></tr>
+    <tr>
+      <td>夏季全空间营业</td><td class="num" style="color:#ff8a65;">20,000–30,000 元</td>
+      <td>全场空调+灯光+设备全开</td></tr>
+    <tr>
+      <td>夜场+酒吧+直播同开</td><td class="num" style="color:#ff8a65;">25,000–35,000 元</td>
+      <td>最高负荷，必须通过分区运营避免</td></tr>
+  </table>
+
+  <h3 contenteditable="true">月度固定成本结构（当前阶段）</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>成本项</th><th>金额（当前）</th><th>备注</th></tr>
+    <tr><td>房租（第1年）</td><td class="num">2.17 万元</td><td>26万/年 ÷ 12</td></tr>
+    <tr><td>人工工资</td><td class="num">1.5 万元</td><td>4人，当前强度低</td></tr>
+    <tr><td>电费（当前阶段）</td><td class="num">0.8–1.2 万元</td><td>低负荷，仅开放局部区域</td></tr>
+    <tr><td>水费</td><td class="num">~300 元</td><td>厨房出品量不大</td></tr>
+    <tr style="background:rgba(200,164,92,0.08);"><td><strong style="color:#f0d78c;">合计（当前阶段）</strong></td><td class="num"><strong style="color:#f0d78c;">4.5–5.0 万元</strong></td><td>月固定成本底限</td></tr>
+    <tr style="background:rgba(255,112,67,0.08);"><td><strong style="color:#ff8a65;">合计（全负荷）</strong></td><td class="num"><strong style="color:#ff8a65;">7.0–9.2 万元</strong></td><td>夏季全开时，电费是最大变量</td></tr>
+  </table>
+
+  <h3 contenteditable="true">电费管控策略 —— 必须分区运营</h3>
+  <div class="info-card" contenteditable="true">
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">☀️ 白天（8:00–17:00）</div>
+        <div class="info-value">只开核心咖啡区</div>
+        <div class="info-note">约 200㎡ 开空调，其余区域关空调只保通风</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">🫖 下午茶（14:00–18:00）</div>
+        <div class="info-value">开放主厅</div>
+        <div class="info-note">周末/节假日提前全开，平时按需开放</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">🌙 晚间（18:00–02:00）</div>
+        <div class="info-value">开放酒吧/院落区</div>
+        <div class="info-note">咖啡区关空调，集中客流到酒吧区</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">🌡️ 夏季策略</div>
+        <div class="info-value">分体空调 > 中央空调</div>
+        <div class="info-note">可以分房间控制，避免全场一起开</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">人工扩展建议</h3>
+  <ul contenteditable="true">
+    <li>当前 4 人对 2700㎡ 严重不足，建议第一阶段增加到 6–8 人（含咖啡师、服务、保洁）</li>
+    <li>民宿若启动，需额外增加 1–2 名管家</li>
+    <li>酒吧夜间运营需增加 1–2 名调酒师/夜班服务</li>
+    <li>人工成本将逐步增加到约 2.5–3.5 万元/月，仍在可控范围</li>
+  </ul>
+</div>
+
+<!-- P6: 产品结构与利润分析 -->
+<div class="slide content-slide" id="s6">
+  <div class="slide-header"><div class="slide-num">04</div><div class="slide-title" contenteditable="true">产品结构与利润分析</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>数据来源：</strong>飞书文档《漫咖啡项目数据清单与经营分析》——基于大众点评实际套餐销量、单品价格、毛利率测算的真实数据（非估算）。
+  </div>
+
+  <h3 contenteditable="true">一、大众点评核心套餐诊断</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>套餐</th><th>售价</th><th>成本</th><th>毛利</th><th>毛利率</th><th>判断</th></tr>
+    <tr>
+      <td>双人浪漫下午茶</td><td class="num">38.9 元</td><td class="num">~20–23 元</td><td class="num">16–19 元</td>
+      <td>41–49%<div class="profit-bar-bg"><div class="profit-bar pbar-l" style="width:45%"></div></div></td>
+      <td><span class="badge badge-r">流量款·不能靠它赚钱</span></td>
+    </tr>
+    <tr>
+      <td>招牌松饼咖啡单人餐</td><td class="num">38–42 元</td><td class="num">~16–19 元</td><td class="num">20–24 元</td>
+      <td>53–57%<div class="profit-bar-bg"><div class="profit-bar pbar-m" style="width:55%"></div></div></td>
+      <td><span class="badge badge-y">主推利润套餐 ✅</span></td>
+    </tr>
+    <tr>
+      <td>美式咖啡团购</td><td class="num">9.4 元</td><td class="num">~3–4 元</td><td class="num">5.4–6.4 元</td>
+      <td>57–68%<div class="profit-bar-bg"><div class="profit-bar pbar-m" style="width:62%"></div></div></td>
+      <td><span class="badge badge-y">仅适合拉新/首单券</span></td>
+    </tr>
+    <tr>
+      <td>品质松饼双人餐</td><td class="num">68–78 元</td><td class="num">~28–33 元</td><td class="num">40–45 元</td>
+      <td>58–61%<div class="profit-bar-bg"><div class="profit-bar pbar-m" style="width:60%"></div></div></td>
+      <td><span class="badge badge-g">客单价高·需重新包装</span></td>
+    </tr>
+  </table>
+
+  <h3 contenteditable="true">二、各套餐经营判断</h3>
+  <div class="info-card" contenteditable="true">
+    <div style="margin-bottom:10px;">
+      <strong style="color:#ff8a65;">⚠️ 38.9 元双人套餐（问题款）</strong>
+      <p style="font-size:12.5px;color:#aaa;margin-top:4px;">销售高度集中在此款，说明用户被低价吸引来。它承担引流+获评+导入私域的任务，但不能赚钱。必须现场加购（升级单品/加点甜品）来提升实际客单价。</p>
+    </div>
+    <div style="margin-bottom:10px;">
+      <strong style="color:#f0d78c;">✅ 招牌松饼咖啡单人餐（利润款）</strong>
+      <p style="font-size:12.5px;color:#aaa;margin-top:4px;">比 38.9 双人套餐更健康的产品，应作为主推利润套餐。毛利 53–57%，适合做私域会员专享价。</p>
+    </div>
+    <div>
+      <strong style="color:#66bb6a;">📈 品质松饼双人餐（潜力款）</strong>
+      <p style="font-size:12.5px;color:#aaa;margin-top:4px;">客单价高、利润健康，但销量不足。原因是标题不够吸引、图片不够强、用户感觉不如 38.9 划算。建议重新包装为「夜晚微醺双人小聚套餐」。</p>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">三、SKU 优化建议（飞书数据）</h3>
+  <div class="info-row">
+    <div class="info-item" style="min-width:45%;">
+      <div class="info-label">✅ 保留产品</div>
+      <div class="info-value" style="font-size:13px;">锅煮咖啡、手冲、美式、拿铁、松饼系列、薯条</div>
+      <div class="info-note">高频销量 + 高毛利 + 适合拍照</div>
+    </div>
+    <div class="info-item" style="min-width:45%;">
+      <div class="info-label">🔧 优化产品</div>
+      <div class="info-value" style="font-size:13px;">品质松饼双人餐等标题/图片/描述</div>
+      <div class="info-note">产品本身好，但展示方式需改进</div>
+    </div>
+  </div>
+  <div class="highlight" contenteditable="true" style="margin-top:12px;">
+    <strong>建议砍掉：30%–40% 低销量 SKU</strong><br>
+    标准：半年销量低于 10 单 + 出品复杂 + 损耗高 + 不适合拍照 + 毛利低。<br>
+    砍掉后减少备货压力、降低损耗、提升出餐速度。
+  </div>
+</div>
+
+<!-- P7: 大众点评套餐诊断 -->
+<div class="slide content-slide" id="s7">
+  <div class="slide-header"><div class="slide-num">05</div><div class="slide-title" contenteditable="true">大众点评套餐诊断与定价策略</div></div>
+
+  <h3 contenteditable="true">半年销售结构判断（飞书数据）</h3>
+  <div class="highlight" contenteditable="true">
+    <strong>核心发现：</strong>销售高度集中在低价爆款（38.9 元双人套餐）。<br>
+    这说明用户不是不来，而是被低价吸引来。<br>
+    目前门店还没有形成足够的：<strong>高客单消费理由、夜场消费理由、私域复购理由</strong>。
+  </div>
+
+  <h3 contenteditable="true">重新定价策略</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>目标</th><th>策略</th><th>具体动作</th></tr>
+    <tr>
+      <td><strong style="color:#ff8a65;">引流</strong></td>
+      <td>保留 1 款低价爆款</td>
+      <td>38.9 元双人套餐继续卖，但限购 1 份/人，引导现场加购</td>
+    </tr>
+    <tr>
+      <td><strong style="color:#f0d78c;">提客单</strong></td>
+      <td>推 58–78 元利润套餐</td>
+      <td>招牌松饼咖啡单人餐做私域专享价，现场推升级</td>
+    </tr>
+    <tr>
+      <td><strong style="color:#66bb6a;">拉高客单</strong></td>
+      <td>包装「夜晚微醺」系列</td>
+      <td>品质松饼双人餐改名 + 重新拍摄 + 加入酒精元素</td>
+    </tr>
+    <tr>
+      <td><strong style="color:#64b5f6;">私域转化</strong></td>
+      <td>套餐内含「私域专属权益」</td>
+      <td>下单即送「门店微信名片」，加好友送下次 5 折券</td>
+    </tr>
+  </table>
+
+  <h3 contenteditable="true">大众点评运营要点</h3>
+  <ul contenteditable="true">
+    <li><strong>好评获取：</strong>送薯条（成本 5–8 元）换一条好评，比买推广便宜太多</li>
+    <li><strong>图片质量：</strong>飞书数据指出「品质松饼双人餐销量不足」的部分原因是图片不够强，需重拍</li>
+    <li><strong>标题优化：</strong>「品质松饼双人餐」改为「夜晚微醺·双人小聚套餐」，加入场景感</li>
+    <li><strong>折扣控制：</strong>美式 9.4 元太低，仅适合做拉新券，不适合长期主推</li>
+  </ul>
+</div>
+
+<!-- P8: 盈亏平衡测算 -->
+<div class="slide content-slide" id="s8">
+  <div class="slide-header"><div class="slide-num">06</div><div class="slide-title" contenteditable="true">盈亏平衡测算</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>核心结论（来自飞书文档精确测算）：</strong><br>
+    月固定成本约 <strong>4.5–9.2 万元</strong>（视运营强度而定）。盈亏平衡点取决于两个变量：<strong>综合毛利率</strong> 和 <strong>团购占比</strong>。
+  </div>
+
+  <h3 contenteditable="true">盈亏平衡矩阵（飞书数据）</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>综合毛利率</th><th>月固定 4.5–5 万（当前）</th><th>月固定 7–9 万（全负荷）</th><th>状态</th></tr>
+    <tr>
+      <td>45%（团购占比高时）</td><td class="num" style="color:#ff8a65;">10.0–11.1 万元/月</td><td class="num" style="color:#ff8a65;">15.6–20.0 万元/月</td>
+      <td><span class="badge badge-r">危险</span></td>
+    </tr>
+    <tr>
+      <td>55%（当前目标）</td><td class="num" style="color:#c8a45c;">8.2–9.1 万元/月</td><td class="num" style="color:#c8a45c;">12.7–16.4 万元/月</td>
+      <td><span class="badge badge-y">可接受</span></td>
+    </tr>
+    <tr>
+      <td>65%（产品结构优化后）</td><td class="num" style="color:#66bb6a;">6.9–7.7 万元/月</td><td class="num" style="color:#66bb6a;">10.8–14.2 万元/月</td>
+      <td><span class="badge badge-g">健康</span></td>
+    </tr>
+  </table>
+
+  <h3 contenteditable="true">日均营收要求</h3>
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">当前日均营收</div>
+        <div class="info-value" style="color:#ff8a65;font-size:20px;">~1,500 元</div>
+        <div class="info-note">远低于保本线，需大幅提升</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">基本安全线</div>
+        <div class="info-value" style="color:#c8a45c;font-size:20px;">4,000–5,000 元</div>
+        <div class="info-note">第一阶段保命目标</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-label">健康运营线</div>
+        <div class="info-value" style="color:#66bb6a;font-size:20px;">6,000–10,000 元</div>
+        <div class="info-note">第二阶段目标</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">理想增长线</div>
+        <div class="info-value" style="font-size:20px;">10,000+ 元</div>
+        <div class="info-note">第三阶段：日咖夜酒+私域+文创</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">结论</h3>
+  <ul contenteditable="true">
+    <li>如果继续依赖低价团购：月营收需做到 <strong>15–20 万</strong>才比较安全（日均 5,000–6,700 元）</li>
+    <li>如果优化产品结构（提升饮品甜品占比）：月营收做到 <strong>9–11 万</strong>即可接近盈亏平衡（日均 3,000–3,700 元）</li>
+    <li><strong>核心路径：</strong>不是拉高销量，而是拉高毛利率。砍掉低毛利套餐，推高毛利单品</li>
+    <li><strong>电费管控</strong>：分区运营把月电费控制在 1.5 万以内，是保本的前提条件</li>
+  </ul>
+</div>
+
+<!-- P9: 私域运营方案（保留，删除IP部分） -->
+<div class="slide content-slide" id="s9">
+  <div class="slide-header"><div class="slide-num">07</div><div class="slide-title" contenteditable="true">私域运营方案</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>核心思路：</strong>不搞复杂的 CRM 系统，用微信生态就够了。<br>
+    单店私域的关键是<strong>人格化</strong>——不是冷冰冰的品牌号，而是一群活生生的人在经营这个院子。<br>
+    未来可承接多角色 IP（老板/店长/店员/门店）的用户运营，详见于独立 IP 运营文档。
+  </div>
+
+  <h3 contenteditable="true">三阶段落地</h3>
+  <div class="phase-card phase-1" contenteditable="true">
+    <h4>🐣 第一阶段：建池子（第0–1个月）</h4>
+    <p style="font-size:12.5px;color:#ccc;">目标：加到 500 个微信好友，建 3 个群。<br>
+    台卡引流 + 结账话术 + 民宿住客送券 + 大众点评签名放微信号（谐音规避）</p>
+  </div>
+  <div class="phase-card phase-2" contenteditable="true">
+    <h4>🐥 第二阶段：养池子（第1–3个月）</h4>
+    <p style="font-size:12.5px;color:#ccc;">目标：社群日均活跃，朋友圈互动率 > 5%。<br>
+    每日早安（老板亲自发院子照片）+ 每周活动（手冲教学/花艺沙龙/咖啡杯测）+ 每月8号会员日 + 生日特权 + 老带新</p>
+  </div>
+  <div class="phase-card phase-3" contenteditable="true">
+    <h4>🐓 第三阶段：玩起来（第3个月起）</h4>
+    <p style="font-size:12.5px;color:#ccc;">目标：私域用户自发传播，老带新月均 20+。<br>
+    一锅咖啡朋友圈 + 咖啡护照集章 + 盲盒咖啡 + 院子的100个故事 + 深夜食堂 + 朋友带朋友计划</p>
+  </div>
+
+  <h3 contenteditable="true">6 个"好玩"的私域玩法</h3>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">🥘</div>
+    <div class="play-body"><h4>一锅咖啡的朋友圈</h4><p>客人带走锅，发朋友圈@漫咖啡 → 返现 5 元。锅是行走的广告牌。</p></div>
+  </div>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">📔</div>
+    <div class="play-body"><h4>咖啡护照（集章玩法）</h4><p>到店领「咖啡护照」，集满 5 款 → 送定制杯垫；集满 10 款 → 成为"荣誉咖啡师"，名字上墙。</p></div>
+  </div>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">🎁</div>
+    <div class="play-body"><h4>盲盒咖啡</h4><p>28 元随机出一杯（美式也可能，手冲瑰夏也可能）。每周五晚 8 点群内抢，限量 20 份。</p></div>
+  </div>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">📸</div>
+    <div class="play-body"><h4>院子的 100 个故事</h4><p>鼓励客人在群里分享"我和这个院子的故事"，选中者送下午茶，故事印在下一期门店海报上。</p></div>
+  </div>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">🌙</div>
+    <div class="play-body"><h4>深夜食堂</h4><p>老板不定期做限定料理（仅限私域用户预约），制造稀缺感和专属感。</p></div>
+  </div>
+  <div class="play-card" contenteditable="true">
+    <div class="play-icon">🤝</div>
+    <div class="play-body"><h4>朋友带朋友</h4><p>老客带新客到店，两人都获赠"院子限定杯垫"；新客下次消费减 10 元。裂变靠信任不靠广告。</p></div>
+  </div>
+</div>
+
+<!-- P10: 经营策略三阶段 -->
+<div class="slide content-slide" id="s10">
+  <div class="slide-header"><div class="slide-num">08</div><div class="slide-title" contenteditable="true">经营策略三阶段（飞书数据目标）</div></div>
+
+  <div class="highlight" contenteditable="true">
+    <strong>数据来源：</strong>飞书文档第十八章《经营策略数据目标》——三个阶段的具体数字目标，可直接用于 KPI 考核。
+  </div>
+
+  <div class="phase-card phase-1" contenteditable="true">
+    <h4>第一阶段：保命目标（第0–3个月）</h4>
+    <table class="finance-table" style="margin-top:8px;">
+      <tr><th>指标</th><th>目标值</th></tr>
+      <tr><td>日均营收</td><td class="num">4,000 元+</td></tr>
+      <tr><td>月营收</td><td class="num">12 万元+</td></tr>
+      <tr><td>综合毛利率</td><td class="num">55%+</td></tr>
+      <tr><td>私域新增</td><td class="num">1,000 人/月</td></tr>
+      <tr><td>点评新增评价</td><td class="num">150 条/月</td></tr>
+      <tr><td>抖音内容</td><td class="num">60 条/月</td></tr>
+      <tr><td>直播</td><td class="num">每周 2–3 场</td></tr>
+    </table>
+  </div>
+
+  <div class="phase-card phase-2" contenteditable="true">
+    <h4>第二阶段：健康目标（第3–8个月）</h4>
+    <table class="finance-table" style="margin-top:8px;">
+      <tr><th>指标</th><th>目标值</th></tr>
+      <tr><td>日均营收</td><td class="num">6,000 元+</td></tr>
+      <tr><td>月营收</td><td class="num">18 万元+</td></tr>
+      <tr><td>综合毛利率</td><td class="num">60%+</td></tr>
+      <tr><td>夜场营收占比</td><td class="num">30%</td></tr>
+      <tr><td>私域人数</td><td class="num">5,000 人+</td></tr>
+      <tr><td>私域复购率</td><td class="num">25%–35%</td></tr>
+    </table>
+  </div>
+
+  <div class="phase-card phase-3" contenteditable="true">
+    <h4>第三阶段：增长目标（第8–12个月）</h4>
+    <table class="finance-table" style="margin-top:8px;">
+      <tr><th>指标</th><th>目标值</th></tr>
+      <tr><td>日均营收</td><td class="num">10,000 元+</td></tr>
+      <tr><td>月营收</td><td class="num">30 万元+</td></tr>
+      <tr><td>夜场营收占比</td><td class="num">40%+</td></tr>
+      <tr><td>直播月销售</td><td class="num">5 万元+</td></tr>
+      <tr><td>私域人数</td><td class="num">10,000 人+</td></tr>
+      <tr><td>文创/IP产品销售</td><td class="num">3–5 万元/月</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- P11: 总体判断 -->
+<div class="slide content-slide" id="s11">
+  <div class="slide-header"><div class="slide-num">09</div><div class="slide-title" contenteditable="true">总体判断：空间重新定义</div></div>
+
+  <div class="highlight" contenteditable="true" style="font-size:15px;line-height:1.8;">
+    <strong>飞书文档核心判断：</strong><br>
+    这家店的核心<strong>不是"咖啡好不好喝"</strong>。<br>
+    核心是：<strong>2700㎡ 空间必须被重新定义。</strong><br><br>
+    如果继续按传统咖啡馆经营：坪效低、人效低、电费高、团购亏、正餐拖累毛利。<br>
+    如果升级为：<strong>「日咖夜酒 + 私域活动 + 内容 IP + 文创产品」</strong>，则可以把空间重新拆成多个盈利模块。
+  </div>
+
+  <h3 contenteditable="true">空间盈利模块拆解（飞书建议）</h3>
+  <table class="finance-table" contenteditable="true">
+    <tr><th>模块</th><th>时段</th><th>营收贡献</th><th>策略</th></tr>
+    <tr>
+      <td><strong>日咖</strong></td><td>8:00–18:00</td><td>基础营收</td>
+      <td>锅煮咖啡引流 + 手冲拉高客单 + 松饼套餐做利润</td>
+    </tr>
+    <tr>
+      <td><strong>夜酒</strong></td><td>18:00–02:00</td><td>高毛利营收</td>
+      <td>酒吧/小酒馆 + 酒精特调 + 深夜食堂限定</td>
+    </tr>
+    <tr>
+      <td><strong>私域活动</strong></td><td>周末/节假日</td><td>增量营收</td>
+      <td>手冲教学 + 花艺沙龙 + 相声合作 + 咖啡杯测</td>
+    </tr>
+    <tr>
+      <td><strong>内容 IP</strong></td><td>全天</td><td>长期资产</td>
+      <td>抖音矩阵 + 直播带货 + 院子故事 UGC（IP策略详见独立文档）</td>
+    </tr>
+    <tr>
+      <td><strong>文创产品</strong></td><td>全天</td><td>高毛利增量</td>
+      <td>定制杯垫/帆布袋/咖啡豆零售/院子周边</td>
+    </tr>
+    <tr>
+      <td><strong>民宿</strong></td><td>全天</td><td>补充营收</td>
+      <td>先做 1–2 间样板房，结合咖啡/酒吧做「体验型入住」</td>
+    </tr>
+  </table>
+
+  <h3 contenteditable="true">最终目标</h3>
+  <div class="highlight" contenteditable="true" style="text-align:center;padding:20px;">
+    <span style="font-size:18px;color:#f0d78c;font-weight:700;">从卖产品，转向经营人群。</span><br><br>
+    <span style="font-size:13px;color:#aaa;">用户不是来买一杯咖啡的，是来"进入这个院子的世界"的。<br>私域是承载这个故事的容器，文创是这个故事的延伸产品。</span>
+  </div>
+
+  <h3 contenteditable="true">民宿建议（飞书数据）</h3>
+  <div class="info-card" contenteditable="true">
+    <p>民宿可以做，但<strong>不适合作为第一阶段主战场</strong>。</p>
+    <p style="margin-top:6px;">建议：先做 1–2 间样板房 → 结合咖啡、酒吧、院落活动做「体验型入住」→ 不要一次性重投入（单房投资 20 万+，回收周期长）。</p>
+  </div>
+</div>
+
+<!-- P12: 下一步计划 -->
+<div class="slide content-slide" id="s12">
+  <div class="slide-header"><div class="slide-num">10</div><div class="slide-title" contenteditable="true">下一步计划</div></div>
+
+  <h3 contenteditable="true">优先级排序（结合飞书数据）</h3>
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-item" style="min-width:100%;">
+        <div class="info-label">🔴 最高优先（本周内）</div>
+        <div class="info-value" style="font-size:13.5px;" contenteditable="true">
+          1. <strong>确认合作模式细节</strong>：与二轻集团明确保底金额、递增方式、装修期免租条款<br>
+          2. <strong>分区运营方案定稿</strong>：白天/下午茶/晚间各区域开关空调方案，控制电费在 1.5 万/月以内<br>
+          3. <strong>产品结构优化</strong>：砍掉 30–40% 低销量 SKU，锁定 15–20 款核心产品
+        </div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-item" style="min-width:100%;">
+        <div class="info-label">🟡 高优先（本月内）</div>
+        <div class="info-value" style="font-size:13.5px;" contenteditable="true">
+          4. <strong>大众点评套餐重新包装</strong>：「品质松饼双人餐」改名为「夜晚微醺双人小聚套餐」+ 重拍图片<br>
+          5. <strong>私域启动</strong>：台卡设计 + 微信号准备 + 首月内容排期<br>
+          6. <strong>夜场产品规划</strong>：酒吧/小酒馆菜单框架 + 酒精特调研发
+        </div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-item" style="min-width:100%;">
+        <div class="info-label">🟢 中优先（3个月内）</div>
+        <div class="info-value" style="font-size:13.5px;" contenteditable="true">
+          7. <strong>夜场产品上线</strong>：酒吧/小酒馆正式推出 + 深夜食堂玩法<br>
+          8. <strong>抖音内容启动</strong>：账号搭建 + 首月 60 条内容排期<br>
+          9. <strong>民宿样板房</strong>：1–2 间先行试点，结合咖啡体验做差异化
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 contenteditable="true">关键风险</h3>
+  <ul contenteditable="true" style="color:#ff8a65;">
+    <li><strong>当前日均仅 1,500 元</strong>——离保本线 4,000–5,000 元差 2.7–3.3 倍，需全力提升</li>
+    <li><strong>电费失控风险</strong>——必须分区运营，否则夏季电费 2–3.5 万/月会吞噬全部利润</li>
+    <li><strong>团购依赖</strong>——低价套餐占比过高会拖低毛利率，需尽快优化产品结构</li>
+    <li><strong>人手不足</strong>——当前 4 人对 2700㎡ 严重不够，需尽快补充至 6–8 人</li>
+  </ul>
+</div>
+
+<!-- Navigation -->
+<div class="nav-bottom">
+  <button class="nav-btn" onclick="scrollTo(-1)" title="上一页">↑</button>
+  <button class="nav-btn" onclick="scrollTo(1)" title="下一页">↓</button>
+</div>
+
+<script>
+function scrollTo(dir) {
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  slides.forEach((s, i) => {
+    const r = s.getBoundingClientRect();
+    if (r.top >= -80 && r.top <= window.innerHeight * 0.55) current = i;
+  });
+  const next = Math.max(0, Math.min(slides.length - 1, current + dir));
+  slides[next].scrollIntoView({ behavior: 'smooth' });
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); scrollTo(1); }
+  else if (e.key === 'ArrowUp' || e.key === 'k') { e.preventDefault(); scrollTo(-1); }
+});
+setTimeout(() => { const h = document.querySelector('[style*="position:fixed"]'); if(h) h.style.display='none'; }, 4200);
+</script>
+</body>
+</html>
