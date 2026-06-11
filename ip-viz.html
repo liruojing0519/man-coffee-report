@@ -91,7 +91,7 @@
   .value-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
   .value-item:nth-child(1)::before{background:var(--gold)}
   .value-item:nth-child(2)::before{background:var(--warm)}
-  .value-item:nth-child(3){background:linear-gradient(135deg,#0f0f1a,#1a1a3e);color:#fff;border:none;font-weight:700}
+  .value-item.dark-bg{background:linear-gradient(135deg,#0d1b2a,#1b263b);color:#fff;border:none;font-weight:700}
 
   /* Section 5: 一句话 */
   .slogan-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
@@ -150,10 +150,12 @@
   /* Section 11: 转化路径 */
   .funnel-section{background:var(--paper)}
   .funnel{display:flex;flex-direction:column;align-items:center;gap:0;max-width:600px;margin:0 auto}
-  .funnel-step{width:100%;padding:24px 32px;border-radius:var(--radius);color:#fff;text-align:center;position:relative;transition:all .3s}
+  .funnel-step{width:100%;padding:24px 32px;border-radius:var(--radius);color:#fff;text-align:center;position:relative;transition:all .3s;overflow:hidden}
+  .funnel-step::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.25);z-index:0}
+  .funnel-step h4,.funnel-step p,.funnel-step .funnel-num{position:relative;z-index:1}
   .funnel-step:hover{transform:scale(1.02)}
-  .funnel-step h4{font-size:18px;font-weight:700;margin-bottom:4px;text-shadow:0 1px 3px rgba(0,0,0,0.3)}
-  .funnel-step p{font-size:13px;opacity:0.95;text-shadow:0 1px 2px rgba(0,0,0,0.2)}
+  .funnel-step h4{font-size:18px;font-weight:800;margin-bottom:6px;text-shadow:0 2px 4px rgba(0,0,0,0.5);color:#fff}
+  .funnel-step p{font-size:13px;opacity:1;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,0.4);color:#fff}
   .funnel-step .funnel-num{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:28px;font-weight:900;opacity:0.2}
   .funnel-step:nth-child(1){background:linear-gradient(135deg,var(--gold),#e9c46a);width:100%}
   .funnel-step:nth-child(2){background:linear-gradient(135deg,var(--warm),#e07a5f);width:85%}
@@ -321,7 +323,7 @@
     <div style="font-size:28px;opacity:0.3">↓</div>
     <div class="value-item">生活也不能没有理想。</div>
     <div style="font-size:28px;opacity:0.3">↓</div>
-    <div class="value-item" style="color:#fff">理想与现实的和解</div>
+    <div class="value-item dark-bg">理想与现实的和解</div>
   </div>
   <div style="max-width:700px;margin:32px auto 0;text-align:center;color:#666;font-size:14px;line-height:1.8" class="reveal">
     <p>罗老师让这个地方有灵魂。韩姐让这个地方活下去。</p>
@@ -712,6 +714,33 @@
 </section>
 
 <footer>大理道25号 · IP定位方案 ｜ 由飞书文档可视化生成</footer>
+
+<button onclick="toggleEdit()" id="editBtn" style="position:fixed;bottom:20px;right:20px;z-index:9999;padding:14px 28px;background:#c94040;color:#fff;border:none;border-radius:28px;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.3s">编辑文字</button>
+
+<script>
+let editMode = false;
+function toggleEdit() {
+  editMode = !editMode;
+  const btn = document.getElementById('editBtn');
+  btn.textContent = editMode ? '完成编辑' : '编辑文字';
+  btn.style.background = editMode ? '#2d6a4f' : '#c94040';
+  document.querySelectorAll('h1,h2,h3,h4,p,.hero-sub,.hero-tag,.char-name,.char-role,.sc-text,.strategy-quote,.value-item,.slogan-card,.theme-title,.theme-sub,.w-label').forEach(el => {
+    if (editMode) {
+      el.setAttribute('contenteditable','true');
+      el.style.outline = '2px dashed rgba(201,168,76,0.6)';
+      el.style.padding = '4px 8px';
+      el.style.borderRadius = '6px';
+      el.style.background = 'rgba(201,168,76,0.08)';
+    } else {
+      el.removeAttribute('contenteditable');
+      el.style.outline = '';
+      el.style.padding = '';
+      el.style.borderRadius = '';
+      el.style.background = '';
+    }
+  });
+}
+</script>
 
 <script>
 // Scroll reveal
