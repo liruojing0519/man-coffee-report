@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>大理道25号 · IP定位方案</title>
 <style>
@@ -589,13 +592,13 @@
         </tr>
         <tr>
           <td><strong>韩姐</strong></td>
-          <td>抖音 + 快手</td>
+          <td>抖音</td>
           <td>生活智慧、人情世故、做生意</td>
           <td>接地气的生活家</td>
         </tr>
         <tr>
           <td><strong>店长日记</strong></td>
-          <td>小红书 + 微博</td>
+          <td>小红书</td>
           <td>每日营业、顾客故事、院子变化</td>
           <td>秩序维护者</td>
         </tr>
@@ -724,7 +727,7 @@ function toggleEdit() {
   const btn = document.getElementById('editBtn');
   btn.textContent = editMode ? '完成编辑' : '编辑文字';
   btn.style.background = editMode ? '#2d6a4f' : '#c94040';
-  document.querySelectorAll('h1,h2,h3,h4,p,.hero-sub,.hero-tag,.char-name,.char-role,.sc-text,.strategy-quote,.value-item,.slogan-card,.theme-title,.theme-sub,.w-label').forEach(el => {
+  document.querySelectorAll('h1,h2,h3,h4,p,td,.hero-sub,.hero-tag,.char-name,.char-role,.sc-text,.strategy-quote,.value-item,.slogan-card,.theme-title,.theme-sub,.w-label').forEach(el => {
     if (editMode) {
       el.setAttribute('contenteditable','true');
       el.style.outline = '2px dashed rgba(201,168,76,0.6)';
