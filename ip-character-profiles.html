@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大理道25号 · 人物IP完整档案</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #FAF7F2;
+    --card: #FFFFFF;
+    --text: #2C2418;
+    --text-s: #6B5E4F;
+    --text-l: #9B8E7E;
+    --gold: #C8A96E;
+    --warm: #D4845A;
+    --green: #6B8E6B;
+    --blue: #6B7F9E;
+    --purple: #8B7BAE;
+    --red: #B85C5C;
+    --orange: #C8862D;
+    --border: #E8DFD3;
+    --shadow: rgba(44,36,24,0.06);
+    --luo: #8B5E3C;
+    --luo-bg: #FBF5EE;
+    --luo-accent: #A0724A;
+    --han: #B85C5C;
+    --han-bg: #FDF2F0;
+    --han-accent: #D4645A;
+    --mgr: #5A8E8E;
+    --mgr-bg: #EFF7F7;
+    --mgr-accent: #4A9E9E;
+    --stu: #6B8E5A;
+    --stu-bg: #F0F7EE;
+    --stu-accent: #5A9E4A;
+    --frd: #8B7BAE;
+    --frd-bg: #F5F2FA;
+    --frd-accent: #7B5AAE;
+    --pet: #C8862D;
+    --pet-bg: #FDF8EF;
+    --pet-accent: #E0A040;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, #2C2418 0%, #3A3040 40%, #4A3848 70%, #3D3020 100%);
+    color: #FAF7F2;
+    padding: 72px 40px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(139,94,60,0.15), transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(184,92,92,0.1), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(200,169,110,0.06), transparent 70%);
+  }
+  .hero * { position: relative; }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(200,169,110,0.3);
+    background: rgba(200,169,110,0.1);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+  }
+  .hero .sub {
+    font-size: 17px;
+    color: rgba(250,247,242,0.65);
+    margin-bottom: 20px;
+  }
+  .hero .chars-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .hero-char {
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero-char.luo { background: rgba(139,94,60,0.25); border: 1px solid rgba(139,94,60,0.4); }
+  .hero-char.han { background: rgba(184,92,92,0.25); border: 1px solid rgba(184,92,92,0.4); }
+  .hero-char.mgr { background: rgba(90,142,142,0.25); border: 1px solid rgba(90,142,142,0.4); }
+  .hero-char.stu { background: rgba(107,142,90,0.25); border: 1px solid rgba(107,142,90,0.4); }
+  .hero-char.frd { background: rgba(139,123,174,0.25); border: 1px solid rgba(139,123,174,0.4); }
+  .hero-char.pet { background: rgba(200,134,45,0.25); border: 1px solid rgba(200,134,45,0.4); }
+
+  /* === NAV === */
+  .nav-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-item {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-s);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-item:hover { background: #F5F0E8; }
+  .nav-item.active { background: var(--text); color: var(--bg); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .section { padding: 56px 0; }
+  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+
+  .sec-num { font-size: 13px; letter-spacing: 2px; margin-bottom: 6px; }
+  .sec-title { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+  .sec-desc { font-size: 15px; color: var(--text-s); max-width: 700px; }
+
+  /* === CHARACTER MASTHEAD === */
+  .char-masthead {
+    border-radius: 18px;
+    padding: 40px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .char-masthead::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .char-masthead.luo { background: var(--luo-bg); }
+  .char-masthead.luo::before { background: var(--luo); }
+  .char-masthead.han { background: var(--han-bg); }
+  .char-masthead.han::before { background: var(--han); }
+  .char-masthead.mgr { background: var(--mgr-bg); }
+  .char-masthead.mgr::before { background: var(--mgr); }
+  .char-masthead.stu { background: var(--stu-bg); }
+  .char-masthead.stu::before { background: var(--stu); }
+  .char-masthead.frd { background: var(--frd-bg); }
+  .char-masthead.frd::before { background: var(--frd); }
+  .char-masthead.pet { background: var(--pet-bg); }
+  .char-masthead.pet::before { background: var(--pet); }
+
+  .masthead-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .masthead-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    flex-shrink: 0;
+  }
+  .luo .masthead-avatar { background: rgba(139,94,60,0.15); }
+  .han .masthead-avatar { background: rgba(184,92,92,0.15); }
+  .mgr .masthead-avatar { background: rgba(90,142,142,0.15); }
+  .stu .masthead-avatar { background: rgba(107,142,90,0.15); }
+  .frd .masthead-avatar { background: rgba(139,123,174,0.15); }
+  .pet .masthead-avatar { background: rgba(200,134,45,0.15); }
+
+  .masthead-info { flex: 1; }
+  .masthead-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .luo .masthead-badge { background: rgba(139,94,60,0.15); color: var(--luo); }
+  .han .masthead-badge { background: rgba(184,92,92,0.15); color: var(--han); }
+  .mgr .masthead-badge { background: rgba(90,142,142,0.15); color: var(--mgr); }
+  .stu .masthead-badge { background: rgba(107,142,90,0.15); color: var(--stu); }
+  .frd .masthead-badge { background: rgba(139,123,174,0.15); color: var(--frd); }
+  .pet .masthead-badge { background: rgba(200,134,45,0.15); color: var(--pet); }
+
+  .masthead-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .luo .masthead-name { color: var(--luo); }
+  .han .masthead-name { color: var(--han); }
+  .mgr .masthead-name { color: var(--mgr); }
+  .stu .masthead-name { color: var(--stu); }
+  .frd .masthead-name { color: var(--frd); }
+  .pet .masthead-name { color: var(--pet); }
+
+  .masthead-role { font-size: 14px; color: var(--text-s); }
+  .masthead-slogan {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+  }
+
+  /* === DETAIL GRID === */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .detail-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .detail-card.wide { grid-column: span 2; }
+  .detail-card.full { grid-column: span 3; }
+  .detail-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .detail-text { font-size: 14px; color: var(--text-s); line-height: 1.8; }
+
+  /* Keywords */
+  .keywords {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .keywords span {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .luo-keywords span { background: var(--luo-bg); color: var(--luo); }
+  .han-keywords span { background: var(--han-bg); color: var(--han); }
+  .mgr-keywords span { background: var(--mgr-bg); color: var(--mgr); }
+  .stu-keywords span { background: var(--stu-bg); color: var(--stu); }
+  .frd-keywords span { background: var(--frd-bg); color: var(--frd); }
+  .pet-keywords span { background: var(--pet-bg); color: var(--pet); }
+
+  /* Quote */
+  .quote-box {
+    background: #FAFAF5;
+    border-left: 3px solid;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-s);
+  }
+  .luo-quote { border-color: var(--luo); }
+  .han-quote { border-color: var(--han); }
+  .mgr-quote { border-color: var(--mgr); }
+  .stu-quote { border-color: var(--stu); }
+  .frd-quote { border-color: var(--frd); }
+  .pet-quote { border-color: var(--pet); }
+
+  /* Classic Scenes */
+  .scene-list { list-style: none; }
+  .scene-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #F0EBE3;
+    display: flex;
+    gap: 12px;
+  }
+  .scene-list li:last-child { border-bottom: none; }
+  .scene-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .luo .scene-num { background: var(--luo-bg); color: var(--luo); }
+  .han .scene-num { background: var(--han-bg); color: var(--han); }
+  .mgr .scene-num { background: var(--mgr-bg); color: var(--mgr); }
+  .stu .scene-num { background: var(--stu-bg); color: var(--stu); }
+  .frd .scene-num { background: var(--frd-bg); color: var(--frd); }
+  .pet .scene-num { background: var(--pet-bg); color: var(--pet); }
+
+  .scene-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .scene-desc { font-size: 12px; color: var(--text-l); }
+
+  /* Content Directions */
+  .content-dir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .cd-card {
+    background: #FAFAF5;
+    border: 1px solid #F0EBE3;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .cd-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .cd-desc { font-size: 12px; color: var(--text-l); margin-bottom: 6px; }
+  .cd-format { font-size: 11px; color: var(--gold); }
+
+  /* Interaction Map */
+  .interact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .interact-card {
+    background: #FAFAF5;
+    border: 1px solid #F0EBE3;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .interact-pair { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .interact-desc { font-size: 12px; color: var(--text-l); }
+  .interact-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+
+  /* Visual Reference */
+  .visual-ref {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .vis-item {
+    background: #FAFAF5;
+    border: 1px solid #F0EBE3;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .vis-icon { font-size: 28px; margin-bottom: 6px; }
+  .vis-label { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .vis-desc { font-size: 11px; color: var(--text-l); }
+
+  /* Info tags row */
+  .info-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .info-tag {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    background: #F5F0E8;
+    color: var(--text-s);
+  }
+
+  /* === RELATIONSHIP MAP === */
+  .rel-map {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+  .rel-center-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .rel-core {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rel-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .rel-vs {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .rel-secondary-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .rel-node {
+    background: #F5F0E8;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* === GROWTH OVERVIEW === */
+  .growth-overview {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+  }
+  .go-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px dashed #F0EBE3;
+  }
+  .go-row:last-child { border-bottom: none; }
+  .go-char {
+    width: 80px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .go-char-icon { font-size: 28px; margin-bottom: 2px; }
+  .go-char-name { font-size: 12px; font-weight: 600; }
+  .go-arcs {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .go-phase {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .go-phase-title { font-weight: 700; margin-bottom: 2px; }
+  .go-phase-desc { color: var(--text-l); font-size: 11px; }
+  .go-arrow { color: var(--gold); font-size: 16px; flex-shrink: 0; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .detail-card.wide, .detail-card.full { grid-column: span 1; }
+    .content-dir-grid, .interact-grid, .visual-ref { grid-template-columns: repeat(2, 1fr); }
+    .go-row { flex-direction: column; }
+    .go-arcs { flex-direction: column; width: 100%; }
+    .go-arrow { transform: rotate(90deg); }
+    .container { padding: 0 16px; }
+    .rel-core { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="hero-tag">人物IP · 完整档案</div>
+  <h1>大理道25号</h1>
+  <div class="sub">六个人，一座院子，一个城市关系剧场</div>
+  <div class="chars-row">
+    <div class="hero-char luo">🎭 罗老师</div>
+    <div class="hero-char han">💪 韩姐</div>
+    <div class="hero-char mgr">🎯 店长</div>
+    <div class="hero-char stu">🌱 徒弟</div>
+    <div class="hero-char frd">👥 朋友</div>
+    <div class="hero-char pet">🐾 宠物</div>
+  </div>
+</section>
+
+<!-- ====== NAV ====== -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-item active" href="#relationship">关系总览</a>
+    <a class="nav-item" href="#luo">🎭 罗老师</a>
+    <a class="nav-item" href="#han">💪 韩姐</a>
+    <a class="nav-item" href="#mgr">🎯 店长</a>
+    <a class="nav-item" href="#stu">🌱 徒弟</a>
+    <a class="nav-item" href="#frd">👥 朋友</a>
+    <a class="nav-item" href="#pet">🐾 宠物</a>
+    <a class="nav-item" href="#growth">成长路线</a>
+  </div>
+</nav>
+
+<!-- ====== RELATIONSHIP MAP ====== -->
+<section class="section" id="relationship">
+  <div class="container">
+    <div class="sec-num" style="color:var(--gold);">RELATIONSHIP MAP</div>
+    <div class="sec-title">六角关系总览</div>
+    <div class="sec-desc" style="margin-bottom:32px;">每个角色不是孤立的，他们之间的化学反应才是内容的灵魂。</div>
+
+    <div class="rel-map">
+      <div style="font-size:13px;color:var(--text-l);margin-bottom:16px;">核心戏剧引擎</div>
+      <div class="rel-center-row">
+        <div class="rel-core">
+          <div class="rel-avatar" style="background:var(--luo-bg);">🎭</div>
+          <div style="text-align:center;">
+            <div style="font-size:16px;font-weight:700;color:var(--luo);">罗老师</div>
+            <div style="font-size:11px;color:var(--text-l);">乐天·不接地气</div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <div class="rel-vs">⚡ VS ⚡</div>
+          <div style="font-size:11px;color:var(--text-l);">快乐 ↔ 烟火</div>
+        </div>
+        <div class="rel-core">
+          <div style="text-align:center;">
+            <div style="font-size:16px;font-weight:700;color:var(--han);">韩姐</div>
+            <div style="font-size:11px;color:var(--text-l);">下里巴人</div>
+          </div>
+          <div class="rel-avatar" style="background:var(--han-bg);">💪</div>
+        </div>
+      </div>
+
+      <div style="font-size:13px;color:var(--text-l);margin-bottom:12px;">环绕关系网</div>
+      <div class="rel-secondary-row">
+        <div class="rel-node">🎯 店长 <span style="color:var(--text-l)">调和者</span></div>
+        <div class="rel-node">🌱 徒弟 <span style="color:var(--text-l)">传承者</span></div>
+        <div class="rel-node">👥 朋友 <span style="color:var(--text-l)">故事源</span></div>
+        <div class="rel-node">🐾 宠物 <span style="color:var(--text-l)">治愈锚</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 罗老师（罗峰）====== -->
+<!-- ============================================ -->
+<section class="section" id="luo">
+  <div class="container">
+    <!-- Masthead -->
+    <div class="char-masthead luo">
+      <div class="masthead-top">
+        <div class="masthead-avatar">🎭</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">灵魂位 · SOUL</div>
+          <div class="masthead-name">罗老师（罗峰）</div>
+          <div class="masthead-role">不接地气的快乐相声人 — 乐峰社班主 · 院子里的快乐源泉</div>
+        </div>
+      </div>
+      <div class="info-tags">
+        <span class="info-tag">🏷️ 本名：罗峰</span>
+        <span class="info-tag">📛 外号："大牙"</span>
+        <span class="info-tag">🎓 相声师承：魏文亮</span>
+        <span class="info-tag">🎋 快板师承：张志宽</span>
+        <span class="info-tag">🏆 群星奖金奖</span>
+        <span class="info-tag">🏆 李润杰杯金奖</span>
+        <span class="info-tag">🎭 乐峰社班主</span>
+      </div>
+      <div class="masthead-slogan" style="color:var(--luo);">
+        "说好相声就行呗，别的？我都行。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <!-- 人物背景 -->
+      <div class="detail-card wide">
+        <div class="detail-label">📖 真实人物背景</div>
+        <div class="detail-text">
+          <strong>罗峰</strong>，黑龙江佳木斯人，16岁独自坐了二十多个小时的火车从东北来到天津学艺。先拜快板名家<strong>张志宽</strong>先生学习快板（李派快板第三代传人），后拜入相声大师<strong>魏文亮</strong>门下修习相声。<br><br>
+          他是带着传统走到今天的人——经过部队文工团和长期小剧场演出的磨练，形成了"火爆、快、劲头儿硬"的舞台风格。但他不是守旧派，他将鼓曲、快板、二人转甚至话剧的元素融入相声，在天津五大道创办了<strong>乐峰社</strong>，把相声茶馆开进了大理道25号漫咖啡二楼。<br><br>
+          <strong>核心气质：</strong>台上"火爆劲头硬"，台下像换了个人——松弛、快乐、像个大孩子。只要不聊相声，他就是那个坐在院子里晒太阳、逗猫、跟谁都能聊两句的乐天人。但一碰相声和曲艺，眼睛就亮了，整个人像被点亮。韩姐常说他"没头脑"——不是说他傻，是他根本不想操那个心。他的人生只管一件事：说好相声，唱好曲艺。其他的？都行，无所谓，都挺好的。<br><br>
+          <strong>核心张力：</strong>一个把全部心思放在相声上的人，偏偏要把相声开进咖啡馆——他不在意生意好不好，但韩姐在意。他不在意票卖了多少，但乐峰社得活下去。他的"不接地气"不是清高，是真的不在意——"相声说好了，别的都好说"。这种纯粹的快乐和松弛，恰恰是25号最珍贵的气质，但也让韩姐操碎了心。
+        </div>
+      </div>
+
+      <!-- 性格特质 -->
+      <div class="detail-card">
+        <div class="detail-label">🧬 性格特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>快乐度：</strong>█████ 天生的乐天派</div>
+          <div style="margin-bottom:6px;"><strong>松弛度：</strong>█████ 佛系天花板</div>
+          <div style="margin-bottom:6px;"><strong>舞台力：</strong>█████ 火爆·快·劲头硬</div>
+          <div style="margin-bottom:6px;"><strong>单纯度：</strong>████░ 大孩子心性</div>
+          <div><strong>生意头脑：</strong>█░░░░ 韩姐说"没头脑"</div>
+        </div>
+        <div class="keywords luo-keywords">
+          <span>乐天</span><span>松弛</span><span>单纯</span><span>善良</span><span>小八卦</span><span>大孩子</span>
+        </div>
+      </div>
+
+      <!-- 口头禅 -->
+      <div class="detail-card full">
+        <div class="detail-label">💬 口头禅 · 经典语录</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div class="quote-box luo-quote">"说好相声就行呗，别的我都行。"</div>
+          <div class="quote-box luo-quote">"韩姐你说啥？哦那个票啊，多少都行吧。"</div>
+          <div class="quote-box luo-quote">"我跟你说个事儿啊……"（八卦模式启动）</div>
+          <div class="quote-box luo-quote">"这段子我琢磨了好几天，你听听——"（眼睛亮了）</div>
+          <div class="quote-box luo-quote">"我师父说了，做人得正，做艺得真——嘿，不说了不说了，你们聊。"</div>
+          <div class="quote-box luo-quote">"今天天气真好，适合打快板。"</div>
+        </div>
+      </div>
+
+      <!-- 经典场景 -->
+      <div class="detail-card wide">
+        <div class="detail-label">🎬 经典场景 · 名场面设计</div>
+        <ul class="scene-list">
+          <li>
+            <div class="scene-num" style="background:var(--luo-bg);color:var(--luo);">1</div>
+            <div>
+              <div class="scene-title">「罗老师在院子里晒太阳」</div>
+              <div class="scene-desc">阳光好，罗老师搬把椅子往院子中间一坐，手里拿着快板，闭着眼打节拍。猫趴脚边，他在哼京韵大鼓。路过的人都忍不住停下来——不是在表演，就是真的开心</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--luo-bg);color:var(--luo);">2</div>
+            <div>
+              <div class="scene-title">「韩姐问票房」</div>
+              <div class="scene-desc">韩姐："今晚来了多少人？" 罗老师："嗯？哦……还行吧。" 韩姐："到底多少？！" 罗老师认真想了想："我光顾着说相声了，没数啊。" ——韩姐翻白眼</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--luo-bg);color:var(--luo);">3</div>
+            <div>
+              <div class="scene-title">「罗老师聊八卦」</div>
+              <div class="scene-desc">跟朋友喝咖啡时突然凑过来："诶你们知道吗，那个谁……" 眼睛亮亮的，比聊相声还兴奋两秒——然后马上被自己的快板打断，"等等，我想起个包袱"</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--luo-bg);color:var(--luo);">4</div>
+            <div>
+              <div class="scene-title">「罗老师给徒弟改活儿」</div>
+              <div class="scene-desc">徒弟练了一段，罗老师乐呵呵说"不错不错"——然后突然认真起来，"但是这个包袱，你翻的时候节奏差半拍，来，我给你走一遍"，一走就走了十遍，停不下来</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--luo-bg);color:var(--luo);">5</div>
+            <div>
+              <div class="scene-title">「罗老师的快乐低龄时刻」</div>
+              <div class="scene-desc">不当班的时候在院子里追狗、逗猫、跟客人聊天聊到忘乎所以，韩姐喊他三遍"罗老师！票还没核呢" 他笑嘻嘻回："哦哦哦来了来了"——然后转头又跟人聊上了</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 内容方向 -->
+      <div class="detail-card">
+        <div class="detail-label">📹 内容方向</div>
+        <div class="content-dir-grid" style="grid-template-columns:1fr;">
+          <div class="cd-card">
+            <div class="cd-name">🎋 罗老师的快板时刻</div>
+            <div class="cd-desc">随手打一段快板、哼一段鼓曲——不为表演，就是开心</div>
+            <div class="cd-format">短视频 30-60s · 日更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">😄 罗老师的快乐日常</div>
+            <div class="cd-desc">晒太阳、逗猫、聊八卦、被韩姐催票——相声之外的松弛人生</div>
+            <div class="cd-format">短视频 1-3min · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">✨ 罗老师眼里的光</div>
+            <div class="cd-desc">一聊相声就变了个人的瞬间——从松弛到认真的那个"亮"</div>
+            <div class="cd-format">短视频 1-2min · 双周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🎙️ 罗老师教徒弟</div>
+            <div class="cd-desc">平时乐呵呵，但一教活儿就停不下来——"来，再走一遍"</div>
+            <div class="cd-format">中视频 5-10min · 月更</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 互动模式 -->
+      <div class="detail-card wide">
+        <div class="detail-label">🔗 角色互动模式</div>
+        <div class="interact-grid">
+          <div class="interact-card">
+            <div class="interact-pair">罗老师 ↔ 韩姐 <span class="interact-tag" style="background:var(--han-bg);color:var(--han);">核心</span></div>
+            <div class="interact-desc">韩姐操碎了心，罗老师啥也不操心的日常。韩姐说"你就没头脑！"罗老师笑嘻嘻"嘿嘿，不是有你嘛"。但在相声这件事上，韩姐也舍不得让他将就——骂归骂，票的事情她扛了</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">罗老师 → 徒弟 <span class="interact-tag" style="background:var(--stu-bg);color:var(--stu);">师承</span></div>
+            <div class="interact-desc">平时跟徒弟像朋友一样玩闹，但一碰活儿就停不下来——"来，再走一遍"，然后十遍过去了自己都不觉得。继承了师父魏文亮的认真，但用快乐的方式传递</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">罗老师 ↔ 店长 <span class="interact-tag" style="background:var(--mgr-bg);color:var(--mgr);">依赖</span></div>
+            <div class="interact-desc">罗老师不想管的事全丢给店长——"那个什么排期的事，你帮我弄一下呗"。店长又好气又好笑，但也习惯了，罗老师就是需要有人帮他挡住"外面那些事"</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">罗老师 ↔ 朋友 <span class="interact-tag" style="background:var(--frd-bg);color:var(--frd);">开心果</span></div>
+            <div class="interact-desc">跟朋友在一起是最松弛的状态——聊八卦、讲段子、喝咖啡、偶尔打段快板助兴。他不是社交高手，但就是让人舒服，因为他是真的开心</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 视觉设计 -->
+      <div class="detail-card full">
+        <div class="detail-label">🎨 视觉设计参考</div>
+        <div class="visual-ref">
+          <div class="vis-item">
+            <div class="vis-icon">👔</div>
+            <div class="vis-label">穿搭</div>
+            <div class="vis-desc">长衫上台 · 日常随性舒适 · 不刻意但干净 · 师父的品位留在了台上</div>
+          </div>
+          <div class="vis-item">
+            <div class="vis-icon">📍</div>
+            <div class="vis-label">常驻位置</div>
+            <div class="vis-desc">院子里晒太阳 · 咖啡吧台发呆 · 二楼打快板 · 哪里有阳光就在哪</div>
+          </div>
+          <div class="vis-item">
+            <div class="vis-icon">🎬</div>
+            <div class="vis-label">镜头语言</div>
+            <div class="vis-desc">暖光 · 自然抓拍 · 笑容特写 · 从松弛到认真的那个"亮了"瞬间</div>
+          </div>
+          <div class="vis-item">
+            <div class="vis-icon">🎵</div>
+            <div class="vis-label">声音标识</div>
+            <div class="vis-desc">快板节奏 · 哼唱京韵大鼓 · 笑声 · "嘿嘿" · 猫叫</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 韩姐 ====== -->
+<!-- ============================================ -->
+<section class="section" id="han">
+  <div class="container">
+    <div class="char-masthead han">
+      <div class="masthead-top">
+        <div class="masthead-avatar">💪</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">人气位 · FIRE</div>
+          <div class="masthead-name">韩姐</div>
+          <div class="masthead-role">接地气的生活家 — 院子里的烟火引擎</div>
+        </div>
+      </div>
+      <div class="masthead-slogan" style="color:var(--han);">
+        "理想不能当饭吃。但日子过明白了，才配谈理想。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card wide">
+        <div class="detail-label">📖 人物背景</div>
+        <div class="detail-text">
+          韩姐是生意人出身，做过餐饮、管过团队、见过人情冷暖。她不是相声圈的人，但她知道"人需要什么"——需要一杯好喝的咖啡，需要被好好对待，需要一个地方让人觉得"值得来"。<br><br>
+          <strong>核心张力：</strong>韩姐让25号活下去，但罗老师完全不在意生意——不是清高，是真的"没头脑"。她操心票数，他操心包袱响没响；她算账，他晒太阳。韩姐常说他"你就没头脑！"但心里清楚，罗老师那份快乐和纯粹，恰恰是25号最珍贵的东西。她的"算账"不是庸俗，而是在替他的快乐买单。
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">🧬 性格特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>外向性：</strong>█████ 极强社交能力</div>
+          <div style="margin-bottom:6px;"><strong>理想度：</strong>██░░░ 藏在骨子里</div>
+          <div style="margin-bottom:6px;"><strong>务实度：</strong>█████ 极高</div>
+          <div style="margin-bottom:6px;"><strong>人情力：</strong>█████ 天生的</div>
+          <div><strong>柔软度：</strong>███░░ 偶尔泄露</div>
+        </div>
+        <div class="keywords han-keywords">
+          <span>精明</span><span>通透</span><span>爽朗</span><span>护短</span><span>嘴硬心软</span><span>大女主</span>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">💬 口头禅 · 经典语录</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div class="quote-box han-quote">"罗老师你等会儿，我先算算今晚的票。"</div>
+          <div class="quote-box han-quote">"日子过得明白，才配谈理想。"</div>
+          <div class="quote-box han-quote">"做人情嘛，不在钱多钱少，在个'到位'。"</div>
+          <div class="quote-box han-quote">"你那个相声专场……行吧，预算我给你批了。"</div>
+          <div class="quote-box han-quote">"我不懂相声，但我懂人。人坐不舒服，再好的段子也没用。"</div>
+          <div class="quote-box han-quote">"别看我天天算账，心里头也有一团火。"</div>
+        </div>
+      </div>
+
+      <div class="detail-card wide">
+        <div class="detail-label">🎬 经典场景 · 名场面设计</div>
+        <ul class="scene-list">
+          <li>
+            <div class="scene-num" style="background:var(--han-bg);color:var(--han);">1</div>
+            <div>
+              <div class="scene-title">「韩姐算账」</div>
+              <div class="scene-desc">罗老师想搞个专场，韩姐掏出计算器，一笔一笔拆——"演员费、灯、音响……行吧，艺术品我给你留30%的预算"</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--han-bg);color:var(--han);">2</div>
+            <div>
+              <div class="scene-title">「韩姐待客」</div>
+              <div class="scene-desc">客人进门三分钟，韩姐就知道对方是什么人、需要什么。一个眼神、一句寒暄、一杯对了味的酒——让人觉得自己"被看见了"</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--han-bg);color:var(--han);">3</div>
+            <div>
+              <div class="scene-title">「韩姐偷听相声」</div>
+              <div class="scene-desc">深夜收工后，韩姐悄悄上二楼，靠在门框上听罗老师一个人打快板——突然被罗老师发现，"我……我就是上来关灯的"</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--han-bg);color:var(--han);">4</div>
+            <div>
+              <div class="scene-title">「韩姐教你做人情」</div>
+              <div class="scene-desc">新来的徒弟不懂怎么跟客人聊天，韩姐三句话点醒："别想着卖票，想着交朋友。朋友处好了，观众自己就来了"</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">📹 内容方向</div>
+        <div class="content-dir-grid" style="grid-template-columns:1fr;">
+          <div class="cd-card">
+            <div class="cd-name">🤝 韩姐待客</div>
+            <div class="cd-desc">接待日常，看韩姐怎么用三分钟让一个人变成常客</div>
+            <div class="cd-format">短视频 1-3min · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🧮 韩姐算账</div>
+            <div class="cd-desc">把罗老师的专场方案变成一道数学题，烟火气拉满</div>
+            <div class="cd-format">短视频 1-2min · 双周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🎓 韩姐的生活课</div>
+            <div class="cd-desc">人情世故、生活智慧、经营哲学，句句在理</div>
+            <div class="cd-format">短视频/图文 · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">❤️ 韩姐的另一面</div>
+            <div class="cd-desc">嘴硬心软的瞬间，"精明"背后的柔软</div>
+            <div class="cd-format">短视频 30-60s · 双周更</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card wide">
+        <div class="detail-label">🔗 角色互动模式</div>
+        <div class="interact-grid">
+          <div class="interact-card">
+            <div class="interact-pair">韩姐 ↔ 罗老师 <span class="interact-tag" style="background:var(--luo-bg);color:var(--luo);">核心</span></div>
+            <div class="interact-desc">韩姐的务实不是庸俗，是一种"保护"——她用算账来保护罗老师的快乐不被现实击碎。吵完架，她偷偷上楼听快板，发现的时候说"我就是来关灯的"。罗老师虽然不太操心，但也知道韩姐扛了很多——偶尔会默默给她泡杯咖啡</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">韩姐 → 朋友 <span class="interact-tag" style="background:var(--frd-bg);color:var(--frd);">社交</span></div>
+            <div class="interact-desc">韩姐是天生的社交节点，每个常客都和她有关系。她记得每个人喝什么、听什么段子，让每个人觉得"被看见"</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">韩姐 → 徒弟 <span class="interact-tag" style="background:var(--stu-bg);color:var(--stu);">教导</span></div>
+            <div class="interact-desc">"跟罗老师学手艺，跟我学做人"——韩姐教的是生活技能和人情世故，徒弟怕她又敬她</div>
+          </div>
+          <div class="interact-card">
+            <div class="interact-pair">韩姐 ↔ 店长 <span class="interact-tag" style="background:var(--mgr-bg);color:var(--mgr);">搭档</span></div>
+            <div class="interact-desc">韩姐定方向，店长执行。韩姐说"今晚搞个专场"，店长就默默把一切安排好</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">🎨 视觉设计参考</div>
+        <div class="visual-ref">
+          <div class="vis-item"><div class="vis-icon">👗</div><div class="vis-label">穿搭</div><div class="vis-desc">利落西装/风衣 · 精致配饰 · 气场全开 · 有质感的实用主义</div></div>
+          <div class="vis-item"><div class="vis-icon">📍</div><div class="vis-label">常驻位置</div><div class="vis-desc">吧台 · 门口迎客 · 一楼咖啡区 · 哪里有热闹哪里有韩姐</div></div>
+          <div class="vis-item"><div class="vis-icon">🎬</div><div class="vis-label">镜头语言</div><div class="vis-desc">中景为主 · 动感镜头 · 快节奏剪辑 · 暖色调</div></div>
+          <div class="vis-item"><div class="vis-icon">🎵</div><div class="vis-label">配乐调性</div><div class="vis-desc">爵士 · 手鼓 · 轻快 · 有人味的BGM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 店长 ====== -->
+<!-- ============================================ -->
+<section class="section" id="mgr">
+  <div class="container">
+    <div class="char-masthead mgr">
+      <div class="masthead-top">
+        <div class="masthead-avatar">🎯</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">桥梁位 · BRIDGE</div>
+          <div class="masthead-name">店长</div>
+          <div class="masthead-role">25号的秩序维护者 — 两个世界之间的翻译</div>
+        </div>
+      </div>
+      <div class="masthead-slogan" style="color:var(--mgr);">
+        "罗老师要快乐，韩姐要活命。我负责让两者都成立。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card wide">
+        <div class="detail-label">📖 人物背景</div>
+        <div class="detail-text">
+          店长是25号的全职运营者，是罗老师和韩姐之间那座桥。他/她不是相声圈的人，也不是生意人，但兼具两种气质的理解力。他/她知道罗老师的"嘿嘿一笑了之"是什么意思，也知道韩姐的"票得卖够"意味着什么。<br><br>
+          <strong>核心价值：</strong>店长是观众视角的化身——他/她的困惑、吐槽、妥协和惊喜，就是观众会有的感受。他/她把25号的故事翻译给外部世界，也把外部世界的反馈翻译给罗老师和韩姐。罗老师负责快乐，韩姐负责活命，店长负责让两者和平共处。
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">🧬 性格特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>外向性：</strong>███░░ 适度社交</div>
+          <div style="margin-bottom:6px;"><strong>理想度：</strong>███░░ 偏务实但有审美</div>
+          <div style="margin-bottom:6px;"><strong>务实度：</strong>████░ 很高</div>
+          <div style="margin-bottom:6px;"><strong>观察力：</strong>█████ 极高</div>
+          <div><strong>幽默度：</strong>████░ 自嘲型</div>
+        </div>
+        <div class="keywords mgr-keywords">
+          <span>细心</span><span>幽默</span><span>忍耐</span><span>观察者</span><span>翻译官</span><span>吐槽担当</span>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">💬 口头禅 · 经典语录</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div class="quote-box mgr-quote">"我每天的工作就是——让罗老师的规矩和韩姐的账本同时成立。"</div>
+          <div class="quote-box mgr-quote">"罗老师说'这段再来一遍'，翻译一下：今晚又得加班了，但他是笑着说的……"</div>
+          <div class="quote-box mgr-quote">"今天来了个观众，听了三段不舍得走，说'这是我第一次听相声'。"</div>
+          <div class="quote-box mgr-quote">"在25号上班，最累的不是体力，是做两个世界的翻译。"</div>
+        </div>
+      </div>
+
+      <div class="detail-card wide">
+        <div class="detail-label">🎬 经典场景</div>
+        <ul class="scene-list">
+          <li>
+            <div class="scene-num" style="background:var(--mgr-bg);color:var(--mgr);">1</div>
+            <div>
+              <div class="scene-title">「营业日记」</div>
+              <div class="scene-desc">每天开门到关门，来过谁、罗老师又改了什么活儿、韩姐又吐槽了什么——用第一视角记录院子里的一天</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--mgr-bg);color:var(--mgr);">2</div>
+            <div>
+              <div class="scene-title">「如何伺候相声艺术家和生活家」</div>
+              <div class="scene-desc">店长的生存指南——罗老师突然想打快板助兴怎么办？韩姐嫌上座率低怎么调和？罗老师"嘿嘿"一笑啥也不管的时候，谁来填坑？</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--mgr-bg);color:var(--mgr);">3</div>
+            <div>
+              <div class="scene-title">「今天来了谁」</div>
+              <div class="scene-desc">一个观众的故事——他/她为什么来、听了什么段子、笑没笑。从店长的旁观者视角讲故事</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">📹 内容方向</div>
+        <div class="content-dir-grid" style="grid-template-columns:1fr;">
+          <div class="cd-card">
+            <div class="cd-name">📖 25号营业日记</div>
+            <div class="cd-desc">每日记录，一楼咖啡二楼相声的日常</div>
+            <div class="cd-format">图文/短视频 · 日更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">👀 今天来了谁</div>
+            <div class="cd-desc">观众故事，从旁观者视角</div>
+            <div class="cd-format">图文/短视频 · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🛠️ 店长生存指南</div>
+            <div class="cd-desc">如何伺候相声艺术家和生活家</div>
+            <div class="cd-format">短视频 · 双周更</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">🎨 视觉设计参考</div>
+        <div class="visual-ref">
+          <div class="vis-item"><div class="vis-icon">👕</div><div class="vis-label">穿搭</div><div class="vis-desc">围裙 · 简约T恤 · 实用主义 · 偶尔精致</div></div>
+          <div class="vis-item"><div class="vis-icon">📍</div><div class="vis-label">常驻位置</div><div class="vis-desc">一楼二楼来回跑 · 吧台 · 门口 · 剧场后排</div></div>
+          <div class="vis-item"><div class="vis-icon">🎬</div><div class="vis-label">镜头语言</div><div class="vis-desc">第一视角 · 手持跟拍 · 日常感 · Vlog风</div></div>
+          <div class="vis-item"><div class="vis-icon">🎵</div><div class="vis-label">配乐调性</div><div class="vis-desc">Lo-fi · 环境音 · 白噪音 · 生活BGM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 徒弟 ====== -->
+<!-- ============================================ -->
+<section class="section" id="stu">
+  <div class="container">
+    <div class="char-masthead stu">
+      <div class="masthead-top">
+        <div class="masthead-avatar">🌱</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">成长位 · GROWTH</div>
+          <div class="masthead-name">徒弟</div>
+          <div class="masthead-role">相声艺术家的学徒 — 年轻人的代入口</div>
+        </div>
+      </div>
+      <div class="masthead-slogan" style="color:var(--stu);">
+        "跟罗老师学手艺，跟韩姐学做人。虽然经常被整不会。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card wide">
+        <div class="detail-label">📖 人物背景</div>
+        <div class="detail-text">
+          徒弟是年轻人（可以是一人，也可以是几人轮流出镜，如罗峰的百字科弟子），来25号学相声。他们带着对传统艺术的憧憬来到乐峰社，却发现师父比想象中快乐得多——平时像个大孩子，但一碰活儿就停不下来；韩姐教的不是生意经，是一种"把日子过明白的本事"。<br><br>
+          <strong>核心价值：</strong>徒弟是观众的"代入角色"——年轻人看到徒弟，就像看到自己。师父乐呵呵但一碰活儿就较真，韩姐精明但嘴硬心软，徒弟夹在中间又笨拙又可爱。他们的困惑就是观众的困惑，他们的成长就是观众想要的成长。
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">🧬 性格特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>外向性：</strong>███░░ 因人而异</div>
+          <div style="margin-bottom:6px;"><strong>理想度：</strong>████░ 高，但动摇</div>
+          <div style="margin-bottom:6px;"><strong>务实度：</strong>███░░ 正在学习</div>
+          <div style="margin-bottom:6px;"><strong>好奇心：</strong>█████ 极强</div>
+          <div><strong>笨拙度：</strong>████░ 可爱的笨</div>
+        </div>
+        <div class="keywords stu-keywords">
+          <span>好奇</span><span>笨拙</span><span>真诚</span><span>迷茫</span><span>成长中</span><span>反差萌</span>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">💬 口头禅 · 经典语录</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div class="quote-box stu-quote">"师父，这段……我再来一遍。"</div>
+          <div class="quote-box stu-quote">"韩姐说的对，但师父那个乐呵劲儿我也想有……"</div>
+          <div class="quote-box stu-quote">"师父说不严肃，但一碰活儿他自己就停不下来……"</div>
+          <div class="quote-box stu-quote">"我以为学相声是逗乐子，结果是学会怎么快乐地较真。"</div>
+        </div>
+      </div>
+
+      <div class="detail-card wide">
+        <div class="detail-label">🎬 经典场景</div>
+        <ul class="scene-list">
+          <li>
+            <div class="scene-num" style="background:var(--stu-bg);color:var(--stu);">1</div>
+            <div>
+              <div class="scene-title">「师父凌晨两点的电话」</div>
+              <div class="scene-desc">徒弟已经睡了，罗老师打来电话："我想到一个包袱的翻法，嘿嘿嘿——" 开心得像个孩子，两人边聊边改，一直持续到凌晨两点。第二天罗老师又乐呵呵的，好像什么都没发生</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--stu-bg);color:var(--stu);">2</div>
+            <div>
+              <div class="scene-title">「穿拖鞋被训」</div>
+              <div class="scene-desc">徒弟穿着灯笼裤拖鞋来活动，罗老师笑着说"你这……行吧来来来"，然后开始讲他师父魏文亮怎么讲究穿着——讲着讲着就变成了相声，徒弟笑着就把衣服换了</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--stu-bg);color:var(--stu);">3</div>
+            <div>
+              <div class="scene-title">「徒弟的Vlog」</div>
+              <div class="scene-desc">徒弟用年轻人视角拍乐峰社的一天——排练、被师父笑着纠正、上台、继续纠正。师父虽然不严肃但就是停不下来："再来一遍！嘿嘿这个好玩"</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">📹 内容方向</div>
+        <div class="content-dir-grid" style="grid-template-columns:1fr;">
+          <div class="cd-card">
+            <div class="cd-name">🎋 跟师父学手艺</div>
+            <div class="cd-desc">说学逗唱基本功，快板鼓曲入门</div>
+            <div class="cd-format">短视频 1-3min · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">💼 跟韩姐学做人</div>
+            <div class="cd-desc">人情世故实战课</div>
+            <div class="cd-format">短视频 1-2min · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">📹 徒弟Vlog</div>
+            <div class="cd-desc">年轻人视角的乐峰社生活</div>
+            <div class="cd-format">中视频 5-10min · 双周更</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">🎨 视觉设计参考</div>
+        <div class="visual-ref">
+          <div class="vis-item"><div class="vis-icon">👕</div><div class="vis-label">穿搭</div><div class="vis-desc">卫衣/帆布鞋 · 练功服 · 学生的松弛感（但不能穿拖鞋！）</div></div>
+          <div class="vis-item"><div class="vis-icon">📍</div><div class="vis-label">常驻位置</div><div class="vis-desc">二楼小剧场 · 师父旁边 · 吧台学人情</div></div>
+          <div class="vis-item"><div class="vis-icon">🎬</div><div class="vis-label">镜头语言</div><div class="vis-desc">自拍视角 · Vlog风 · 滤镜 · 快节奏</div></div>
+          <div class="vis-item"><div class="vis-icon">🎵</div><div class="vis-label">配乐调性</div><div class="vis-desc">Indie · 电音 · 年轻感 · 节奏明快</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 朋友 ====== -->
+<!-- ============================================ -->
+<section class="section" id="frd">
+  <div class="container">
+    <div class="char-masthead frd">
+      <div class="masthead-top">
+        <div class="masthead-avatar">👥</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">故事位 · STORY</div>
+          <div class="masthead-name">朋友</div>
+          <div class="masthead-role">25号的常客朋友圈 — 故事矿与情感锚</div>
+        </div>
+      </div>
+      <div class="masthead-slogan" style="color:var(--frd);">
+        "来25号的人，不是来喝咖啡的，是来找点什么的。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card wide">
+        <div class="detail-label">📖 角色设定</div>
+        <div class="detail-text">
+          "朋友"不是固定的一两个人，而是一个<strong>角色池</strong>——25号的常客、相声观众、老友、路过的人，都是"朋友"宇宙的一部分。他们可能是创业者、中年人、退休教师、设计师、曲艺爱好者、外地游客……每个来25号的人都有自己的故事。<br><br>
+          <strong>核心价值：</strong>朋友是故事的来源。罗老师和韩姐的冲突是"主线剧情"，而朋友的故事是"支线剧情"——它丰富了院子的世界，让25号不再只是两个人的故事，而是一座"关系剧场"。<br><br>
+          <strong>常驻朋友原型（可扩展）：</strong><br>
+          • 🧑‍💼 创业者老王 — 中年危机，来25号听段相声解压<br>
+          • 🎨 曲艺爱好者小林 — 罗老师的知音，传统艺术同频<br>
+          • 🍷 做酒的老陈 — 韩姐的酒友，懂人情<br>
+          • 📷 摄影师阿花 — 用镜头记录25号的变化<br>
+          • 📖 退休教师张老师 — 最忠实的观众，每次坐同一个位置
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">🧬 群体特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>多样性：</strong>█████ 跨年龄跨圈层</div>
+          <div style="margin-bottom:6px;"><strong>故事性：</strong>█████ 人人都有故事</div>
+          <div style="margin-bottom:6px;"><strong>归属感：</strong>████░ 25号是"我的地方"</div>
+          <div><strong>自发性：</strong>████░ 真实互动为主</div>
+        </div>
+        <div class="keywords frd-keywords">
+          <span>真实</span><span>多元</span><span>温度</span><span>人情</span><span>意外</span><span>共鸣</span>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">💬 经典语录</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+          <div class="quote-box frd-quote">"这个地方不一样，喝着咖啡听着相声，太天津了。"</div>
+          <div class="quote-box frd-quote">"我在外面谈了一天生意，到这儿听段相声才觉得自己是个活人。"</div>
+          <div class="quote-box frd-quote">"罗老师说的那些规矩我听不太懂，但就是觉得……对。"</div>
+          <div class="quote-box frd-quote">"韩姐每次给我倒的酒，好像都知道我今天需要什么。"</div>
+        </div>
+      </div>
+
+      <div class="detail-card wide">
+        <div class="detail-label">🎬 经典场景</div>
+        <ul class="scene-list">
+          <li>
+            <div class="scene-num" style="background:var(--frd-bg);color:var(--frd);">1</div>
+            <div>
+              <div class="scene-title">「常客故事」</div>
+              <div class="scene-desc">一个朋友的故事——为什么常来？25号对他/她意味着什么？每个常客背后都有一段与院子的关系</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--frd-bg);color:var(--frd);">2</div>
+            <div>
+              <div class="scene-title">「老友局」</div>
+              <div class="scene-desc">几个老朋友听完相声在一楼喝酒聊天，不经意间的真话最动人</div>
+            </div>
+          </li>
+          <li>
+            <div class="scene-num" style="background:var(--frd-bg);color:var(--frd);">3</div>
+            <div>
+              <div class="scene-title">「深夜聊天」</div>
+              <div class="scene-desc">夜深了，灯光昏暗，有个人突然说了一句很走心的话——这种时刻最真实</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">📹 内容方向</div>
+        <div class="content-dir-grid" style="grid-template-columns:1fr;">
+          <div class="cd-card">
+            <div class="cd-name">📖 常客故事</div>
+            <div class="cd-desc">一个朋友，一段关系，一种人生</div>
+            <div class="cd-format">图文/中视频 · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🥂 老友局</div>
+            <div class="cd-desc">真实对话，不剧本</div>
+            <div class="cd-format">直播/中视频 · 月更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🌙 深夜聊天</div>
+            <div class="cd-desc">走心长内容</div>
+            <div class="cd-format">长视频/播客 · 月更</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">🎨 视觉设计参考</div>
+        <div class="visual-ref">
+          <div class="vis-item"><div class="vis-icon">📷</div><div class="vis-label">镜头</div><div class="vis-desc">纪实风 · 自然光 · 不摆拍 · 捕捉真实瞬间</div></div>
+          <div class="vis-item"><div class="vis-icon">🎵</div><div class="vis-label">配乐</div><div class="vis-desc">民谣 · 低语 · 人声为主 · 音乐为辅</div></div>
+          <div class="vis-item"><div class="vis-icon">📝</div><div class="vis-label">文字</div><div class="vis-desc">散文式 · 第一人称 · 克制的抒情</div></div>
+          <div class="vis-item"><div class="vis-icon">🎬</div><div class="vis-label">节奏</div><div class="vis-desc">慢 · 留白 · 让故事自己长出来</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 宠物 ====== -->
+<!-- ============================================ -->
+<section class="section" id="pet">
+  <div class="container">
+    <div class="char-masthead pet">
+      <div class="masthead-top">
+        <div class="masthead-avatar">🐾</div>
+        <div class="masthead-info">
+          <div class="masthead-badge">治愈位 · HEAL</div>
+          <div class="masthead-name">宠物</div>
+          <div class="masthead-role">25号的毛孩子 — 低门槛的情绪入口</div>
+        </div>
+      </div>
+      <div class="masthead-slogan" style="color:var(--pet);">
+        "人是来喝咖啡听相声的，毛孩子是来交朋友的。"
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card wide">
+        <div class="detail-label">📖 角色设定</div>
+        <div class="detail-text">
+          宠物是25号最低门槛的内容入口——不需要理解相声的规矩，不需要懂咖啡和酒，一只在院子里打盹的猫、一条追球的狗，就能让人心里柔软下来。<br><br>
+          <strong>核心价值：</strong>宠物是所有人的情感连接点。罗老师对着猫练新段子时，比对着人自然；韩姐嘴上嫌狗脏，背地里偷偷喂零食；观众的宠物来串门，瞬间拉近所有人距离。<br><br>
+          <strong>宠物角色设定：</strong><br>
+          • 🐱 院猫"醒木" — 常年盘踞二楼剧场窗台，罗老师的"固定观众"，打盹就是最好的捧哏<br>
+          • 🐶 院狗"逗哏" — 热情好客，每个人进院子都要迎接，韩姐嘴上说烦但偷偷宠着<br>
+          • 🐾 客人的宠物 — 不定期串门，社交催化剂
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label">🧬 功能特质</div>
+        <div class="detail-text" style="margin-bottom:12px;">
+          <div style="margin-bottom:6px;"><strong>治愈力：</strong>█████ 无条件</div>
+          <div style="margin-bottom:6px;"><strong>社交力：</strong>████░ 破冰神器</div>
+          <div style="margin-bottom:6px;"><strong>内容力：</strong>███░░ 轻量但持久</div>
+          <div style="margin-bottom:6px;"><strong>门槛度：</strong>█░░░░ 零门槛</div>
+          <div><strong>转化力：</strong>████░ 宠物友好=到店理由</div>
+        </div>
+        <div class="keywords pet-keywords">
+          <span>治愈</span><span>破冰</span><span>无门槛</span><span>可爱</span><span>宠物友好</span><span>松弛</span>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">🎬 经典场景</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">🐱 罗老师对着猫练段子</div>
+            <div style="font-size:12px;color:var(--text-l);">罗老师对着猫说新写的贯口，猫打了个哈欠——"连你都不捧场，看来这活儿还得改"</div>
+          </div>
+          <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">🐶 逗哏迎接观众</div>
+            <div style="font-size:12px;color:var(--text-l);">每个进院子的观众先被逗哏迎接，社恐也不怕——从一条狗开始聊相声</div>
+          </div>
+          <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+            <div style="font-size:12px;color:var(--text-l);"></div><div style="font-size:14px;font-weight:600;margin-bottom:4px;">🐾 宠物友好日</div>
+            <div style="font-size:12px;color:var(--text-l);">毛孩子和主人一起社交——一楼咖啡二楼相声，宠物友好院子的天花板</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card full">
+        <div class="detail-label">📹 内容方向</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+          <div class="cd-card">
+            <div class="cd-name">🐱 醒木的窗台日记</div>
+            <div class="cd-desc">院猫视角的乐峰社日常</div>
+            <div class="cd-format">图文 · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🐶 逗哏迎客记</div>
+            <div class="cd-desc">狗视角的观众百态</div>
+            <div class="cd-format">短视频 · 周更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🐾 宠物友好日</div>
+            <div class="cd-desc">毛孩子社交活动记录</div>
+            <div class="cd-format">短视频 · 月更</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-name">🏠 宠物友好院子</div>
+            <div class="cd-desc">25号的宠物友好理念</div>
+            <div class="cd-format">图文 · 季度</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================ -->
+<!-- ====== 成长路线总览 ====== -->
+<!-- ============================================ -->
+<section class="section" id="growth">
+  <div class="container">
+    <div class="sec-num" style="color:var(--gold);">GROWTH ARC</div>
+    <div class="sec-title">角色成长路线</div>
+    <div class="sec-desc" style="margin-bottom:32px;">每个角色不是静态的，他们在院子里生长。成长线让内容有持续动力，观众有持续期待。</div>
+
+    <div class="growth-overview">
+      <!-- 罗老师 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">🎭</div>
+          <div class="go-char-name">罗老师</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--luo-bg);">
+            <div class="go-phase-title" style="color:var(--luo);">Phase 1 快乐的手艺人</div>
+            <div class="go-phase-desc">只管说好相声，别的都无所谓</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--luo-bg);">
+            <div class="go-phase-title" style="color:var(--luo);">Phase 2 被现实轻轻戳了一下</div>
+            <div class="go-phase-desc">乐峰社要活下去——不是不在意，是开始偶尔想想</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--luo-bg);">
+            <div class="go-phase-title" style="color:var(--luo);">Phase 3 学会配合</div>
+            <div class="go-phase-desc">不是变得在意生意，是不想让韩姐太累</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--luo-bg);">
+            <div class="go-phase-title" style="color:var(--luo);">Phase 4 快乐有了厚度</div>
+            <div class="go-phase-desc">松弛没变，但快乐里多了珍惜和担当</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 韩姐 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">💪</div>
+          <div class="go-char-name">韩姐</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--han-bg);">
+            <div class="go-phase-title" style="color:var(--han);">Phase 1 精明掌柜</div>
+            <div class="go-phase-desc">算账第一，相声靠边</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--han-bg);">
+            <div class="go-phase-title" style="color:var(--han);">Phase 2 被传统触动</div>
+            <div class="go-phase-desc">嘴硬但偷偷上了楼听快板</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--han-bg);">
+            <div class="go-phase-title" style="color:var(--han);">Phase 3 主动守护</div>
+            <div class="go-phase-desc">"预算我给你批了，但得卖够票"</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--han-bg);">
+            <div class="go-phase-title" style="color:var(--han);">Phase 4 有烟火气的传统守护者</div>
+            <div class="go-phase-desc">"别看我天天算账，心里也有根醒木"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 店长 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">🎯</div>
+          <div class="go-char-name">店长</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--mgr-bg);">
+            <div class="go-phase-title" style="color:var(--mgr);">Phase 1 被动执行者</div>
+            <div class="go-phase-desc">两头受气，只想把工作做好</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--mgr-bg);">
+            <div class="go-phase-title" style="color:var(--mgr);">Phase 2 主动调和</div>
+            <div class="go-phase-desc">开始理解两边的语言，主动翻译</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--mgr-bg);">
+            <div class="go-phase-title" style="color:var(--mgr);">Phase 3 25号的灵魂之一</div>
+            <div class="go-phase-desc">不再只是执行者，而是院子的第三个支柱</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 徒弟 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">🌱</div>
+          <div class="go-char-name">徒弟</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--stu-bg);">
+            <div class="go-phase-title" style="color:var(--stu);">Phase 1 憧憬的小白</div>
+            <div class="go-phase-desc">带着幻想来，什么都不懂</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--stu-bg);">
+            <div class="go-phase-title" style="color:var(--stu);">Phase 2 碰壁与困惑</div>
+            <div class="go-phase-desc">相声不是逗乐子，规矩比想象中多</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--stu-bg);">
+            <div class="go-phase-title" style="color:var(--stu);">Phase 3 找到自己的路</div>
+            <div class="go-phase-desc">学会了手艺，也开始有了自己的风格</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--stu-bg);">
+            <div class="go-phase-title" style="color:var(--stu);">Phase 4 独当一面</div>
+            <div class="go-phase-desc">从学徒到能撑场子的演员</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 朋友 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">👥</div>
+          <div class="go-char-name">朋友</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--frd-bg);">
+            <div class="go-phase-title" style="color:var(--frd);">Phase 1 路人</div>
+            <div class="go-phase-desc">偶然路过，只是喝杯咖啡</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--frd-bg);">
+            <div class="go-phase-title" style="color:var(--frd);">Phase 2 常客</div>
+            <div class="go-phase-desc">开始常来，有了自己的位置</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--frd-bg);">
+            <div class="go-phase-title" style="color:var(--frd);">Phase 3 25号的人</div>
+            <div class="go-phase-desc">从"客人"变成"自己人"</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--frd-bg);">
+            <div class="go-phase-title" style="color:var(--frd);">Phase 4 传播者</div>
+            <div class="go-phase-desc">"你得来25号听段相声"——活招牌</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 宠物 -->
+      <div class="go-row">
+        <div class="go-char">
+          <div class="go-char-icon">🐾</div>
+          <div class="go-char-name">宠物</div>
+        </div>
+        <div class="go-arcs">
+          <div class="go-phase" style="background:var(--pet-bg);">
+            <div class="go-phase-title" style="color:var(--pet);">Phase 1 陌生</div>
+            <div class="go-phase-desc">刚到院子，还在适应</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--pet-bg);">
+            <div class="go-phase-title" style="color:var(--pet);">Phase 2 熟悉</div>
+            <div class="go-phase-desc">有了自己的领地和习惯</div>
+          </div>
+          <div class="go-arrow">→</div>
+          <div class="go-phase" style="background:var(--pet-bg);">
+            <div class="go-phase-title" style="color:var(--pet);">Phase 3 院子的灵魂</div>
+            <div class="go-phase-desc">没有它们，院子就不完整</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Growth Key Moments -->
+    <div style="margin-top:24px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;">
+      <div style="font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;margin-bottom:16px;">⚡ 关键成长节点 · 跨角色互动</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+        <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px;">🎬 罗老师第一次主动问"今晚来了多少观众"</div>
+          <div style="font-size:12px;color:var(--text-l);">平时从不操心的罗老师，演完突然回头问韩姐"今晚来了多少人？"——韩姐愣住了，罗老师自己也愣了一下，赶紧笑着说"嘿嘿我就是随便问问"。但那个瞬间，快乐里多了点什么</div>
+        </div>
+        <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px;">🎋 韩姐第一次主动听相声</div>
+          <div style="font-size:12px;color:var(--text-l);">韩姐悄悄上了二楼，靠在门框上听罗老师打快板——被发现了说"我就是来关灯的"。标志着韩姐从"只关心生意"到"被传统触动"</div>
+        </div>
+        <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px;">🎭 徒弟第一次独立撑场</div>
+          <div style="font-size:12px;color:var(--text-l);">罗老师不在，徒弟一个人撑了一整场——罗老师回来听录音，什么都没改，只是点了点头。这是最高的认可</div>
+        </div>
+        <div style="background:#FAFAF5;border:1px solid #F0EBE3;border-radius:10px;padding:16px;">
+          <div style="font-size:14px;font-weight:600;margin-bottom:4px;">👥 朋友第一次带新朋友来</div>
+          <div style="font-size:12px;color:var(--text-l);">"你得来这个地方听段相声"——从"客人"变成"传播者"的转折点</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer style="text-align:center;padding:48px 40px;color:var(--text-l);font-size:13px;">
+  <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:24px;"></div>
+  <div>大理道25号 · 人物IP完整档案</div>
+  <div style="margin-top:4px;">六个人 · 一座院子 · 咖啡与相声的城市关系剧场</div>
+</footer>
+
+<script>
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.section');
+navItems.forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(item.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(pageYOffset >= s.offsetTop - 100) current = s.id; });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if(item.getAttribute('href') === '#' + current) item.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
