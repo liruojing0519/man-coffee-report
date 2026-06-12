@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>漫咖啡民园店 · 十年一漫 内容策划报告</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+  
+  :root {
+    --brown-900: #3E2723;
+    --brown-800: #4E342E;
+    --brown-700: #5D4037;
+    --brown-600: #6D4C41;
+    --brown-500: #795548;
+    --brown-400: #8D6E63;
+    --brown-300: #A1887F;
+    --brown-200: #BCAAA4;
+    --brown-100: #D7CCC8;
+    --brown-50:  #EFEBE9;
+    --amber-600: #FFB300;
+    --amber-500: #FFC107;
+    --amber-400: #FFCA28;
+    --amber-300: #FFD54F;
+    --amber-100: #FFF8E1;
+    --warm-bg: #FAF6F1;
+    --warm-card: #FFFFFF;
+    --warm-border: #E8DDD3;
+    --text-primary: #3E2723;
+    --text-secondary: #6D4C41;
+    --text-muted: #8D6E63;
+    --accent-red: #C62828;
+    --accent-green: #2E7D32;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--warm-bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(170deg, #3E2723 0%, #5D4037 40%, #6D4C41 70%, #795548 100%);
+    color: #EFEBE9;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80vw;
+    height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,179,0,0.08) 0%, transparent 70%);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,179,0,0.05) 0%, transparent 70%);
+  }
+  .cover-year {
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: 700;
+    font-family: 'Noto Serif SC', serif;
+    letter-spacing: -0.02em;
+    opacity: 0.12;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .cover-sub {
+    font-size: clamp(13px, 2.5vw, 16px);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--amber-400);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 {
+    font-size: clamp(36px, 8vw, 72px);
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 span {
+    display: block;
+    font-size: 0.55em;
+    font-weight: 400;
+    font-family: 'Noto Sans SC', sans-serif;
+    letter-spacing: 0.15em;
+    color: var(--brown-200);
+    margin-top: 8px;
+  }
+  .cover-slogan {
+    font-size: clamp(18px, 3.5vw, 28px);
+    font-family: 'Noto Serif SC', serif;
+    color: var(--amber-300);
+    margin-top: 32px;
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta {
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--brown-300);
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== 目录 ===== */
+  .toc {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .toc-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--brown-800);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--brown-200);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--warm-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--brown-700);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  .toc-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .toc-page {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ===== 通用区块 ===== */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .section-num {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--amber-600);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--brown-900);
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+
+  /* ===== 卡片 ===== */
+  .card {
+    background: var(--warm-card);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(62,39,35,0.06);
+    border: 1px solid var(--warm-border);
+  }
+  .card-highlight {
+    border-left: 4px solid var(--amber-500);
+  }
+  .card-accent {
+    border-left: 4px solid var(--brown-500);
+  }
+
+  /* ===== 标签 ===== */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag-red { background: #FFEBEE; color: #C62828; }
+  .tag-amber { background: #FFF8E1; color: #F57F17; }
+  .tag-green { background: #E8F5E9; color: #2E7D32; }
+  .tag-brown { background: #EFEBE9; color: #5D4037; }
+  .tag-blue { background: #E3F2FD; color: #1565C0; }
+
+  /* ===== 表格 ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+  .data-table th {
+    background: var(--brown-700);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .data-table th:first-child { border-radius: 8px 0 0 0; }
+  .data-table th:last-child { border-radius: 0 8px 0 0; }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--warm-border);
+    vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: var(--brown-50); }
+  .data-table tr:hover td { background: #FFF8E1; }
+
+  /* ===== 脚本区块 ===== */
+  .script-block {
+    background: #1A1A1A;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    color: #E0E0E0;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+  .script-block .time {
+    color: var(--amber-400);
+    font-weight: 600;
+    font-size: 13px;
+    display: inline-block;
+    min-width: 60px;
+  }
+  .script-block .direction {
+    color: #90CAF9;
+    font-style: italic;
+  }
+  .script-block .dialogue {
+    color: #FFF;
+  }
+  .script-block .sfx {
+    color: #CE93D8;
+    font-size: 12px;
+  }
+  .script-block .note {
+    color: var(--brown-300);
+    font-size: 12px;
+    border-left: 2px solid var(--brown-600);
+    padding-left: 10px;
+    margin: 8px 0;
+  }
+
+  /* ===== 分镜表 ===== */
+  .storyboard {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 100px;
+    gap: 2px;
+    background: var(--brown-200);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .storyboard .sb-header {
+    background: var(--brown-700);
+    color: #fff;
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .storyboard .sb-cell {
+    background: var(--warm-card);
+    padding: 10px 12px;
+    vertical-align: top;
+  }
+  .storyboard .sb-time {
+    background: var(--brown-50);
+    color: var(--brown-700);
+    font-weight: 600;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  /* ===== 流程图 ===== */
+  .flow {
+    background: var(--brown-50);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .flow-step {
+    display: inline-block;
+    background: var(--warm-card);
+    border: 2px solid var(--brown-300);
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--brown-800);
+  }
+  .flow-arrow {
+    display: inline-block;
+    color: var(--brown-400);
+    font-size: 20px;
+    margin: 0 4px;
+    vertical-align: middle;
+  }
+
+  /* ===== 引用 ===== */
+  .quote-box {
+    border-left: 4px solid var(--amber-500);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: var(--amber-100);
+    border-radius: 0 10px 10px 0;
+  }
+  .quote-box p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    color: var(--brown-800);
+    font-weight: 600;
+  }
+  .quote-box .attr {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 400;
+  }
+
+  /* ===== 统计条 ===== */
+  .stat-bar {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+    background: var(--warm-card);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid var(--warm-border);
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--brown-700);
+    font-family: 'Noto Serif SC', serif;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ===== 时间线 ===== */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+    margin: 24px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--brown-200);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--amber-500);
+    border: 3px solid var(--warm-card);
+    box-shadow: 0 0 0 2px var(--brown-300);
+  }
+  .tl-week {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown-700);
+    margin-bottom: 4px;
+  }
+  .tl-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ===== 优先级标识 ===== */
+  .priority-high {
+    background: #C62828;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .priority-mid {
+    background: #F57F17;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .priority-low {
+    background: #5D4037;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* ===== 分隔 ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--brown-300), transparent);
+    margin: 48px 0;
+  }
+
+  /* ===== 页脚 ===== */
+  .footer {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--warm-border);
+    margin-top: 48px;
+  }
+  .footer-slogan {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    color: var(--brown-600);
+    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 640px) {
+    .storyboard {
+      grid-template-columns: 60px 1fr;
+    }
+    .storyboard .sb-header:nth-child(n+3),
+    .storyboard .sb-cell:nth-child(4n+3),
+    .storyboard .sb-cell:nth-child(4n+4) {
+      display: none;
+    }
+    .stat-bar { flex-direction: column; }
+    .flow-step { display: block; margin: 6px 0; }
+    .flow-arrow { display: none; }
+    .data-table { font-size: 12px; }
+    .data-table th, .data-table td { padding: 8px 8px; }
+    .card { padding: 20px; }
+  }
+
+  /* ===== 打印优化 ===== */
+  @media print {
+    .cover { min-height: auto; padding: 60px 24px; }
+    .section { page-break-inside: avoid; }
+    .script-block { background: #f5f5f5; color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 封面 ==================== -->
+<div class="cover">
+  <div class="cover-year">2016—2026</div>
+  <div class="cover-sub">漫咖啡民园店 · 线上账号运营</div>
+  <h1>十年一漫<span>选题 · 内容 · 脚本 全案</span></h1>
+  <div class="cover-slogan">慢慢回来</div>
+  <div class="cover-meta">2026年6月 · 机密文件 · 仅供内部使用</div>
+</div>
+
+<!-- ==================== 目录 ==================== -->
+<div class="toc">
+  <div class="toc-title">目录</div>
+  <ul class="toc-list">
+    <li><span><span class="toc-num">1</span><span class="toc-text">爆款复盘与核心洞察</span></span><span class="toc-page">P2</span></li>
+    <li><span><span class="toc-num">2</span><span class="toc-text">选题矩阵：18个选题全梳理</span></span><span class="toc-page">P4</span></li>
+    <li><span><span class="toc-num">3</span><span class="toc-text">系列一「十年寻人」完整脚本</span></span><span class="toc-page">P8</span></li>
+    <li><span><span class="toc-num">4</span><span class="toc-text">系列二「十年对比」完整脚本</span></span><span class="toc-page">P18</span></li>
+    <li><span><span class="toc-num">5</span><span class="toc-text">系列三「漫咖啡编年史」完整脚本</span></span><span class="toc-page">P24</span></li>
+    <li><span><span class="toc-num">6</span><span class="toc-text">系列四「回到漫咖啡」UGC活动方案</span></span><span class="toc-page">P30</span></li>
+    <li><span><span class="toc-num">7</span><span class="toc-text">12周排期与执行计划</span></span><span class="toc-page">P33</span></li>
+  </ul>
+</div>
+
+<!-- ==================== 第一章：爆款复盘 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 01</div>
+  <h2 class="section-title">爆款复盘与核心洞察</h2>
+  <p class="section-subtitle">几百万曝光不是偶然 — 它证明了什么？我们接下来怎么接？</p>
+
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-num">300万+</div>
+      <div class="stat-label">累计曝光量</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10年</div>
+      <div class="stat-label">品牌记忆跨度</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1个</div>
+      <div class="stat-label">核心情绪：怀念</div>
+    </div>
+  </div>
+
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">爆款本质拆解</h3>
+    <p style="font-size:15px; color:var(--text-secondary); margin-bottom:16px;">人们转发的不是"一家咖啡店重新开业"，而是：</p>
+    <div class="quote-box">
+      <p>漫咖啡 = 我青春时代的地标<br>它回来了 = 我的青春没死</p>
+    </div>
+    <p style="font-size:14px; color:var(--text-secondary);">这个情绪不是一次性的。它是一整个故事的开头。爆款下去了，说明第一波"惊喜感"消耗完了。接下来要做的，是把围观者变成参与者。</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">情绪续命三段论</h3>
+    <div class="flow">
+      <span class="flow-step">🎉 惊喜 + 怀念<br><small>"漫咖啡回来了！"</small></span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step" style="border-color:var(--amber-500); background:var(--amber-100);">❤️ 共情 + 故事<br><small>"这些年发生了什么"</small></span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">🏠 陪伴 + 归属<br><small>"漫咖啡见证了我们"</small></span>
+    </div>
+    <p style="font-size:14px; color:var(--text-muted); text-align:center; margin-top:12px;"><strong>关键转变</strong>：从"我告诉你漫咖啡回来了" → "你来讲你和漫咖啡的故事"</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第二章：选题矩阵 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 02</div>
+  <h2 class="section-title">选题矩阵：18个选题全梳理</h2>
+  <p class="section-subtitle">四大系列、18个选题，按优先级排序，标明传播力与制作难度</p>
+
+  <!-- 十年寻人选题 -->
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:6px; color:var(--brown-800);">系列一「十年寻人」— 纪实访谈</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">找到10年前的老客人，讲他们的故事。最核心系列，传播力最强。</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>期号</th>
+          <th>选题</th>
+          <th>人物原型</th>
+          <th>情绪落点</th>
+          <th>优先级</th>
+          <th>传播力</th>
+          <th>难度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td><strong>初恋咖啡座</strong></td>
+          <td>当年在漫咖啡约会/表白的人</td>
+          <td>"那个位置还在，人不在了"</td>
+          <td><span class="priority-high">P0</span></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td><strong>闺蜜的据点</strong></td>
+          <td>每周来漫咖啡聊天的闺蜜团</td>
+          <td>"原来大家都在等这一天"</td>
+          <td><span class="priority-high">P0</span></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><strong>考研二战的那张桌子</strong></td>
+          <td>在漫咖啡备考上岸/落榜的人</td>
+          <td>"这张桌子见过我最拼的样子"</td>
+          <td><span class="priority-high">P0</span></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>父女时光</strong></td>
+          <td>带女儿来漫咖啡的爸爸</td>
+          <td>"她长大了，漫咖啡也回来了"</td>
+          <td><span class="priority-mid">P1</span></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><strong>漫咖啡的前员工</strong></td>
+          <td>曾在漫咖啡打工的大学生</td>
+          <td>"漫咖啡教会我的第一课"</td>
+          <td><span class="priority-mid">P1</span></td>
+          <td>⭐⭐⭐</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td><strong>外地回来的天津人</strong></td>
+          <td>在外地工作看到消息回来的</td>
+          <td>"城市会变，但有些东西不会"</td>
+          <td><span class="priority-mid">P1</span></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td><strong>韩国老板的漫咖啡</strong></td>
+          <td>品牌韩国创始人/早期加盟商</td>
+          <td>"慢慢来"这三个字的意义</td>
+          <td><span class="priority-low">P2</span></td>
+          <td>⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 十年对比选题 -->
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:6px; color:var(--brown-800);">系列二「十年对比」— AI视觉短片</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">用AI做10年前后视觉冲击。适合小红书+抖音。制作快、传播强。</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>期号</th>
+          <th>对比主题</th>
+          <th>制作方式</th>
+          <th>视觉亮点</th>
+          <th>优先级</th>
+          <th>传播力</th>
+          <th>难度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td><strong>民园广场十年变化</strong></td>
+          <td>老照片vs实拍+AI修复</td>
+          <td>同一角度十年城市变迁</td>
+          <td><span class="priority-high">P0</span></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td><strong>漫咖啡店内十年</strong></td>
+          <td>老店vs新店内景</td>
+          <td>保留了什么？变了什么？</td>
+          <td><span class="priority-high">P0</span></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><strong>那些年漫咖啡的菜单</strong></td>
+          <td>老菜单vs新菜单</td>
+          <td>"当年28块的拿铁，现在多少？"</td>
+          <td><span class="priority-mid">P1</span></td>
+          <td>⭐⭐⭐⭐</td>
+          <td>⭐</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>天津年轻人十年穿搭</strong></td>
+          <td>AI生成2016vs2026</td>
+          <td>"我当年确实这么穿！"</td>
+          <td><span class="priority-mid">P1</span></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><strong>一杯咖啡的十年</strong></td>
+          <td>AI动画时空压缩</td>
+          <td>咖啡文化在中国十年演变</td>
+          <td><span class="priority-low">P2</span></td>
+          <td>⭐⭐⭐</td>
+          <td>⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td><strong>如果当年的你遇见现在的你</strong></td>
+          <td>AI人脸融合/时光模拟</td>
+          <td>年轻的自己vs现在的自己</td>
+          <td><span class="priority-low">P2</span></td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>⭐⭐⭐⭐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 编年史选题 -->
+  <div class="card card-accent">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:6px; color:var(--brown-800);">系列三「漫咖啡编年史」— 微纪录片</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">3-5分钟微纪录片，讲品牌沉浮。深度内容，适合视频号长内容。</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>集数</th>
+          <th>标题</th>
+          <th>内容概要</th>
+          <th>核心素材</th>
+          <th>优先级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td><strong>韩国来的慢生活</strong></td>
+          <td>品牌起源，2013年进入天津盛况</td>
+          <td>早期新闻、微博截图、老客人</td>
+          <td><span class="priority-mid">P1</span></td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td><strong>民园记忆</strong></td>
+          <td>民园店如何成为年轻人据点</td>
+          <td>UGC合集、大众点评长评</td>
+          <td><span class="priority-mid">P1</span></td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><strong>至暗时刻</strong></td>
+          <td>疫情冲击、关店、品牌衰落</td>
+          <td>前员工、加盟商采访</td>
+          <td><span class="priority-mid">P1</span></td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>又是春天</strong></td>
+          <td>重新开业的故事</td>
+          <td>新店运营方、老客人重逢</td>
+          <td><span class="priority-high">P0</span></td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><strong>慢慢来</strong></td>
+          <td>品牌哲学与天津城市气质</td>
+          <td>哲思类内容，城市人文</td>
+          <td><span class="priority-low">P2</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第三章：十年寻人脚本 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 03</div>
+  <h2 class="section-title">系列一「十年寻人」完整脚本</h2>
+  <p class="section-subtitle">7期纪实访谈短视频，每期60-90秒，含分镜表、旁白、画面、音乐</p>
+
+  <!-- ========== 寻人启事（先导片）========== -->
+  <div class="card card-highlight">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">先导片</span>
+      <span class="tag tag-amber">必发第一条</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">寻人启事</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">时长 45秒 ｜ 纯文案+老照片 ｜ 手机即可制作 ｜ 发完立即开始收故事</p>
+    
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 2016年漫咖啡民园店的老照片，缓缓放大。暖黄色调，微微颗粒感。</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:03</span>
+        <span class="dialogue">2013年，漫咖啡来到了天津民园。</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:06</span>
+        <span class="dialogue">那时候，你在干什么？</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:09</span>
+        <span class="sfx">[BGM渐入：钢琴单音，温暖，缓慢]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:10</span>
+        <span class="direction">[画面] 快速切换3-5张当年漫咖啡的客人照片/店内场景</span><br>
+        <span class="dialogue">有人在这里表白。</span><br>
+        <span class="dialogue">有人在这里考研。</span><br>
+        <span class="dialogue">有人在这里和闺蜜聊了一整个下午。</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:20</span>
+        <span class="direction">[画面] 画面渐暗，只剩一盏漫咖啡的灯</span><br>
+        <span class="dialogue">有人说，漫咖啡关门那天，好像青春也跟着关了一扇门。</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:28</span>
+        <span class="direction">[画面] 黑屏2秒 → 漫咖啡新店门头缓缓亮起</span><br>
+        <span class="dialogue">现在，漫咖啡回来了。</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:33</span>
+        <span class="dialogue">我们在找十年前的你。</span><br>
+        <span class="dialogue">你当年坐在哪个位置？和谁一起来的？</span><br>
+        <span class="dialogue">后来，你们还联系吗？</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:40</span>
+        <span class="dialogue">评论区告诉我你的故事。</span><br>
+        <span class="dialogue">或者私信我，我们想拍下你和漫咖啡的重逢。</span>
+      </div>
+      <div>
+        <span class="time">00:44</span>
+        <span class="direction">[画面] 定格：漫咖啡新店门头</span><br>
+        <span class="dialogue" style="font-family:'Noto Serif SC',serif; letter-spacing:0.2em;">十年一漫，慢慢回来。</span>
+      </div>
+      <div class="note" style="margin-top:16px;">
+        发布话题：#漫咖啡 #天津记忆 #十年一漫 #回到漫咖啡<br>
+        评论区置顶："2013-2020年在漫咖啡民园店有过故事的朋友，私信我，我们想找到你"<br>
+        BGM生成提示（Suno）："nostalgic solo piano, warm, slow, Chinese city memory, gentle reverb, 45 seconds"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第01期：初恋咖啡座 ========== -->
+  <div class="card card-highlight">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">P0 优先</span>
+      <span class="tag tag-amber">传播力 TOP</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第01期：初恋咖啡座</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">人物原型：当年在漫咖啡约会/表白的人</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：漫咖啡表白 → 分开 → 重新开业后独自来坐 ｜ 落点："那个位置还在，人不在了"</p>
+    
+    <!-- 分镜表 -->
+    <div class="storyboard">
+      <div class="sb-header">时间</div>
+      <div class="sb-header">画面</div>
+      <div class="sb-header">声音/字幕</div>
+      <div class="sb-header">情绪</div>
+
+      <div class="sb-time">0-3s</div>
+      <div class="sb-cell">老照片：漫咖啡靠窗的位置，光线温暖</div>
+      <div class="sb-cell">字幕："2016年，他在这里和她表白"</div>
+      <div class="sb-cell">温暖</div>
+
+      <div class="sb-time">3-15s</div>
+      <div class="sb-cell">当事人坐在新店同一位置，看老照片</div>
+      <div class="sb-cell">VO："那时候漫咖啡是天津最浪漫的地方，我提前订了这个靠窗的位子..."</div>
+      <div class="sb-cell">怀念</div>
+
+      <div class="sb-time">15-25s</div>
+      <div class="sb-cell">老照片切换：当年两人合照 → 只有他一个人的近照</div>
+      <div class="sb-cell">VO："后来我们分开了，漫咖啡也关了。好像一个时代一起结束了。"</div>
+      <div class="sb-cell">微酸</div>
+
+      <div class="sb-time">25-40s</div>
+      <div class="sb-cell">他走进新店，环顾四周，在同一个位置坐下</div>
+      <div class="sb-cell">VO："刷到漫咖啡重新开业，我第一个想法就是——这个位置还在吗？"</div>
+      <div class="sb-cell">期待</div>
+
+      <div class="sb-time">40-55s</div>
+      <div class="sb-cell">他安静坐着，看窗外。画面渐慢。手边放着一张老照片</div>
+      <div class="sb-cell">（留白，只有BGM）→ VO："位置还在。就是人不在了。"</div>
+      <div class="sb-cell">沉淀</div>
+
+      <div class="sb-time">55-65s</div>
+      <div class="sb-cell">他笑了，端起咖啡。对比照（左边当年合照，右边现在独照）</div>
+      <div class="sb-cell">VO："但咖啡还是那个味儿。挺好。"</div>
+      <div class="sb-cell">释然</div>
+
+      <div class="sb-time">65-70s</div>
+      <div class="sb-cell">新店门头 + Slogan</div>
+      <div class="sb-cell">"十年一漫，慢慢回来"</div>
+      <div class="sb-cell">温暖</div>
+    </div>
+
+    <div class="script-block">
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 一定要拍他"走进新店的第一步"——跟拍/偷拍，真实反应最动人<br>
+        2. 老照片提前修复（Remini），大屏展示效果更好<br>
+        3. 结尾的对比照是传播核心——左旧右新，构图尽量一致<br>
+        4. 最后一句台词"咖啡还是那个味儿"让他即兴说，不要背<br>
+        <strong>🎵 BGM：</strong>Suno生成 "nostalgic piano, bittersweet, warm resolution, Chinese indie film feel"<br>
+        <strong>📱 发布文案：</strong>"那个位置还在。就是人不在了。#漫咖啡 #初恋 #十年一漫 #回到漫咖啡"<br>
+        <strong>💬 评论区引导：</strong>"你当年在漫咖啡和谁一起来的？现在还联系吗？"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第02期：闺蜜的据点 ========== -->
+  <div class="card card-highlight">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">P0 优先</span>
+      <span class="tag tag-green">闺蜜话题</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第02期：闺蜜的据点</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">人物原型：当年每周来漫咖啡聊天的闺蜜团（3-4人）</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：从天天见 → 各奔东西 → 看到重新开业消息互相联系 ｜ 落点："原来大家都在等这一天"</p>
+
+    <div class="storyboard">
+      <div class="sb-header">时间</div>
+      <div class="sb-header">画面</div>
+      <div class="sb-header">声音/字幕</div>
+      <div class="sb-header">情绪</div>
+
+      <div class="sb-time">0-3s</div>
+      <div class="sb-cell">老照片：几个女生在漫咖啡自拍合照</div>
+      <div class="sb-cell">字幕："2015年，她们的周末据点"</div>
+      <div class="sb-cell">欢快</div>
+
+      <div class="sb-time">3-12s</div>
+      <div class="sb-cell">闺蜜A坐在新店，翻手机相册</div>
+      <div class="sb-cell">A："每周六下午，漫咖啡，雷打不动。聊男生、聊工作、聊八卦..."</div>
+      <div class="sb-cell">开心</div>
+
+      <div class="sb-time">12-22s</div>
+      <div class="sb-cell">B和C的镜头交替（分别在不同地方）</div>
+      <div class="sb-cell">B："后来我去了北京，她去了上海..." C："群慢慢就不说话了。"</div>
+      <div class="sb-cell">微酸</div>
+
+      <div class="sb-time">22-35s</div>
+      <div class="sb-cell">A刷到重新开业的消息，截图发群</div>
+      <div class="sb-cell">A："那天我看到消息，第一个动作就是截图发群里，三分钟，群炸了。"</div>
+      <div class="sb-cell">惊喜</div>
+
+      <div class="sb-time">35-50s</div>
+      <div class="sb-cell">闺蜜们在新店重逢。拥抱、拍照、大笑</div>
+      <div class="sb-cell">A："原来大家都在等这一天。" B："就等一个人先说话。"</div>
+      <div class="sb-cell">温暖</div>
+
+      <div class="sb-time">50-60s</div>
+      <div class="sb-cell">四人重新坐在漫咖啡，和当年合照同样的姿势</div>
+      <div class="sb-cell">（留白）→ 笑声渐出</div>
+      <div class="sb-cell">欢乐</div>
+
+      <div class="sb-time">60-65s</div>
+      <div class="sb-cell">新旧合照对比 + Slogan</div>
+      <div class="sb-cell">"十年一漫，慢慢回来"</div>
+      <div class="sb-cell">治愈</div>
+    </div>
+
+    <div class="script-block">
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 核心画面是"重现当年合照"——一定要找到当年的合照，让她们摆同样姿势<br>
+        2. 重逢反应不要演，安排她们分别到达，拍摄第一次见面的真实反应<br>
+        3. B和C的镜头可以远程视频拍摄（营造"天南海北"的感觉）<br>
+        4. 结尾的合照对比是传播爆点——一定要左右新旧对比<br>
+        <strong>🎵 BGM：</strong>Suno "warm female vocal hum, guitar, friends reunion, Chinese pop ballad feel, hopeful"<br>
+        <strong>📱 发布文案：</strong>"原来大家都在等这一天。#漫咖啡 #闺蜜 #十年一漫 #回到漫咖啡"<br>
+        <strong>💬 评论区引导：</strong>"你和你最好的朋友，上一次见面是什么时候？"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第03期：考研二战的那张桌子 ========== -->
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">P0 优先</span>
+      <span class="tag tag-blue">奋斗共鸣</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第03期：考研二战的那张桌子</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">人物原型：在漫咖啡备考上岸/落榜的人</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：漫咖啡是最好的自习室 → 疫情关门 → 如今事业有成再来 ｜ 落点："这张桌子见过我最拼的样子"</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 漫咖啡角落的桌子，上面摊着书和笔记本（摆拍）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:02</span>
+        <span class="dialogue">字幕："2017年，这张桌子，是她的考研战场"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:05</span>
+        <span class="sfx">[BGM：安静的钢琴，带一点紧张感]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:06</span>
+        <span class="dialogue">VO："漫咖啡那时候就是我的自习室。一杯美式坐一天，从早八到晚十。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:15</span>
+        <span class="dialogue">VO："第一年没考上。哭了一晚上，第二天又来这个位子接着看书。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:22</span>
+        <span class="direction">[画面] 手持镜头：她走进新店，找角落的位置</span><br>
+        <span class="dialogue">VO："后来上岸了，工作了，漫咖啡也关了。再也没回来过。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:32</span>
+        <span class="direction">[画面] 她找到角落的位置，用手摸了摸桌面</span><br>
+        <span class="dialogue">VO："重新开业那天我专门来了。就想看看这张桌子还在不在。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:42</span>
+        <span class="direction">[画面] 她坐下来，翻开手机里当年在漫咖啡看书的照片</span><br>
+        <span class="dialogue">VO："还在。这张桌子见过我最拼的样子。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:50</span>
+        <span class="direction">[画面] 她微微笑了，端起咖啡。窗外阳光</span><br>
+        <span class="dialogue">VO："现在喝咖啡不用看书了。反而不知道干嘛了。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:58</span>
+        <span class="direction">[画面] 新旧对比照 + Slogan</span>
+      </div>
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 关键道具：当年的考研资料/笔记本（真实物件比摆拍有力100倍）<br>
+        2. "摸桌面"这个动作要自然——不要喊"action"，让她自己走过去<br>
+        3. "现在喝咖啡不用看书了"这句即兴发挥，如果当事人说了更好的就换<br>
+        <strong>📱 发布文案：</strong>"这张桌子见过我最拼的样子。#漫咖啡 #考研 #十年一漫 #回到漫咖啡"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第04期：父女时光 ========== -->
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-amber">P1</span>
+      <span class="tag tag-green">亲情线</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第04期：父女时光</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">人物原型：带女儿来漫咖啡的爸爸</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：女儿小时候来吃松饼 → 漫咖啡关了 → 女儿上大学了漫咖啡回来了 ｜ 落点："她长大了，漫咖啡也回来了"</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 一张老照片：爸爸牵着小女孩站在漫咖啡门口</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:03</span>
+        <span class="dialogue">字幕："2014年，她6岁，最爱漫咖啡的松饼"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:07</span>
+        <span class="dialogue">VO："她小时候每个周末都拉我来漫咖啡，就为了那个松饼。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:14</span>
+        <span class="dialogue">VO："后来漫咖啡关了，她问我'爸爸漫咖啡去哪了'，我说搬走了。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:22</span>
+        <span class="sfx">[BGM：温暖弦乐，渐入]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:23</span>
+        <span class="direction">[画面] 爸爸一个人坐在新店里，面前摆着松饼</span><br>
+        <span class="dialogue">VO："她现在上大学了，在北京。我跟她说漫咖啡回来了，她说'爸你帮我点个松饼'。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:35</span>
+        <span class="direction">[画面] 爸爸笑着拿起手机，给松饼拍照</span><br>
+        <span class="dialogue">VO："我拍给她看了。她说还是那个样子。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:43</span>
+        <span class="direction">[画面] 手机屏幕：女儿回复"好想吃！" + 表情包</span><br>
+        <span class="dialogue">VO："她长大了，漫咖啡也回来了。就是她不在身边了。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:52</span>
+        <span class="direction">[画面] 爸爸安静吃松饼，窗外阳光。老照片叠影：小女孩在同一位子吃松饼</span>
+      </div>
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 松饼是核心道具——一定要点松饼，视觉上和记忆挂钩<br>
+        2. 手机屏幕的微信对话可以后期摆拍（但要自然）<br>
+        3. 最后的叠影效果用剪映"叠化"转场即可<br>
+        <strong>📱 发布文案：</strong>"她长大了，漫咖啡也回来了。#漫咖啡 #父女 #十年一漫 #回到漫咖啡"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第05期：漫咖啡的前员工 ========== -->
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-amber">P1</span>
+      <span class="tag tag-brown">内部视角</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第05期：漫咖啡的前员工</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:4px;">人物原型：曾在漫咖啡打工的大学生</p>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：打工攒学费/第一份工作 → 漫咖啡关了 → 现在职业与漫咖啡的渊源 ｜ 落点："漫咖啡教会我的第一课"</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="dialogue">字幕："2015年，她是漫咖啡的服务员"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:03</span>
+        <span class="dialogue">VO："漫咖啡是我的第一份工作。大一暑假，时薪12块。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:10</span>
+        <span class="dialogue">VO："但我不是来赚工资的。我是来看人的。来看这座城市的人怎么生活。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:20</span>
+        <span class="dialogue">VO："有人在这里谈生意，有人在这里哭，有人在这里从早坐到晚只为等人。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:28</span>
+        <span class="direction">[画面] 她以客人身份走进新店</span><br>
+        <span class="dialogue">VO："后来我做了HR，面过很多人。每次我都会问——你的第一份工作教会了你什么？"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:40</span>
+        <span class="dialogue">VO："漫咖啡教会我的是——每个人都有故事，你要学会看。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:48</span>
+        <span class="direction">[画面] 她坐在吧台前，和现在的服务员聊了两句，两人都笑了</span><br>
+        <span class="dialogue">VO："坐在这里，感觉自己又穿上了围裙。"</span>
+      </div>
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 这期角度独特——从服务者视角看客人，容易引发"同行"共鸣<br>
+        2. "看人"这个视角可以作为系列彩蛋，其他期也可以从员工角度补充<br>
+        3. 结尾她和现在服务员对话的镜头是真实互动，不要排练<br>
+        <strong>📱 发布文案：</strong>"漫咖啡教会我的第一课。#漫咖啡 #第一份工作 #十年一漫"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第06期：外地回来的天津人 ========== -->
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-amber">P1</span>
+      <span class="tag tag-blue">北漂/沪漂</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第06期：外地回来的天津人</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：小时候的记忆 → 在外地看到重新开业 → 专门回来打卡 ｜ 落点："城市会变，但有些东西不会"</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="dialogue">字幕："他在北京，刷到漫咖啡重新开业"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:03</span>
+        <span class="direction">[画面] 他在北京的出租屋里，刷手机</span><br>
+        <span class="dialogue">VO："那天加班到十一点，刷到漫咖啡重新开业，直接买了一张周末回天津的票。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:14</span>
+        <span class="dialogue">VO："我在这上的大学。漫咖啡就是我的青春。每次回天津，我都路过民园，看看那个位置。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:24</span>
+        <span class="dialogue">VO："每次都是空的，关着门。有时候会站在门口发个呆。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:30</span>
+        <span class="direction">[画面] 高铁窗外风景切换 → 天津站 → 民园广场 → 漫咖啡门口</span><br>
+        <span class="sfx">[BGM渐强：思乡感，温暖弦乐]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:35</span>
+        <span class="direction">[画面] 他站在新店门口，犹豫了一下，推门进去</span><br>
+        <span class="dialogue">VO："推开那扇门的时候，好像回到了二十岁。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:45</span>
+        <span class="dialogue">VO："城市变了好多。但坐在这，咖啡还是那个味儿。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:52</span>
+        <span class="dialogue">VO："有些东西，以为没了，其实一直在等你回来。"</span>
+      </div>
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 开头在北京拍的镜头可以手机自拍，粗糙感反而真实<br>
+        2. 高铁窗外→天津站的蒙太奇用剪映"闪切"效果<br>
+        3. 推门的那一刻是全片高潮——多拍几遍，选最自然的<br>
+        <strong>📱 发布文案：</strong>"城市会变，但有些东西不会。#漫咖啡 #天津人 #十年一漫 #北漂"
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 第07期：韩国老板的漫咖啡 ========== -->
+  <div class="card">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-brown">P2</span>
+      <span class="tag tag-brown">品牌线</span>
+      <span class="tag tag-brown">60-90秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第07期：韩国老板的漫咖啡</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">故事线：从韩国到天津 → 开了漫咖啡 → 疫情关店 → 品牌沉浮 ｜ 落点："慢慢来"这三个字的意义</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="dialogue">字幕："漫咖啡，来自韩国。名字的意思是——慢慢来"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:04</span>
+        <span class="dialogue">VO："2013年漫咖啡来到天津的时候，所有人都觉得这个名字很奇怪。慢慢来？中国人不要快吗？"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:15</span>
+        <span class="dialogue">VO："但漫咖啡就是让你慢下来。1600平米，坐下来就不想走。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:24</span>
+        <span class="dialogue">VO："后来时代越来越快，外卖30分钟，短视频15秒。漫咖啡这种'慢'，好像不合时宜了。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:35</span>
+        <span class="dialogue">VO："疫情来了，关了。好像这个'慢'的时代真的结束了。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:42</span>
+        <span class="sfx">[BGM转折：从低沉到温暖]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:43</span>
+        <span class="dialogue">VO："但是你看——十年了，人们还记得。几百万人在网上说'漫咖啡回来了'。"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:53</span>
+        <span class="dialogue">VO："也许'慢慢来'这三个字，从来没有过时。是我们跑得太快了。"</span>
+      </div>
+      <div class="note">
+        <strong>🎬 拍摄要点：</strong><br>
+        1. 这期不一定是真人出镜，可以是"品牌视角"的旁白+素材剪辑<br>
+        2. 如果能联系到韩国创始人/早期加盟商，采访更有说服力<br>
+        3. 结尾可以加一个数据："重新开业视频播放量 300万+"，形成品牌自信<br>
+        <strong>📱 发布文案：</strong>"也许'慢慢来'从来没有过时。#漫咖啡 #慢慢来 #十年一漫"
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第四章：十年对比脚本 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 04</div>
+  <h2 class="section-title">系列二「十年对比」完整脚本</h2>
+  <p class="section-subtitle">6期AI辅助视觉短片，制作快、传播强，每周1条打底</p>
+
+  <!-- 第01期 -->
+  <div class="card card-highlight">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">P0 优先</span>
+      <span class="tag tag-amber">首发</span>
+      <span class="tag tag-brown">45-60秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">对比01：民园广场十年变化</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">制作方式：老照片 vs 现在实拍 + AI修复 ｜ 视觉亮点：同一角度，十年城市变迁</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 黑屏→左半屏淡入2016年老照片：民园广场某角度</span><br>
+        <span class="dialogue">字幕："2016 · 民园广场"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:05</span>
+        <span class="direction">[画面] 右半屏淡入2026年同角度实拍</span><br>
+        <span class="dialogue">字幕："2026 · 民园广场"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:08</span>
+        <span class="sfx">[BGM渐入：怀旧钢琴+轻弦乐，温暖感]</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:10</span>
+        <span class="direction">[画面] 左右同步滑动，切换5-8组不同角度的新旧对比</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:25</span>
+        <span class="direction">[画面] 画面融合过渡：老照片渐变为新景（AI补帧丝滑过渡）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:32</span>
+        <span class="dialogue">字幕："有些东西变了"</span>
+        <span class="direction">→ 展示变化的细节（新建筑、新路面、新商铺）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:38</span>
+        <span class="dialogue">字幕："有些东西没变"</span>
+        <span class="direction">→ 展示保留的元素（老树、砖墙、漫咖啡的位置）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:45</span>
+        <span class="direction">[画面] 定格在漫咖啡新店门口</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:48</span>
+        <span class="dialogue" style="font-family:'Noto Serif SC',serif; letter-spacing:0.2em;">十年一漫，慢慢回来。</span>
+      </div>
+      <div class="note">
+        <strong>🔧 制作流程：</strong><br>
+        1. 素材收集：微博/百度搜"漫咖啡 民园"找老照片 → 实地同角度拍摄<br>
+        2. AI处理：Remini修复老照片 → 剪映分屏模板<br>
+        3. BGM：Suno生成 "nostalgic piano, warm, Chinese city memory, gentle strings, 60 seconds"<br>
+        <strong>📱 发布文案：</strong>"十年前的民园 vs 现在的民园，你更喜欢哪个？#十年对比 #漫咖啡 #天津记忆"<br>
+        <strong>💬 评论区引导：</strong>"你更喜欢2016年的民园还是现在的？"
+      </div>
+    </div>
+  </div>
+
+  <!-- 第02期 -->
+  <div class="card card-highlight">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-red">P0 优先</span>
+      <span class="tag tag-brown">45-60秒</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">对比02：漫咖啡店内十年</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">制作方式：老店vs新店内景对比 ｜ 视觉亮点：保留了什么？变了什么？</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:12px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 分屏：左边老店内景，右边新店内景。缓缓从门口"走进去"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:05</span>
+        <span class="dialogue">字幕："同一个位置，十年前后"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:08</span>
+        <span class="direction">[画面] 对比1：吧台区（灯光、菜单、咖啡机）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:15</span>
+        <span class="direction">[画面] 对比2：靠窗座位区</span><br>
+        <span class="dialogue">字幕："这个靠窗的位置，还是那么暖"</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:22</span>
+        <span class="direction">[画面] 对比3：楼梯/走廊区域</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:28</span>
+        <span class="dialogue">字幕："变了什么？"</span>
+        <span class="direction">→ 快速闪过3-4处变化（新灯具、新装饰、新桌椅）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:35</span>
+        <span class="dialogue">字幕："没变什么？"</span>
+        <span class="direction">→ 快速闪过3-4处保留（砖墙、窗户、整体氛围）</span>
+      </div>
+      <div style="margin-bottom:12px;">
+        <span class="time">00:42</span>
+        <span class="dialogue">字幕："灵魂还在。"</span>
+      </div>
+      <div class="note">
+        <strong>🔧 关键：</strong>这期的核心不是展示变化，而是让观众"找不同"——评论区互动会很高<br>
+        <strong>📱 发布文案：</strong>"十年了，漫咖啡变了什么？评论区找不同！#十年对比 #漫咖啡"
+      </div>
+    </div>
+  </div>
+
+  <!-- 第03-06期简版 -->
+  <div class="card">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">对比03-06期 · 脚本框架</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>期号</th><th>主题</th><th>核心画面</th><th>字幕文案</th><th>评论区引导</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>03</td>
+          <td><strong>菜单十年</strong></td>
+          <td>老菜单拍照 vs 新菜单对比</td>
+          <td>"当年28块的拿铁，现在多少钱？"</td>
+          <td>"你最怀念漫咖啡哪道菜？"</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>十年穿搭</strong></td>
+          <td>AI生成2016 vs 2026 天津年轻人穿搭</td>
+          <td>"2016年的你 vs 2026年的你"</td>
+          <td>"我当年确实这么穿！你呢？"</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><strong>一杯咖啡的十年</strong></td>
+          <td>AI动画：从种豆到杯中，十年时空压缩</td>
+          <td>"十年，从一颗豆到这杯咖啡"</td>
+          <td>"你的咖啡品味十年变了多少？"</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td><strong>遇见自己</strong></td>
+          <td>AI人脸融合：年轻的你 vs 现在的你</td>
+          <td>"如果十年前的你，遇见现在的你"</td>
+          <td>"你最想对十年前的自己说什么？"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第五章：编年史脚本 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 05</div>
+  <h2 class="section-title">系列三「漫咖啡编年史」完整脚本</h2>
+  <p class="section-subtitle">5集微纪录片，每集3-5分钟，讲品牌在天津的沉浮</p>
+
+  <div class="card card-accent">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <span class="tag tag-brown">纪录片</span>
+      <span class="tag tag-amber">3-5分钟/集</span>
+    </div>
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:20px; margin-bottom:4px; color:var(--brown-800);">第01集：韩国来的慢生活</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">漫咖啡品牌起源，2013年进入天津的盛况</p>
+
+    <div class="script-block">
+      <div style="margin-bottom:14px;">
+        <span class="time">00:00</span>
+        <span class="direction">[画面] 空镜：清晨的民园广场，安静，空无一人</span><br>
+        <span class="sfx">[环境音：鸟叫、远处车声]</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">00:08</span>
+        <span class="dialogue">旁白："2013年，一个叫'漫咖啡'的韩国品牌，来到了天津。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">00:14</span>
+        <span class="direction">[画面] 早期新闻截图、微博截图、品牌宣传素材</span><br>
+        <span class="dialogue">旁白："1600平米。在那个咖啡还是'小资奢侈品'的年代，这个面积意味着——这家店不是让你喝完就走的。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">00:28</span>
+        <span class="dialogue">旁白："'漫'这个字，在中文里是慢的意思。慢慢来，慢慢喝，慢慢聊。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">00:38</span>
+        <span class="direction">[画面] 早期客人的照片/视频，满座的盛况</span><br>
+        <span class="dialogue">旁白："那时候的天津年轻人，第一次有了一个'可以坐一下午'的地方。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">00:50</span>
+        <span class="direction">[画面] 采访片段1：老客人回忆</span><br>
+        <span class="dialogue">受访者："第一次去漫咖啡，感觉像到了韩剧里。那种木桌子、暖灯光、巨大的空间...以前天津没有这种地方。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">01:10</span>
+        <span class="dialogue">旁白："奥城店。民园店。一家接一家。漫咖啡成了天津的打卡地标。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">01:25</span>
+        <span class="direction">[画面] 微博时代的数据截图：转发、评论、打卡</span><br>
+        <span class="dialogue">旁白："2014年到2018年，是漫咖啡的黄金时代。每个周末都要排队，每个位置都有人在拍照。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">01:45</span>
+        <span class="direction">[画面] 采访片段2：行业观察者/前员工</span><br>
+        <span class="dialogue">受访者："那时候漫咖啡不只是一个咖啡店，它是一个社交场。你去漫咖啡不是为了喝咖啡，是为了那个氛围。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">02:05</span>
+        <span class="dialogue">旁白："但所有人都没有想到，这个'慢慢来'的品牌，有一天会突然消失。"</span>
+      </div>
+      <div style="margin-bottom:14px;">
+        <span class="time">02:15</span>
+        <span class="direction">[画面] 画面渐暗</span><br>
+        <span class="dialogue">字幕："下集：民园记忆"</span>
+      </div>
+      <div class="note">
+        <strong>素材来源：</strong>微博@漫咖啡天津MAANCOFFEE历史内容（2014-2020）、大众点评早期评价、新闻媒体报道、老客人采访<br>
+        <strong>BGM：</strong>Suno "documentary score, warm strings, piano, Chinese city story, nostalgic, 3 minutes"<br>
+        <strong>发布节奏：</strong>每周1集，连续5周
+      </div>
+    </div>
+  </div>
+
+  <!-- 02-05集框架 -->
+  <div class="card">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">第02-05集 · 脚本框架</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>集数</th><th>标题</th><th>开篇画面</th><th>核心叙事</th><th>结尾钩子</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>02</td>
+          <td><strong>民园记忆</strong></td>
+          <td>老照片蒙太奇：民园店门口排队的画面</td>
+          <td>民园店如何成为年轻人据点——考研族、情侣、闺蜜团、商务会谈。UGC内容合集，大众点评长评朗读。</td>
+          <td>"然后，一切停了。"</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><strong>至暗时刻</strong></td>
+          <td>2020年的新闻截图：疫情关店</td>
+          <td>疫情冲击、漫咖啡关店、品牌衰落。前员工讲述最后一天的场景。加盟商的无奈。行业观察者分析原因。</td>
+          <td>"漫咖啡的故事，就这样结束了吗？"</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><strong>又是春天</strong></td>
+          <td>漫咖啡新店装修中的画面</td>
+          <td>重新开业的故事——为什么选择现在回来？新店运营方的初衷。老客人重逢的画面。几百万曝光的数据。</td>
+          <td>"回来，不只是开一家店，是赴一个十年的约。"</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><strong>慢慢来</strong></td>
+          <td>空镜：天津的清晨，缓慢而从容</td>
+          <td>漫咖啡的品牌哲学"慢慢来"与天津的城市气质。哲思类内容。天津人的"慢慢来"与漫咖啡的"慢慢来"。</td>
+          <td>"慢慢来。这可能是漫咖啡留给我们最好的一句话。"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第六章：UGC活动 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 06</div>
+  <h2 class="section-title">系列四「回到漫咖啡」UGC活动方案</h2>
+  <p class="section-subtitle">让用户自己生产内容，你提供舞台和激励。最低成本、最高传播。</p>
+
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:16px; color:var(--brown-800);">三波活动节奏</h3>
+    
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-week">第一波 · Week 1-2</div>
+        <div class="tl-desc">
+          <strong>老照片征集</strong><br>
+          玩法：发你当年在漫咖啡的照片 + 现在重拍同款对比<br>
+          话题：#回到漫咖啡<br>
+          奖励：点赞TOP10送全年8折会员<br>
+          <span class="tag tag-red" style="margin-top:6px;">启动最快，发完寻人启事视频后立即开始</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">第二波 · Week 5-8</div>
+        <div class="tl-desc">
+          <strong>我和漫咖啡的故事</strong><br>
+          玩法：文字/视频讲述你的漫咖啡记忆<br>
+          奖励：优质故事拍成「十年寻人」正片<br>
+          <span class="tag tag-amber" style="margin-top:6px;">从第一波参与者中筛选，人物质量更高</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">第三波 · Week 9-10</div>
+        <div class="tl-desc">
+          <strong>带老友回漫咖啡</strong><br>
+          玩法：拍你和老朋友在新店重聚的视频<br>
+          奖励：最佳重聚视频送漫咖啡双人全年卡<br>
+          <span class="tag tag-green" style="margin-top:6px;">直接刺激到店+消费，私域转化</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">UGC内容运营日历</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>日期</th><th>运营动作</th><th>话术/文案</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>周一</strong></td><td>发布本周话题 + 转发优质UGC</td><td>"这周的主题是______，来参与吧！"</td></tr>
+        <tr><td><strong>周二</strong></td><td>转发1-2条UGC + 互动评论</td><td>"@XX 这张拍得太好了！"</td></tr>
+        <tr><td><strong>周三</strong></td><td>话题讨论 + 抽奖/红包</td><td>"来说说你和漫咖啡的故事，抽3位送咖啡券"</td></tr>
+        <tr><td><strong>周四</strong></td><td>转发优质UGC + 预告明天</td><td>"明天有惊喜，关注群消息"</td></tr>
+        <tr><td><strong>周五</strong></td><td>周末福利券 + 引导到店</td><td>"周末来漫咖啡，出示这条消息送__"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== 第七章：12周排期 ==================== -->
+<div class="section">
+  <div class="section-num">CHAPTER 07</div>
+  <h2 class="section-title">12周排期与执行计划</h2>
+  <p class="section-subtitle">从启动到常态，一步步来</p>
+
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:16px; color:var(--brown-800);">12周作战地图</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-week">Week 1-2：启动期 — 接住情怀</div>
+        <div class="tl-desc">
+          ✦ 发布「寻人启事」先导片<br>
+          ✦ 发布「十年对比」第01期：民园广场十年变化<br>
+          ✦ 发起UGC活动 #回到漫咖啡 老照片征集<br>
+          ✦ 店内放置"寻找十年前的你"海报 + 二维码<br>
+          <span class="tag tag-red">目标：500+粉丝，5万+播放，50人进私域群</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 3-4：故事期 — 人物出场</div>
+        <div class="tl-desc">
+          ✦ 发布「十年寻人」第01-02期<br>
+          ✦ 发布「十年对比」第02期：店内十年<br>
+          ✦ UGC活动持续运营，每天转发优质投稿<br>
+          ✦ 开始拍摄微纪录片素材<br>
+          <span class="tag tag-amber">目标：2000+粉丝，10万+播放，150人进群</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 5-6：深度期 — 情绪深处</div>
+        <div class="tl-desc">
+          ✦ 发布「十年寻人」第03-04期<br>
+          ✦ 发布微纪录片第01-02集<br>
+          ✦ 发布「十年对比」第03期：菜单十年<br>
+          ✦ UGC第二波：我和漫咖啡的故事<br>
+          <span class="tag tag-amber">目标：5000+粉丝，20万+播放，300人进群</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 7-8：高潮期 — 情绪巅峰</div>
+        <div class="tl-desc">
+          ✦ 发布「十年寻人」第05-06期<br>
+          ✦ 发布微纪录片第03-04集（至暗时刻+又是春天）<br>
+          ✦ 发布「十年对比」第04期：十年穿搭<br>
+          ✦ 线下活动：「十年老友会」邀请故事主人公回店重聚<br>
+          <span class="tag tag-red">目标：10000+粉丝，50万+播放（爆款预期），500人进群</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 9-10：沉淀期 — 情怀到归属</div>
+        <div class="tl-desc">
+          ✦ 发布「十年寻人」第07期<br>
+          ✦ 发布微纪录片第05集（慢慢来）<br>
+          ✦ 发布「十年对比」第05-06期<br>
+          ✦ UGC第三波：带老友回漫咖啡<br>
+          ✦ 启动「漫友会」私域社群<br>
+          <span class="tag tag-green">目标：15000+粉丝，稳定10万+播放，800人进群</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 11-12：常态期 — 建立节奏</div>
+        <div class="tl-desc">
+          ✦ 「十年寻人」转为月更<br>
+          ✦ 「十年对比」系列收尾，推出精选合集<br>
+          ✦ 建立常态节奏：周3更（1条情怀+1条产品+1条日常）<br>
+          ✦ 私域运营进入日常SOP<br>
+          <span class="tag tag-green">目标：20000+粉丝，稳定5万+播放，1000人进群</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 每周内容排期 -->
+  <div class="card">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">每周发布节奏</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>日期</th><th>内容类型</th><th>具体内容</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>周一</strong></td><td>🔥 情怀向</td><td>「十年寻人」正片 / 「十年对比」短片</td><td>重磅内容放周初</td></tr>
+        <tr><td><strong>周三</strong></td><td>💬 互动向</td><td>UGC转发 / 话题讨论 / 寻人招募</td><td>引导用户参与</td></tr>
+        <tr><td><strong>周五</strong></td><td>🛒 产品向</td><td>新品/活动/套餐（融入情怀元素）</td><td>周末引流到店</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:14px; color:var(--text-muted); margin-top:12px;"><strong>最低产出标准</strong>：每周3条（1条重 + 1条中 + 1条轻），不贪多，保质量</p>
+  </div>
+
+  <!-- 第一周行动清单 -->
+  <div class="card card-highlight">
+    <h3 style="font-family:'Noto Serif SC',serif; font-size:18px; margin-bottom:12px; color:var(--brown-800);">⚡ 第一周立即行动清单</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>序号</th><th>事项</th><th>耗时</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>整理10年前漫咖啡民园店的所有老照片/老视频</td><td>2小时</td><td>微博、大众点评、百度搜</td></tr>
+        <tr><td>2</td><td>到民园广场实地拍摄同角度现在照片（至少10组）</td><td>1小时</td><td>带老照片对比着拍</td></tr>
+        <tr><td>3</td><td>剪一条「十年对比」首发视频（用剪映分屏模板）</td><td>2小时</td><td>最快出片的方式</td></tr>
+        <tr><td>4</td><td>发布"寻人启事"视频</td><td>1小时</td><td>脚本见第三章</td></tr>
+        <tr><td>5</td><td>店内放置"寻找十年前的你"海报</td><td>0.5小时</td><td>打印即可</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 页脚 ==================== -->
+<div class="footer">
+  <div class="footer-slogan">十年一漫，慢慢回来</div>
+  <p>漫咖啡民园店 · 线上账号运营全案</p>
+  <p style="margin-top:8px;">2026年6月 · 仅供内部使用</p>
+</div>
+
+</body>
+</html>
