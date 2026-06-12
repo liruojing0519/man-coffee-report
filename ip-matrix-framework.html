@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大理道25号 · IP矩阵工作框架</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #FAF7F2;
+    --card: #FFFFFF;
+    --text: #2C2418;
+    --text-secondary: #6B5E4F;
+    --text-light: #9B8E7E;
+    --accent-gold: #C8A96E;
+    --accent-warm: #D4845A;
+    --accent-green: #6B8E6B;
+    --accent-blue: #6B7F9E;
+    --accent-purple: #8B7BAE;
+    --accent-red: #B85C5C;
+    --border: #E8DFD3;
+    --shadow: rgba(44, 36, 24, 0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #2C2418 0%, #4A3C2A 50%, #3D3020 100%);
+    color: #FAF7F2;
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(200,169,110,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(212,132,90,0.06) 0%, transparent 50%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--accent-gold);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    position: relative;
+    letter-spacing: 4px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: rgba(250,247,242,0.7);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero .definition {
+    font-size: 15px;
+    color: var(--accent-gold);
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* Navigation */
+  .nav-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-item {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-item:hover { background: #F5F0E8; color: var(--text); }
+  .nav-item.active { background: var(--text); color: var(--bg); }
+
+  /* Section Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* Section Headers */
+  .section-header {
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  /* Overview Map */
+  .overview-map {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .overview-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .overview-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+  .overview-card .card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .overview-card .card-label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .overview-card .card-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .overview-card.center-card {
+    grid-column: span 4;
+    background: linear-gradient(135deg, #2C2418, #4A3C2A);
+    color: #FAF7F2;
+    text-align: center;
+    padding: 32px;
+  }
+  .overview-card.center-card .card-sub { color: rgba(250,247,242,0.7); }
+
+  /* Relationship Diagram */
+  .relation-diagram {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+  .relation-center {
+    display: inline-block;
+    background: linear-gradient(135deg, #2C2418, #4A3C2A);
+    color: var(--accent-gold);
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+  .relation-ring {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .relation-node {
+    background: #F5F0E8;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+  }
+  .relation-node .node-arrow {
+    position: absolute;
+    font-size: 10px;
+    color: var(--accent-gold);
+  }
+  .relation-connector {
+    font-size: 12px;
+    color: var(--text-light);
+    margin: 16px 0;
+  }
+  .relation-connector::before {
+    content: '▼';
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Character Cards */
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .char-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .char-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--shadow);
+  }
+  .char-card.wide {
+    grid-column: span 2;
+  }
+  .char-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .char-badge.soul { background: #F0E6D4; color: #8B7340; }
+  .char-badge.fire { background: #FDE8E0; color: #B85C5C; }
+  .char-badge.bridge { background: #E0ECF0; color: #5A7F8E; }
+  .char-badge.grow { background: #E4F0E4; color: #5A8E5A; }
+  .char-badge.story { background: #F0E8F0; color: #7B5A8E; }
+  .char-badge.heal { background: #FFF3E0; color: #B8860B; }
+  .char-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .char-role {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+  .char-keywords {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .char-keywords span {
+    background: #F5F0E8;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .char-content-list {
+    list-style: none;
+    padding: 0;
+  }
+  .char-content-list li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 5px 0;
+    border-bottom: 1px dashed #F0EBE3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .char-content-list li::before {
+    content: '📹';
+    font-size: 11px;
+  }
+  .char-value {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--accent-warm);
+    font-weight: 500;
+  }
+
+  /* Content Matrix */
+  .content-direction {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .content-dir-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .content-dir-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+  }
+  .content-dir-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .content-dir-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+  .tag-conflict { background: #FDE8E0; color: #B85C5C; }
+  .tag-scene { background: #E4F0E4; color: #5A8E5A; }
+  .tag-drama { background: #E0ECF0; color: #5A7F8E; }
+  .tag-art { background: #F0E8F0; color: #7B5A8E; }
+  .tag-life { background: #F0E6D4; color: #8B7340; }
+  .content-programs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .program-card {
+    background: #FAFAF5;
+    border: 1px solid #F0EBE3;
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.2s;
+  }
+  .program-card:hover {
+    background: #F5F0E8;
+  }
+  .program-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .program-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+  .program-format {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--accent-gold);
+  }
+
+  /* Scene Matrix */
+  .scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .scene-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .scene-group-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .scene-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #F0EBE3;
+  }
+  .scene-item:last-child { border-bottom: none; }
+  .scene-icon { font-size: 20px; flex-shrink: 0; }
+  .scene-info .scene-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .scene-info .scene-desc {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* Relationship Lines */
+  .relation-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .relation-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .relation-group-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .relation-line {
+    padding: 10px 0;
+    border-bottom: 1px dashed #F0EBE3;
+  }
+  .relation-line:last-child { border-bottom: none; }
+  .relation-pair {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .relation-meaning {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .relation-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+
+  /* Product Matrix */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .product-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .product-group-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .product-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #F0EBE3;
+  }
+  .product-item:last-child { border-bottom: none; }
+  .product-item .p-icon { font-size: 18px; }
+  .product-item .p-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .product-item .p-tag {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--accent-warm);
+    background: #FDF5F0;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Account Matrix */
+  .account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .account-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .account-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .account-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .account-avatar.main { background: linear-gradient(135deg, #2C2418, #4A3C2A); }
+  .account-avatar.luo { background: #F0E6D4; }
+  .account-avatar.han { background: #FDE8E0; }
+  .account-avatar.manager { background: #E0ECF0; }
+  .account-avatar.student { background: #E4F0E4; }
+  .account-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .account-persona {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .account-platforms {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .platform-tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .platform-xhs { background: #FFF0F0; color: #E04040; }
+  .platform-dy { background: #F0F0FF; color: #4040E0; }
+  .platform-ks { background: #FFF5E0; color: #E09040; }
+  .platform-wx { background: #E8F5E8; color: #40A040; }
+  .platform-wb { background: #FFE8E8; color: #E06040; }
+  .platform-bl { background: #E8F0FF; color: #4080E0; }
+  .account-content {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Refinement TODO */
+  .todo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .todo-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .todo-card-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .todo-list {
+    list-style: none;
+    padding: 0;
+  }
+  .todo-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #F0EBE3;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .todo-list li:last-child { border-bottom: none; }
+  .todo-check {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .todo-priority {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .p-high { background: #FDE8E0; color: #B85C5C; }
+  .p-mid { background: #FFF3E0; color: #B8860B; }
+  .p-low { background: #E4F0E4; color: #5A8E5A; }
+
+  /* Conversion Path */
+  .conversion-path {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+  }
+  .conversion-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .conv-step {
+    text-align: center;
+    padding: 16px 24px;
+    position: relative;
+  }
+  .conv-step-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+  .conv-step-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .conv-step-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    max-width: 140px;
+  }
+  .conv-arrow {
+    font-size: 24px;
+    color: var(--accent-gold);
+    padding: 0 4px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 48px 40px;
+    color: var(--text-light);
+    font-size: 13px;
+  }
+  .footer-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin-bottom: 24px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .overview-map { grid-template-columns: repeat(2, 1fr); }
+    .overview-card.center-card { grid-column: span 2; }
+    .char-grid { grid-template-columns: 1fr; }
+    .char-card.wide { grid-column: span 1; }
+    .content-programs { grid-template-columns: repeat(2, 1fr); }
+    .scene-grid, .relation-section, .product-grid, .account-grid, .todo-grid {
+      grid-template-columns: 1fr;
+    }
+    .container { padding: 0 20px; }
+    .conversion-steps { flex-direction: column; }
+    .conv-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="hero-tag">IP 矩阵工作框架</div>
+  <h1>大理道25号</h1>
+  <div class="subtitle">艺术家的游乐园 · 城市里的桃花源 · 理想主义者与生活家的共同院子</div>
+  <div class="definition">
+    不是一家店，是一座城市的理想后花园<br>
+    七大体系 × 六大角色 × 五大方向 × 全平台矩阵<br>
+    <strong>从"一个地方"变成"一个宇宙"</strong>
+  </div>
+</section>
+
+<!-- ====== NAV ====== -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-item active" href="#overview">总览</a>
+    <a class="nav-item" href="#main-ip">主IP</a>
+    <a class="nav-item" href="#characters">人物IP</a>
+    <a class="nav-item" href="#content">内容IP</a>
+    <a class="nav-item" href="#scene">场景IP</a>
+    <a class="nav-item" href="#relation">关系IP</a>
+    <a class="nav-item" href="#product">产品IP</a>
+    <a class="nav-item" href="#account">账号矩阵</a>
+    <a class="nav-item" href="#conversion">转化路径</a>
+    <a class="nav-item" href="#todo">待细化</a>
+  </div>
+</nav>
+
+<!-- ====== 01 总览 ====== -->
+<section class="section" id="overview">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">OVERVIEW</div>
+      <div class="section-title">七大体系总览</div>
+      <div class="section-desc">从品牌宪法到账号矩阵，七大体系环环相扣，构成大理道25号的完整IP宇宙</div>
+    </div>
+
+    <div class="overview-map">
+      <div class="overview-card center-card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-label" style="font-size:20px;">大理道25号 · 主IP</div>
+        <div class="card-sub" style="font-size:14px;">不是一家店，是一座城市的理想后花园<br>七大体系围绕主IP展开，所有内容服务于同一品牌内核</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🎭</div>
+        <div class="card-label">② 人物IP</div>
+        <div class="card-sub">6个角色住在这个院子里，各有定位、内容线和价值</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">📹</div>
+        <div class="card-label">③ 内容IP</div>
+        <div class="card-sub">5大方向 × N个栏目，栏目化运营，可持续产出</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🏡</div>
+        <div class="card-label">④ 场景IP</div>
+        <div class="card-sub">空间场景 × 时间场景 × 情绪场景，场景即内容</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🔗</div>
+        <div class="card-label">⑤ 关系IP</div>
+        <div class="card-sub">人物关系线构成故事引擎，驱动持续内容产出</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🛍️</div>
+        <div class="card-label">⑥ 产品IP</div>
+        <div class="card-sub">实体+体验+内容三类产品，从内容到消费的变现路径</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">📱</div>
+        <div class="card-label">⑦ 账号矩阵</div>
+        <div class="card-sub">5个账号 × 多平台协同，各有定位和分发策略</div>
+      </div>
+    </div>
+
+    <!-- Relationship Diagram -->
+    <div class="relation-diagram">
+      <div class="relation-center">🏛️ 主IP — 品牌"宪法"</div>
+      <div class="relation-ring">
+        <div class="relation-node">🎭 人物IP <span style="font-size:11px;color:var(--text-light)">演员</span></div>
+        <div class="relation-node">🔗 关系IP <span style="font-size:11px;color:var(--text-light)">剧本</span></div>
+        <div class="relation-node">🏡 场景IP <span style="font-size:11px;color:var(--text-light)">舞台</span></div>
+      </div>
+      <div class="relation-connector"></div>
+      <div class="relation-ring">
+        <div class="relation-node">📹 内容IP <span style="font-size:11px;color:var(--text-light)">节目</span></div>
+        <div class="relation-node">🛍️ 产品IP <span style="font-size:11px;color:var(--text-light)">变现</span></div>
+        <div class="relation-node">📱 账号矩阵 <span style="font-size:11px;color:var(--text-light)">渠道</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 02 主IP ====== -->
+<section class="section" id="main-ip">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 01</div>
+      <div class="section-title">主IP体系 — 品牌"宪法"</div>
+      <div class="section-desc">主IP定义一切。所有内容、角色、产品都从这里长出来。</div>
+    </div>
+
+    <div class="overview-map" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="overview-card">
+        <div class="card-icon">🎨</div>
+        <div class="card-label">艺术家的游乐园</div>
+        <div class="card-sub">让创作者有地方驻扎，让艺术从展馆走进日常</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🌿</div>
+        <div class="card-label">城市里的桃花源</div>
+        <div class="card-sub">在喧嚣城市中，留一块柔软的地方</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-icon">🏡</div>
+        <div class="card-label">共同院子</div>
+        <div class="card-sub">理想主义者与生活家，同一张桌子，同一杯酒</div>
+      </div>
+    </div>
+
+    <div class="overview-map" style="grid-template-columns: repeat(5, 1fr); margin-top:20px;">
+      <div class="overview-card" style="text-align:center;">
+        <div class="card-icon">💬</div>
+        <div class="card-label" style="font-size:12px;">版本一</div>
+        <div class="card-sub">一个把理想和日子放在同一个院子里的地方</div>
+      </div>
+      <div class="overview-card" style="text-align:center;">
+        <div class="card-icon">💬</div>
+        <div class="card-label" style="font-size:12px;">版本二</div>
+        <div class="card-sub">不接地气的艺术家，最接地气的生活家</div>
+      </div>
+      <div class="overview-card" style="text-align:center;">
+        <div class="card-icon">💬</div>
+        <div class="card-label" style="font-size:12px;">版本三</div>
+        <div class="card-sub">城市太硬了，我们留了一块柔软的地方</div>
+      </div>
+      <div class="overview-card" style="text-align:center;">
+        <div class="card-icon">💬</div>
+        <div class="card-label" style="font-size:12px;">版本四</div>
+        <div class="card-sub">白天谈理想，晚上聊生活</div>
+      </div>
+      <div class="overview-card" style="text-align:center;">
+        <div class="card-icon">💬</div>
+        <div class="card-label" style="font-size:12px;">版本五</div>
+        <div class="card-sub">一半阳春白雪，一半人间烟火</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:28px; text-align:center;">
+      <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">世界观</div>
+      <div style="font-family:'Noto Serif SC',serif; font-size:22px; font-weight:700; color:var(--text); margin-bottom:12px;">城市关系剧场</div>
+      <div style="font-size:14px; color:var(--text-secondary); max-width:500px; margin:0 auto;">
+        每个人来到这里，不是单纯喝一杯咖啡，而是在找——<br>
+        <span style="margin-top:8px;display:inline-block;">👫 找朋友 &nbsp; 🪞 找自己 &nbsp; 💡 找灵感 &nbsp; 🧘 找松弛 &nbsp; 💬 找关系 &nbsp; 🌱 找意义</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 03 人物IP ====== -->
+<section class="section" id="characters">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 02</div>
+      <div class="section-title">人物IP体系 — 六角角色矩阵</div>
+      <div class="section-desc">六个角色，撑起一座城市关系剧场。每个角色有独立人设和内容线，又相互勾连。</div>
+    </div>
+
+    <div class="char-grid">
+      <!-- 罗老师 -->
+      <div class="char-card wide">
+        <div class="char-badge soul">灵魂位</div>
+        <div class="char-name">🎭 罗老师</div>
+        <div class="char-role">不接地气的艺术家</div>
+        <div class="char-keywords">
+          <span>理想</span><span>审美</span><span>精神</span><span>不妥协</span><span>浪漫</span>
+        </div>
+        <ul class="char-content-list">
+          <li>罗老师谈艺术</li>
+          <li>罗老师谈理想</li>
+          <li>罗老师谈咖啡</li>
+          <li>罗老师不懂生意</li>
+          <li>罗老师又想搞艺术了</li>
+        </ul>
+        <div class="char-value">✦ 价值：给院子灵魂</div>
+      </div>
+
+      <!-- 韩姐 -->
+      <div class="char-card">
+        <div class="char-badge fire">人气位</div>
+        <div class="char-name">💪 韩姐</div>
+        <div class="char-role">接地气的生活家</div>
+        <div class="char-keywords">
+          <span>生活</span><span>烟火</span><span>生意</span><span>人情</span><span>务实</span>
+        </div>
+        <ul class="char-content-list">
+          <li>韩姐的一天</li>
+          <li>韩姐教你做人情</li>
+          <li>韩姐算账</li>
+          <li>韩姐和罗老师斗嘴</li>
+        </ul>
+        <div class="char-value">✦ 价值：让院子活下去</div>
+      </div>
+
+      <!-- 店长 -->
+      <div class="char-card">
+        <div class="char-badge bridge">桥梁位</div>
+        <div class="char-name">🎯 店长</div>
+        <div class="char-role">25号的秩序维护者</div>
+        <div class="char-keywords">
+          <span>统筹</span><span>观察</span><span>调和</span><span>陪伴</span>
+        </div>
+        <ul class="char-content-list">
+          <li>25号营业日记</li>
+          <li>今天来了谁</li>
+          <li>顾客故事</li>
+          <li>如何伺候两巨头</li>
+        </ul>
+        <div class="char-value">✦ 价值：连接角色与观众</div>
+      </div>
+
+      <!-- 徒弟 -->
+      <div class="char-card">
+        <div class="char-badge grow">成长位</div>
+        <div class="char-name">🌱 徒弟</div>
+        <div class="char-role">艺术家的徒弟们</div>
+        <div class="char-keywords">
+          <span>学习</span><span>困惑</span><span>成长</span><span>代际</span>
+        </div>
+        <ul class="char-content-list">
+          <li>跟罗老师学艺术</li>
+          <li>跟韩姐学做人</li>
+          <li>今天又被整不会了</li>
+          <li>师徒日常</li>
+        </ul>
+        <div class="char-value">✦ 价值：年轻人的代入感</div>
+      </div>
+
+      <!-- 朋友 -->
+      <div class="char-card">
+        <div class="char-badge story">故事位</div>
+        <div class="char-name">👥 朋友</div>
+        <div class="char-role">25号的常客朋友圈</div>
+        <div class="char-keywords">
+          <span>社交</span><span>情感</span><span>人生</span><span>温度</span>
+        </div>
+        <ul class="char-content-list">
+          <li>常客故事</li>
+          <li>老友局</li>
+          <li>咖啡桌上的人生</li>
+          <li>深夜聊天</li>
+        </ul>
+        <div class="char-value">✦ 价值：观众投射的对象</div>
+      </div>
+
+      <!-- 宠物 -->
+      <div class="char-card">
+        <div class="char-badge heal">治愈位</div>
+        <div class="char-name">🐾 宠物</div>
+        <div class="char-role">25号的毛孩子</div>
+        <div class="char-keywords">
+          <span>治愈</span><span>陪伴</span><span>松弛</span><span>可爱</span>
+        </div>
+        <ul class="char-content-list">
+          <li>宠物来串门</li>
+          <li>狗狗社交日</li>
+          <li>毛孩子下午茶</li>
+          <li>宠物友好院子</li>
+        </ul>
+        <div class="char-value">✦ 价值：低门槛的情绪入口</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 04 内容IP ====== -->
+<section class="section" id="content">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 03</div>
+      <div class="section-title">内容IP体系 — 五大方向 × 栏目矩阵</div>
+      <div class="section-desc">不是随机发内容，而是栏目化运营。每个方向下设具体栏目，持续产出、可复制、有辨识度。</div>
+    </div>
+
+    <!-- 方向1 -->
+    <div class="content-direction">
+      <div class="content-dir-header">
+        <div class="content-dir-num">01</div>
+        <div>
+          <div class="content-dir-title">理想与现实 <span class="content-dir-tag tag-conflict">最强冲突</span></div>
+          <div style="font-size:13px;color:var(--text-light);">罗老师 × 韩姐 — 这个方向自带戏剧性，是最容易出圈的内容引擎</div>
+        </div>
+      </div>
+      <div class="content-programs">
+        <div class="program-card">
+          <div class="program-name">🎬 罗老师又想搞艺术了</div>
+          <div class="program-desc">罗老师提了一个艺术方案，韩姐从商业角度灵魂拷问</div>
+          <div class="program-format">短视频 · 1-3min · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🧮 韩姐算账</div>
+          <div class="program-desc">韩姐给罗老师算艺术投入的账，烟火气拉满</div>
+          <div class="program-format">短视频 · 1-2min · 双周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🗣️ 斗嘴日常</div>
+          <div class="program-desc">两人对谈，理想与现实的碰撞，金句频出</div>
+          <div class="program-format">短视频 · 30-60s · 日更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🤝 和解时刻</div>
+          <div class="program-desc">理想与现实的最终方案——两人在某个点上达成一致</div>
+          <div class="program-format">中视频 · 5-10min · 月更</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方向2 -->
+    <div class="content-direction">
+      <div class="content-dir-header">
+        <div class="content-dir-num">02</div>
+        <div>
+          <div class="content-dir-title">城市桃花源 <span class="content-dir-tag tag-scene">场景感</span></div>
+          <div style="font-size:13px;color:var(--text-light);">院子、灯光、咖啡与酒——把空间美学变成内容，让人"想去"</div>
+        </div>
+      </div>
+      <div class="content-programs">
+        <div class="program-card">
+          <div class="program-name">🏡 五大道的院子</div>
+          <div class="program-desc">空间美学摄影，展现院子的不同面貌</div>
+          <div class="program-format">图文/短视频 · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🌙 夜晚的灯</div>
+          <div class="program-desc">夜晚氛围摄影，治愈系视觉内容</div>
+          <div class="program-format">图文/Reels · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">☕→🍷 白天咖啡晚上酒</div>
+          <div class="program-desc">一日两幅面孔，同一个空间的不同气质</div>
+          <div class="program-format">短视频 · 1-2min · 双周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🏙️ 城市太吵了</div>
+          <div class="program-desc">治愈系内容，从嘈杂城市到院子里的安静</div>
+          <div class="program-format">短视频 · 30-60s · 周更</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方向3 -->
+    <div class="content-direction">
+      <div class="content-dir-header">
+        <div class="content-dir-num">03</div>
+        <div>
+          <div class="content-dir-title">关系剧场 <span class="content-dir-tag tag-drama">连续剧</span></div>
+          <div style="font-size:13px;color:var(--text-light);">一部发生在院子里的连续剧——人与人之间的关系，是最大的故事矿</div>
+        </div>
+      </div>
+      <div class="content-programs">
+        <div class="program-card">
+          <div class="program-name">📖 院子故事</div>
+          <div class="program-desc">顾客故事系列，每个来院子的人都有故事</div>
+          <div class="program-format">图文/中视频 · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🥂 老友局</div>
+          <div class="program-desc">朋友相聚，真实对话，不剧本</div>
+          <div class="program-format">直播/中视频 · 月更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🌙 深夜聊天</div>
+          <div class="program-desc">情感类长内容，夜深人静时的走心对话</div>
+          <div class="program-format">长视频/播客 · 月更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🎨 师徒日常</div>
+          <div class="program-desc">罗老师与徒弟的互动，代际传承</div>
+          <div class="program-format">短视频 · 1-3min · 周更</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方向4 -->
+    <div class="content-direction">
+      <div class="content-dir-header">
+        <div class="content-dir-num">04</div>
+        <div>
+          <div class="content-dir-title">艺术家的游乐园 <span class="content-dir-tag tag-art">活动内容</span></div>
+          <div style="font-size:13px;color:var(--text-light);">展览、音乐、读书会、市集——把活动变成内容，把内容变成事件</div>
+        </div>
+      </div>
+      <div class="content-programs">
+        <div class="program-card">
+          <div class="program-name">🖼️ 25号展览</div>
+          <div class="program-desc">小型展览记录，策展理念与现场</div>
+          <div class="program-format">图文+短视频 · 跟展期</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🎵 音乐夜</div>
+          <div class="program-desc">现场演出记录，氛围拉满</div>
+          <div class="program-format">短视频/直播 · 月更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">📚 读书会</div>
+          <div class="program-desc">文化活动记录，思想碰撞</div>
+          <div class="program-format">图文+短视频 · 月更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🎪 市集日</div>
+          <div class="program-desc">创意市集，社区氛围</div>
+          <div class="program-format">图文+短视频 · 季度</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 方向5 -->
+    <div class="content-direction">
+      <div class="content-dir-header">
+        <div class="content-dir-num">05</div>
+        <div>
+          <div class="content-dir-title">人间烟火 <span class="content-dir-tag tag-life">韩姐宇宙</span></div>
+          <div style="font-size:13px;color:var(--text-light);">韩姐的生活智慧——接地气、有人味、能引发共鸣的日常</div>
+        </div>
+      </div>
+      <div class="content-programs">
+        <div class="program-card">
+          <div class="program-name">🤝 韩姐待客</div>
+          <div class="program-desc">接待日常，人与人之间的人情味</div>
+          <div class="program-format">短视频 · 1-3min · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">💼 韩姐做生意</div>
+          <div class="program-desc">经营智慧，小店的生存哲学</div>
+          <div class="program-format">短视频 · 1-2min · 双周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🎓 韩姐的生活课</div>
+          <div class="program-desc">实用干货，人情世故与生活智慧</div>
+          <div class="program-format">短视频/图文 · 周更</div>
+        </div>
+        <div class="program-card">
+          <div class="program-name">🏘️ 韩姐的家长里短</div>
+          <div class="program-desc">社区故事，五大道的人情味</div>
+          <div class="program-format">短视频 · 2-5min · 月更</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 05 场景IP ====== -->
+<section class="section" id="scene">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 04</div>
+      <div class="section-title">场景IP体系 — 空间即内容</div>
+      <div class="section-desc">每一个场景都是一个内容入口。空间、时间、情绪三维场景矩阵。</div>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scene-group">
+        <div class="scene-group-title">🏡 空间场景</div>
+        <div class="scene-item">
+          <div class="scene-icon">🌿</div>
+          <div class="scene-info">
+            <div class="scene-name">院子</div>
+            <div class="scene-desc">核心场景 · 社交主舞台 · 四季变化</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">☕</div>
+          <div class="scene-info">
+            <div class="scene-name">咖啡区</div>
+            <div class="scene-desc">白天场景 · 文艺调性 · 一人/两人时光</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">🍷</div>
+          <div class="scene-info">
+            <div class="scene-name">酒吧区</div>
+            <div class="scene-desc">夜晚场景 · 社交调性 · 群聚氛围</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">🎨</div>
+          <div class="scene-info">
+            <div class="scene-name">展览区</div>
+            <div class="scene-desc">艺术场景 · 文化调性 · 策展叙事</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">🏘️</div>
+          <div class="scene-info">
+            <div class="scene-name">门口/五大道</div>
+            <div class="scene-desc">城市场景 · 在地感 · 街区文化</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-group">
+        <div class="scene-group-title">🕐 时间场景</div>
+        <div class="scene-item">
+          <div class="scene-icon">🌅</div>
+          <div class="scene-info">
+            <div class="scene-name">清晨</div>
+            <div class="scene-desc">罗老师的独处时刻 · 准备与沉思</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">☀️</div>
+          <div class="scene-info">
+            <div class="scene-name">午后</div>
+            <div class="scene-desc">咖啡与对话 · 来客最多</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">🌇</div>
+          <div class="scene-info">
+            <div class="scene-name">黄昏</div>
+            <div class="scene-desc">两种气质的交接 · 咖啡到酒的过渡</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">🌙</div>
+          <div class="scene-info">
+            <div class="scene-name">深夜</div>
+            <div class="scene-desc">酒与故事 · 最走心的时刻</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-group">
+        <div class="scene-group-title">💭 情绪场景</div>
+        <div class="scene-item">
+          <div class="scene-icon">🧘</div>
+          <div class="scene-info">
+            <div class="scene-name">找松弛</div>
+            <div class="scene-desc">一个人来 · 什么都不想 · 待着就好</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">👫</div>
+          <div class="scene-info">
+            <div class="scene-name">找朋友</div>
+            <div class="scene-desc">两三个人 · 随意聊天 · 轻社交</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">💡</div>
+          <div class="scene-info">
+            <div class="scene-name">找灵感</div>
+            <div class="scene-desc">创作者 · 艺术/文字/设计</div>
+          </div>
+        </div>
+        <div class="scene-item">
+          <div class="scene-icon">💬</div>
+          <div class="scene-info">
+            <div class="scene-name">找关系</div>
+            <div class="scene-desc">社交需求 · 认识人 · 建立连接</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 06 关系IP ====== -->
+<section class="section" id="relation">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 05</div>
+      <div class="section-title">关系IP体系 — 人与人之间的"线"</div>
+      <div class="section-desc">关系线就是故事引擎。核心关系线驱动主线剧情，衍生关系线丰富支线故事。</div>
+    </div>
+
+    <div class="relation-section">
+      <div class="relation-group">
+        <div class="relation-group-title">🔥 核心关系线（戏剧引擎）</div>
+        <div class="relation-line">
+          <div class="relation-pair">🎭 罗老师 ↔ 💪 韩姐 <span class="relation-tag" style="background:#FDE8E0;color:#B85C5C;">主线</span></div>
+          <div class="relation-meaning">理想 vs 现实 — 最强戏剧张力，所有内容的核心引擎</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">🎭 罗老师 → 🌱 徒弟 <span class="relation-tag" style="background:#E4F0E4;color:#5A8E5A;">传承</span></div>
+          <div class="relation-meaning">师承与传承 — 艺术精神的延续</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">💪 韩姐 → 👥 朋友 <span class="relation-tag" style="background:#F0E6D4;color:#8B7340;">人情</span></div>
+          <div class="relation-meaning">人情与生意 — 社交智慧与社区经营</div>
+        </div>
+      </div>
+
+      <div class="relation-group">
+        <div class="relation-group-title">🌿 衍生关系线（故事支线）</div>
+        <div class="relation-line">
+          <div class="relation-pair">🎯 店长 ↔ 🎭💪 <span class="relation-tag" style="background:#E0ECF0;color:#5A7F8E;">调和</span></div>
+          <div class="relation-meaning">店长调和两人矛盾，连接角色与观众</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">🌱 徒弟 ↔ 🌱 徒弟 <span class="relation-tag" style="background:#E4F0E4;color:#5A8E5A;">同门</span></div>
+          <div class="relation-meaning">同门日常 — 年轻人之间的化学反应</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">👥 朋友 ↔ 👥 朋友 <span class="relation-tag" style="background:#F0E8F0;color:#7B5A8E;">社交</span></div>
+          <div class="relation-meaning">院子社交 — 来客之间的意外连接</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">🐾 宠物 ↔ 所有人 <span class="relation-tag" style="background:#FFF3E0;color:#B8860B;">治愈</span></div>
+          <div class="relation-meaning">毛孩子是所有人的情感连接点</div>
+        </div>
+      </div>
+
+      <div class="relation-group">
+        <div class="relation-group-title">👀 观众关系（第四面墙）</div>
+        <div class="relation-line">
+          <div class="relation-pair">观众 → 🎭 罗老师</div>
+          <div class="relation-meaning">"我想成为这种人" — 理想投射</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">观众 → 💪 韩姐</div>
+          <div class="relation-meaning">"我身边就有这种人" — 共鸣投射</div>
+        </div>
+        <div class="relation-line">
+          <div class="relation-pair">观众 → 🏡 院子</div>
+          <div class="relation-meaning">"我想去这个地方" — 场景投射</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 07 产品IP ====== -->
+<section class="section" id="product">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 06</div>
+      <div class="section-title">产品IP体系 — 从内容到消费</div>
+      <div class="section-desc">三类产品构成完整变现路径：实体产品让人来，体验产品让人留，内容产品让人关注。</div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-group">
+        <div class="product-group-title">☕ 实体产品（到店消费）</div>
+        <div class="product-item">
+          <div class="p-icon">☕</div>
+          <div class="p-name">咖啡</div>
+          <div class="p-tag">白天入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🍷</div>
+          <div class="p-name">酒</div>
+          <div class="p-tag">夜晚入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🥗</div>
+          <div class="p-name">简餐/轻食</div>
+          <div class="p-tag">逗留理由</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🎁</div>
+          <div class="p-name">文创周边</div>
+          <div class="p-tag">带走记忆</div>
+        </div>
+      </div>
+
+      <div class="product-group">
+        <div class="product-group-title">🎪 体验产品（活动产品）</div>
+        <div class="product-item">
+          <div class="p-icon">🖼️</div>
+          <div class="p-name">小型展览</div>
+          <div class="p-tag">艺术入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🎵</div>
+          <div class="p-name">音乐夜</div>
+          <div class="p-tag">社交入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">📚</div>
+          <div class="p-name">读书会/沙龙</div>
+          <div class="p-tag">文化入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🎪</div>
+          <div class="p-name">创意市集</div>
+          <div class="p-tag">社区入口</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🎯</div>
+          <div class="p-name">主题活动</div>
+          <div class="p-tag">话题入口</div>
+        </div>
+      </div>
+
+      <div class="product-group">
+        <div class="product-group-title">📱 内容产品（线上产品）</div>
+        <div class="product-item">
+          <div class="p-icon">🎬</div>
+          <div class="p-name">系列短视频</div>
+          <div class="p-tag">引流</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">🎥</div>
+          <div class="p-name">长视频/纪录片</div>
+          <div class="p-tag">深度</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">✍️</div>
+          <div class="p-name">图文故事</div>
+          <div class="p-tag">沉淀</div>
+        </div>
+        <div class="product-item">
+          <div class="p-icon">📡</div>
+          <div class="p-name">直播</div>
+          <div class="p-tag">互动</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 08 账号矩阵 ====== -->
+<section class="section" id="account">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">SYSTEM 07</div>
+      <div class="section-title">账号矩阵体系 — 多平台协同</div>
+      <div class="section-desc">5个账号各有定位和性格，覆盖不同平台和人群。主账号定调，人物账号出圈。</div>
+    </div>
+
+    <div class="account-grid">
+      <div class="account-card">
+        <div class="account-header">
+          <div class="account-avatar main">🏛️</div>
+          <div>
+            <div class="account-name">主账号「大理道25号」</div>
+            <div class="account-persona">25号本身就是主角</div>
+          </div>
+        </div>
+        <div class="account-platforms">
+          <span class="platform-tag platform-xhs">小红书</span>
+          <span class="platform-tag platform-wx">微信视频号</span>
+        </div>
+        <div class="account-content">
+          院子日常 · 顾客故事 · 活动预告 · 空间美学<br>
+          <span style="color:var(--accent-gold);">定位：品牌大本营，综合内容+私域入口</span>
+        </div>
+      </div>
+
+      <div class="account-card">
+        <div class="account-header">
+          <div class="account-avatar luo">🎭</div>
+          <div>
+            <div class="account-name">罗老师</div>
+            <div class="account-persona">不接地气的艺术家</div>
+          </div>
+        </div>
+        <div class="account-platforms">
+          <span class="platform-tag platform-xhs">小红书</span>
+          <span class="platform-tag platform-dy">抖音</span>
+        </div>
+        <div class="account-content">
+          艺术审美 · 理想主义 · 咖啡哲学 · 搞艺术提案<br>
+          <span style="color:var(--accent-gold);">定位：文艺人设出圈，吸引审美人群</span>
+        </div>
+      </div>
+
+      <div class="account-card">
+        <div class="account-header">
+          <div class="account-avatar han">💪</div>
+          <div>
+            <div class="account-name">韩姐</div>
+            <div class="account-persona">接地气的生活家</div>
+          </div>
+        </div>
+        <div class="account-platforms">
+          <span class="platform-tag platform-dy">抖音</span>
+          <span class="platform-tag platform-ks">快手</span>
+        </div>
+        <div class="account-content">
+          生活智慧 · 人情世故 · 做生意 · 算账<br>
+          <span style="color:var(--accent-gold);">定位：下沉市场出圈，接地气最广覆盖</span>
+        </div>
+      </div>
+
+      <div class="account-card">
+        <div class="account-header">
+          <div class="account-avatar manager">🎯</div>
+          <div>
+            <div class="account-name">店长日记</div>
+            <div class="account-persona">秩序维护者</div>
+          </div>
+        </div>
+        <div class="account-platforms">
+          <span class="platform-tag platform-xhs">小红书</span>
+          <span class="platform-tag platform-wb">微博</span>
+        </div>
+        <div class="account-content">
+          每日营业 · 顾客故事 · 院子变化 · 店长推荐<br>
+          <span style="color:var(--accent-gold);">定位：日常记录者，即时互动窗口</span>
+        </div>
+      </div>
+
+      <div class="account-card" style="grid-column: span 2;">
+        <div class="account-header">
+          <div class="account-avatar student">🌱</div>
+          <div>
+            <div class="account-name">徒弟视角</div>
+            <div class="account-persona">学艺年轻人</div>
+          </div>
+        </div>
+        <div class="account-platforms">
+          <span class="platform-tag platform-bl">B站</span>
+          <span class="platform-tag platform-dy">抖音</span>
+        </div>
+        <div class="account-content">
+          学艺日常 · 师徒互动 · 年轻人的理想与现实 · Vlog<br>
+          <span style="color:var(--accent-gold);">定位：年轻人代入口，B站长内容+抖音短平快</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 09 转化路径 ====== -->
+<section class="section" id="conversion">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">CONVERSION</div>
+      <div class="section-title">商业转化路径</div>
+      <div class="section-desc">从内容到到店到留存到复购，完整闭环。每一步都有对应的IP体系支撑。</div>
+    </div>
+
+    <div class="conversion-path">
+      <div class="conversion-steps">
+        <div class="conv-step">
+          <div class="conv-step-icon">📹</div>
+          <div class="conv-step-name">内容吸引人</div>
+          <div class="conv-step-desc">罗老师、韩姐、院子故事、关系故事吸引关注</div>
+        </div>
+        <div class="conv-arrow">→</div>
+        <div class="conv-step">
+          <div class="conv-step-icon">🏡</div>
+          <div class="conv-step-name">场景让人来</div>
+          <div class="conv-step-desc">咖啡、夜酒、球赛、活动、展览形成到店理由</div>
+        </div>
+        <div class="conv-arrow">→</div>
+        <div class="conv-step">
+          <div class="conv-step-icon">💬</div>
+          <div class="conv-step-name">私域让人留下</div>
+          <div class="conv-step-desc">朋友群、艺术群、熟客群、宠物群沉淀关系</div>
+        </div>
+        <div class="conv-arrow">→</div>
+        <div class="conv-step">
+          <div class="conv-step-icon">🔄</div>
+          <div class="conv-step-name">IP让人复购</div>
+          <div class="conv-step-desc">活动、会员、文创、联名、院子局持续消费</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px; text-align:center;">
+      <div style="font-size:13px; color:var(--text-light); margin-bottom:12px;">各体系在转化路径中的角色</div>
+      <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap; font-size:14px;">
+        <span>📹 <strong>内容IP</strong> → 吸引</span>
+        <span>🏡 <strong>场景IP</strong> → 到店</span>
+        <span>🔗 <strong>关系IP</strong> → 留存</span>
+        <span>🎭 <strong>人物IP</strong> → 复购</span>
+        <span>🛍️ <strong>产品IP</strong> → 变现</span>
+        <span>📱 <strong>账号矩阵</strong> → 扩散</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== 10 待细化事项 ====== -->
+<section class="section" id="todo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">NEXT STEPS</div>
+      <div class="section-title">待细化事项清单</div>
+      <div class="section-desc">框架已搭好，以下是需要逐项细化的关键工作。按优先级排列，先做核心、再做延展。</div>
+    </div>
+
+    <div class="todo-grid">
+      <div class="todo-card">
+        <div class="todo-card-title">🎭 人物IP细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>罗老师完整人设档案 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>韩姐完整人设档案 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>店长/徒弟/朋友人设档案 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>每个角色的口头禅和经典场景 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>角色间的互动模式与对话风格 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>角色成长线设计 <span class="todo-priority p-low">P2</span></li>
+        </ul>
+      </div>
+
+      <div class="todo-card">
+        <div class="todo-card-title">📹 内容IP细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>各栏目的内容模板/SOP <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>栏目优先级排序与启动计划 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>前10期内容选题规划 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>各栏目拍摄/制作标准 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>内容日历与发布节奏 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>爆款内容的判断标准与复制方法 <span class="todo-priority p-low">P2</span></li>
+        </ul>
+      </div>
+
+      <div class="todo-card">
+        <div class="todo-card-title">🏛️ 主IP细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>视觉符号系统（logo/字体/色彩） <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>Slogan使用场景分配 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>"城市关系剧场"的具体演绎方式 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>品牌调性手册（视觉+语言+场景） <span class="todo-priority p-mid">P1</span></li>
+        </ul>
+      </div>
+
+      <div class="todo-card">
+        <div class="todo-card-title">📱 账号矩阵细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>各账号主页装修方案 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>各账号首批内容规划 <span class="todo-priority p-high">P0</span></li>
+          <li><div class="todo-check"></div>跨账号联动机制（互引/合拍/串场） <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>各平台算法适配策略 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>数据指标与考核标准 <span class="todo-priority p-low">P2</span></li>
+        </ul>
+      </div>
+
+      <div class="todo-card">
+        <div class="todo-card-title">🛍️ 产品IP细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>产品命名体系（与IP绑定） <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>文创周边开发计划 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>会员体系设计 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>私域社群运营方案 <span class="todo-priority p-mid">P1</span></li>
+        </ul>
+      </div>
+
+      <div class="todo-card">
+        <div class="todo-card-title">🔗 关系IP + 场景IP细化</div>
+        <ul class="todo-list">
+          <li><div class="todo-check"></div>核心关系线的"名场面"设计 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>场景IP的拍摄点位规划 <span class="todo-priority p-mid">P1</span></li>
+          <li><div class="todo-check"></div>四季场景内容规划 <span class="todo-priority p-low">P2</span></li>
+          <li><div class="todo-check"></div>用户UGC引导机制 <span class="todo-priority p-low">P2</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="footer-line"></div>
+  <div>大理道25号 · IP矩阵工作框架</div>
+  <div style="margin-top:4px;">七大体系 × 六大角色 × 五大方向 × 全平台矩阵</div>
+</footer>
+
+<script>
+// Nav active state
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.section');
+
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(item.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === '#' + current) {
+      item.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
